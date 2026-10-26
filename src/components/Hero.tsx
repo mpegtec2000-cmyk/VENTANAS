@@ -72,7 +72,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="inicio" className="relative min-h-[75vh] lg:min-h-[82vh] flex items-center overflow-hidden bg-black border-b border-slate-200">
+    <section id="inicio" className="relative min-h-[75vh] lg:min-h-[82vh] flex items-center overflow-hidden bg-black">
       
       {/* Carrusel de Fondos Limpios (Bucle infinito cada 2s) */}
       <div className="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none">
@@ -107,65 +107,61 @@ export default function Hero() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-24 relative z-30 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-          {/* Columna Izquierda: Titular y Botones */}
-          <div className="lg:col-span-7 space-y-6 sm:space-y-7 text-center lg:text-left">
-            {/* Titular Principal: Máximo 2 líneas en desktop, 3 en móvil, con "a medida" destacado en azul */}
-            <h1 className="text-2xl sm:text-4xl lg:text-[44px] xl:text-5xl font-extrabold text-white tracking-tight leading-[1.18] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-              Soluciones en vidrio, aluminio y PVC <span className="text-blue-400">a medida</span>
-            </h1>
+        {/* Columna Izquierda: Titular y Botones */}
+        <div className="max-w-xl lg:max-w-[560px] xl:max-w-[640px] space-y-6 sm:space-y-7 text-center lg:text-left">
+          {/* Titular Principal: Máximo 2 líneas en desktop, 3 en móvil, con "a medida" destacado en azul */}
+          <h1 className="text-2xl sm:text-4xl lg:text-[42px] xl:text-5xl font-extrabold text-white tracking-tight leading-[1.18] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+            Soluciones en vidrio, aluminio y PVC <span className="text-blue-400">a medida</span>
+          </h1>
 
-            {/* Subtítulo: Máximo 2 líneas, peso medium, buen interlineado */}
-            <p className="text-base sm:text-lg text-slate-100 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
-              Más de 30 años en fabricación e instalación para hogares, terrazas y proyectos comerciales.
-            </p>
+          {/* Subtítulo: Máximo 2 líneas, peso medium, buen interlineado */}
+          <p className="text-base sm:text-lg text-slate-100 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
+            Más de 30 años en fabricación e instalación para hogares, terrazas y proyectos comerciales.
+          </p>
 
-            {/* Botones de Acción (apilados en celular, alineados en desktop) */}
-            <div className="space-y-3 pt-1">
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
-                <a
-                  href="#cotizar"
-                  data-track="Cotizar Hero CTA"
-                  className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm sm:text-base shadow-lg transition-all flex items-center justify-center gap-2 group border border-blue-400/20"
-                >
-                  <span>Solicitar cotización gratuita</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
+          {/* Botones de Acción (apilados en celular, alineados en desktop) */}
+          <div className="space-y-3 pt-1">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
+              <a
+                href="#cotizar"
+                data-track="Cotizar Hero CTA"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm sm:text-base shadow-lg transition-all flex items-center justify-center gap-2 group border border-blue-400/20"
+              >
+                <span>Solicitar cotización gratuita</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
 
-                <a
-                  href="https://wa.me/56992409397?text=Hola%20Vidrier%C3%ADa%20Orellana,%20necesito%20solicitar%20una%20cotizaci%C3%B3n."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-track="WhatsApp Hero Direct"
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-md transition-all flex items-center justify-center gap-2 group"
-                >
-                  <MessageCircle className="w-4 h-4 fill-white" />
-                  <span>Cotizar por WhatsApp</span>
-                </a>
-              </div>
+              <a
+                href="https://wa.me/56992409397?text=Hola%20Vidrier%C3%ADa%20Orellana,%20necesito%20solicitar%20una%20cotizaci%C3%B3n."
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track="WhatsApp Hero Direct"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-md transition-all flex items-center justify-center gap-2 group"
+              >
+                <MessageCircle className="w-4 h-4 fill-white" />
+                <span>Cotizar por WhatsApp</span>
+              </a>
+            </div>
 
-              {/* Línea pequeña y discreta debajo de los botones */}
-              <div className="text-xs text-slate-300 font-medium flex items-center justify-center lg:justify-start gap-1.5 drop-shadow-sm pt-1">
-                <MapPin className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                <span>Cobertura en la V Región y otras regiones del país</span>
-              </div>
+            {/* Línea pequeña y discreta debajo de los botones */}
+            <div className="text-xs text-slate-300 font-medium flex items-center justify-center lg:justify-start gap-1.5 drop-shadow-sm pt-1">
+              <MapPin className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+              <span>Cobertura en la V Región y otras regiones del país</span>
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Columna Derecha: Logotipo Oficial Orellana Flotante Ampliado y Pegado a la Derecha */}
-          <div className="lg:col-span-5 hidden lg:flex items-center justify-end pr-2 lg:pr-6">
-            <div className="relative w-80 sm:w-96 lg:w-[460px] xl:w-[500px] h-32 sm:h-36 lg:h-44 transition-transform duration-500 hover:scale-105">
-              <Image
-                src="/images/logo-orellana-white-hd.png"
-                alt="Vidriería Orellana - Vidrios & Aluminios"
-                fill
-                className="object-contain object-right drop-shadow-[0_6px_28px_rgba(0,0,0,0.95)]"
-                priority
-              />
-            </div>
-          </div>
-
+      {/* Logotipo Oficial Orellana Flotante al Borde Derecho de la Pantalla */}
+      <div className="hidden lg:flex absolute right-4 sm:right-6 lg:right-10 xl:right-16 top-1/2 -translate-y-1/2 z-30 pointer-events-none items-center justify-end">
+        <div className="relative w-80 lg:w-[420px] xl:w-[480px] h-28 lg:h-36 xl:h-40 transition-transform duration-500 hover:scale-105">
+          <Image
+            src="/images/logo-orellana-white-hd.png"
+            alt="Vidriería Orellana - Vidrios & Aluminios"
+            fill
+            className="object-contain object-right drop-shadow-[0_6px_28px_rgba(0,0,0,0.95)]"
+            priority
+          />
         </div>
       </div>
     </section>

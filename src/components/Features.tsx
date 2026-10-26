@@ -32,8 +32,8 @@ export default function Features() {
   ];
 
   return (
-    <section id="nosotros" className="py-20 sm:py-28 relative overflow-hidden border-y border-slate-200">
-      {/* Fondo Fotográfico 1a.jpg solicitado con sutil overlay corporativo */}
+    <section id="nosotros" className="py-20 sm:py-28 relative overflow-hidden">
+      {/* Fondo Fotográfico 1a.jpg sin ningún filtro */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/features-bg.jpg"
@@ -42,21 +42,20 @@ export default function Features() {
           className="object-cover object-center"
           quality={95}
         />
-        <div className="absolute inset-0 bg-[#0F172A]/80 backdrop-blur-[1px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Encabezado */}
         <div className="text-center max-w-2xl mx-auto space-y-3 mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-blue-300 text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-wider shadow-lg">
+            <Sparkles className="w-3.5 h-3.5 text-blue-400" />
             30 Años de Calidad & Oficio
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight drop-shadow-md">
+          <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             ¿Por qué Elegir Vidriería Orellana?
           </h2>
-          <p className="text-sm sm:text-base text-slate-200 leading-relaxed drop-shadow-sm">
+          <p className="text-sm sm:text-base text-white font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
             Nuestro prestigio en la V Región se fundamenta en tres décadas de palabra empeñada, excelencia en el servicio y la máxima calidad en cada terminación.
           </p>
         </div>
