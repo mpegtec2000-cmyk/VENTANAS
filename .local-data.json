@@ -288,6 +288,42 @@
       "session_id": "sess-1792976121822-vpme6v",
       "id": "ev-1792976121900-mn6zm",
       "created_at": "2026-10-26T00:55:21.900Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792974833792-y8mx3j",
+      "id": "ev-1792976797686-6gn14",
+      "created_at": "2026-10-26T01:06:37.686Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792974833792-y8mx3j",
+      "id": "ev-1792976797688-xvp0w",
+      "created_at": "2026-10-26T01:06:37.688Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792976841681-usy15p",
+      "id": "ev-1792976841697-36h08",
+      "created_at": "2026-10-26T01:07:21.697Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792976841681-usy15p",
+      "id": "ev-1792976841698-a4rkf",
+      "created_at": "2026-10-26T01:07:21.698Z"
     }
   ]
 }

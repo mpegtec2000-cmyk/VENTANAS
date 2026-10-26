@@ -2,24 +2,21 @@
 
 import Image from 'next/image';
 import { 
-  Shield, 
-  Award, 
-  Ruler, 
-  CheckCircle2, 
+  ShieldCheck, 
   ArrowRight, 
   MessageCircle, 
   Sparkles, 
   VolumeX, 
   ThermometerSnowflake, 
-  Layers
+  Ruler
 } from 'lucide-react';
 import { trackEvent } from '@/lib/tracker';
 
 export default function Hero() {
   return (
-    <section id="inicio" className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center overflow-hidden bg-slate-900 border-b border-slate-200">
+    <section id="inicio" className="relative min-h-[80vh] lg:min-h-[85vh] flex items-center overflow-hidden bg-slate-900 border-b border-slate-200">
       
-      {/* Fondo Limpio: Fotografía Arquitectónica Real sin filtros de cuadros */}
+      {/* Fondo Fotográfico Limpio sin filtros de cuadros */}
       <div className="absolute inset-0 z-0">
         <picture>
           <source media="(max-width: 768px)" srcSet="/images/hero-mobile.jpg" />
@@ -33,64 +30,59 @@ export default function Hero() {
           />
         </picture>
 
-        {/* Gradiente sutil y limpio solo para garantizar legibilidad del texto sin teñir de azul */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 to-transparent lg:w-3/5" />
-        <div className="absolute inset-0 bg-black/20" />
+        {/* Sombra de contraste suave y limpia */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/75 to-transparent lg:w-3/5" />
+        <div className="absolute inset-0 bg-black/15" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 relative z-10 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          {/* Tarjeta de Contenido Principal Limpia */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+          {/* Columna Izquierda: Mensaje Claro y Directo */}
+          <div className="lg:col-span-7 space-y-5 text-center lg:text-left">
             
             {/* Pill Badge Oficial */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-bold text-white shadow-lg">
-              <span className="w-2 h-2 rounded-full bg-brand-blue animate-pulse"></span>
-              <span className="text-white">Calidad y Tradición</span>
-              <span className="text-white/40">•</span>
-              <span className="text-slate-300 font-medium">Taller en Achupallas, Viña del Mar</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-xs font-bold text-white shadow-md">
+              <span className="w-2 h-2 rounded-full bg-[#0052CC]" />
+              <span>Calidad & Tradición</span>
+              <span className="text-white/30">•</span>
+              <span className="text-slate-300 font-normal">Achupallas, Viña del Mar</span>
             </div>
 
-            {/* Titular Principal */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-[1.12] drop-shadow-md">
-              Fabricación de Ventanas en <span className="text-brand-blue">Aluminio & PVC</span> a tu Medida
+            {/* Titular Principal Claro */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
+              Fabricación de Ventanas en <span className="text-[#3399FF]">Aluminio & PVC</span> a tu Medida
             </h1>
 
-            {/* Bajada Comercial */}
-            <p className="text-base sm:text-lg text-slate-200 max-w-2xl mx-auto lg:mx-0 leading-relaxed drop-shadow">
-              En <strong className="text-white font-bold">Orellana - Vidrios & Aluminios</strong> llevamos más de dos décadas equipando hogares y empresas en la V Región. Especialistas en <span className="text-white font-semibold underline decoration-brand-blue decoration-2 underline-offset-4">ventanas con termopanel aislante (DVH)</span>, cierres de balcón, shower doors y estructuras herméticas.
+            {/* Redacción Corta y Efectiva (Sin saturación de texto) */}
+            <p className="text-base sm:text-lg text-slate-200 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+              Aislación térmica, reducción de ruidos y estructuras herméticas para tu hogar o proyecto. Especialistas en termopaneles, shower doors y cierres de balcón en Viña del Mar.
             </p>
 
-            {/* Checklist Técnico de 4 Pilares con Iconos Limpios */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs sm:text-sm text-white">
-              <div className="flex items-center gap-2.5 bg-slate-900/75 backdrop-blur-md p-3 rounded-2xl border border-white/15">
-                <ThermometerSnowflake className="w-5 h-5 text-brand-blue flex-shrink-0" />
-                <span className="font-semibold">Termopanel Aislante Térmico</span>
+            {/* 3 Beneficios Concretos en Línea */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-1 text-xs text-white">
+              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15">
+                <ThermometerSnowflake className="w-4 h-4 text-[#3399FF]" />
+                <span className="font-semibold">Termopanel Aislante</span>
               </div>
-              <div className="flex items-center gap-2.5 bg-slate-900/75 backdrop-blur-md p-3 rounded-2xl border border-white/15">
-                <VolumeX className="w-5 h-5 text-brand-blue flex-shrink-0" />
-                <span className="font-semibold">Reducción Acústica Certificada</span>
+              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15">
+                <VolumeX className="w-4 h-4 text-[#3399FF]" />
+                <span className="font-semibold">Control de Ruido</span>
               </div>
-              <div className="flex items-center gap-2.5 bg-slate-900/75 backdrop-blur-md p-3 rounded-2xl border border-white/15">
-                <Shield className="w-5 h-5 text-brand-blue flex-shrink-0" />
-                <span className="font-semibold">Cristal Templado 8-10mm</span>
-              </div>
-              <div className="flex items-center gap-2.5 bg-slate-900/75 backdrop-blur-md p-3 rounded-2xl border border-white/15">
-                <Layers className="w-5 h-5 text-brand-blue flex-shrink-0" />
-                <span className="font-semibold">Línea Europea & PVC Soldado</span>
+              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15">
+                <Ruler className="w-4 h-4 text-[#3399FF]" />
+                <span className="font-semibold">Medición en Terreno</span>
               </div>
             </div>
 
-            {/* Botones de Acción */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+            {/* Botones de Acción Principales (Azul Corporativo, no celeste) */}
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-3">
               <a
                 href="#cotizar"
                 data-track="Cotizar Hero CTA"
-                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-brand-blue hover:bg-brand-blue-hover text-white font-bold text-sm sm:text-base shadow-xl shadow-brand-blue/30 transition-all duration-300 flex items-center justify-center gap-2.5 group transform hover:-translate-y-0.5"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#0052CC] hover:bg-[#0040A8] text-white font-bold text-sm sm:text-base shadow-lg shadow-blue-900/30 transition-all flex items-center justify-center gap-2 group"
               >
-                <Sparkles className="w-4 h-4 text-white" />
-                <span>Solicitar Presupuesto Gratuito</span>
+                <span>Cotizar Presupuesto</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
 
@@ -99,36 +91,25 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-track="WhatsApp Hero Direct"
-                className="w-full sm:w-auto px-7 py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-lg transition-all flex items-center justify-center gap-2.5 transform hover:-translate-y-0.5"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-md transition-all flex items-center justify-center gap-2"
               >
-                <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                <MessageCircle className="w-5 h-5 fill-white" />
+                <MessageCircle className="w-4 h-4 fill-white" />
                 <span>Hablar por WhatsApp</span>
               </a>
             </div>
 
-            {/* Badges Inferiores de Confianza */}
-            <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-300">
-              <span className="flex items-center gap-1.5 font-medium drop-shadow">
-                <Award className="w-4 h-4 text-brand-blue" />
-                Más de 20 Años de Oficio
-              </span>
-              <span className="flex items-center gap-1.5 font-medium drop-shadow">
-                <Ruler className="w-4 h-4 text-brand-blue" />
-                Medición Precisa en Terreno
-              </span>
-              <span className="flex items-center gap-1.5 font-medium drop-shadow">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                Garantía Orellana
-              </span>
+            {/* Garantía al pie */}
+            <div className="pt-2 text-xs text-slate-300 flex items-center justify-center lg:justify-start gap-2">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <span>Garantía de instalación y fabricación directa en taller</span>
             </div>
 
           </div>
 
           {/* Columna Derecha: Tarjeta Fotográfica de Ficha Técnica */}
           <div className="lg:col-span-5 hidden lg:block">
-            <div className="bg-slate-950/80 backdrop-blur-xl rounded-3xl p-5 border border-white/20 shadow-2xl text-white space-y-4">
-              <div className="relative h-60 w-full rounded-2xl overflow-hidden shadow-inner">
+            <div className="bg-slate-950/80 backdrop-blur-xl rounded-3xl p-4 border border-white/20 shadow-2xl text-white space-y-3">
+              <div className="relative h-64 w-full rounded-2xl overflow-hidden shadow-inner">
                 <Image
                   src="/images/ventanas-pvc.jpg"
                   alt="Ventanal Termopanel PVC"
@@ -137,19 +118,19 @@ export default function Hero() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                  <span className="text-[11px] font-bold bg-brand-blue px-2.5 py-1 rounded-lg">
+                  <span className="text-[11px] font-bold bg-[#0052CC] px-2.5 py-1 rounded-lg">
                     Termopanel DVH 4-12-4
                   </span>
                   <span className="text-xs font-semibold text-slate-200">
-                    Aislación Acústica -32dB
+                    Aislación Acústica & Térmica
                   </span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between text-xs text-slate-300 pt-1">
+              <div className="flex items-center justify-between text-xs text-slate-300 px-1">
                 <span className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  Fabricación propia en Taller
+                  Fabricación propia
                 </span>
                 <span className="font-bold text-white">Achupallas, Viña del Mar</span>
               </div>
