@@ -52,8 +52,8 @@ export default function Features() {
         
         {/* Encabezado */}
         <div className="text-center max-w-2xl mx-auto space-y-3 mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-wider shadow-lg">
-            <Sparkles className="w-3.5 h-3.5 text-blue-400" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-md border border-blue-100 text-[#0052CC] text-xs font-extrabold uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-[#0052CC]" />
             30 Años de Trayectoria & Excelencia
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
