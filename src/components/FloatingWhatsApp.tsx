@@ -163,9 +163,9 @@ export default function FloatingWhatsApp() {
         <button
           onClick={handleOpen}
           aria-label="Abrir Asistente Virtual Vidriería Orellana"
-          className="flex items-center gap-2.5 bg-gradient-to-r from-[#0052CC] to-[#003B99] hover:from-[#0040A8] hover:to-[#002B73] text-white p-3.5 sm:px-5 sm:py-3.5 rounded-full shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 group border border-white/20"
+          className="flex items-center gap-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white p-3.5 sm:px-5 sm:py-3.5 rounded-full shadow-2xl hover:shadow-slate-900/40 transition-all duration-300 transform hover:scale-105 group border border-white/20"
         >
-          <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-white/20">
+          <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-white/10">
             <Bot className="w-5 h-5 text-white animate-bounce" />
             <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -174,7 +174,7 @@ export default function FloatingWhatsApp() {
           </div>
           <div className="hidden sm:flex flex-col text-left">
             <span className="font-extrabold text-xs tracking-wide">Vidriería Orellana</span>
-            <span className="text-[10px] text-blue-200 font-medium">Asesor Virtual en línea</span>
+            <span className="text-[10px] text-blue-300 font-medium">Asesor Virtual en línea</span>
           </div>
         </button>
       )}
@@ -183,12 +183,12 @@ export default function FloatingWhatsApp() {
       {isOpen && (
         <div className="w-[92vw] sm:w-[380px] h-[520px] max-h-[85vh] bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
           
-          {/* Header Superior Corporativo */}
-          <div className="bg-[#0052CC] text-white p-4 flex items-center justify-between shadow-md">
+          {/* Header Superior Corporativo en Azul #0F172A */}
+          <div className="bg-[#0F172A] text-white p-4 flex items-center justify-between shadow-md border-b border-white/10">
             <div className="flex items-center gap-3">
-              <div className="relative w-10 h-10 rounded-full bg-white/20 border border-white/30 flex items-center justify-center">
+              <div className="relative w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
                 <Bot className="w-6 h-6 text-white" />
-                <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#0052CC]" />
+                <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#0F172A]" />
               </div>
               <div>
                 <h3 className="font-bold text-sm tracking-tight leading-none text-white">
@@ -196,7 +196,7 @@ export default function FloatingWhatsApp() {
                 </h3>
                 <div className="flex items-center gap-1.5 mt-1">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-[11px] text-blue-100 font-medium">Disponible ahora</span>
+                  <span className="text-[11px] text-blue-200 font-medium">Disponible ahora</span>
                 </div>
               </div>
             </div>
@@ -225,7 +225,7 @@ export default function FloatingWhatsApp() {
                 <div
                   className={`max-w-[85%] p-3.5 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-sm ${
                     msg.sender === 'bot'
-                      ? 'bg-[#0052CC] text-white rounded-tl-sm'
+                      ? 'bg-[#0F172A] text-white rounded-tl-sm'
                       : 'bg-white text-slate-800 border border-slate-200 rounded-tr-sm'
                   }`}
                 >
@@ -248,10 +248,10 @@ export default function FloatingWhatsApp() {
             ))}
 
             {isTyping && (
-              <div className="flex items-center gap-1.5 p-3 rounded-2xl bg-[#0052CC]/10 text-[#0052CC] w-fit text-xs font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0052CC] animate-bounce" />
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0052CC] animate-bounce [animation-delay:0.2s]" />
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0052CC] animate-bounce [animation-delay:0.4s]" />
+              <div className="flex items-center gap-1.5 p-3 rounded-2xl bg-slate-200/80 text-slate-800 w-fit text-xs font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0F172A] animate-bounce" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0F172A] animate-bounce [animation-delay:0.2s]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0F172A] animate-bounce [animation-delay:0.4s]" />
                 <span className="ml-1">Escribiendo respuesta...</span>
               </div>
             )}
@@ -266,7 +266,7 @@ export default function FloatingWhatsApp() {
                   <button
                     key={opt}
                     onClick={() => handleSelectOption(opt)}
-                    className="px-3 py-1.5 rounded-full border border-[#0052CC] text-[#0052CC] hover:bg-[#0052CC] hover:text-white text-xs font-semibold transition-all duration-200 bg-white shadow-xs text-left"
+                    className="px-3 py-1.5 rounded-full border border-[#0F172A] text-[#0F172A] hover:bg-[#0F172A] hover:text-white text-xs font-semibold transition-all duration-200 bg-white shadow-xs text-left"
                   >
                     {opt}
                   </button>
@@ -288,13 +288,13 @@ export default function FloatingWhatsApp() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Escribe un mensaje..."
-              className="flex-1 bg-slate-100 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#0052CC]"
+              className="flex-1 bg-slate-100 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#0F172A]"
             />
             <button
               type="submit"
               disabled={!inputValue.trim()}
               aria-label="Enviar mensaje"
-              className="w-9 h-9 rounded-xl bg-[#0052CC] hover:bg-[#0040A8] disabled:opacity-40 text-white flex items-center justify-center transition-all shadow-sm"
+              className="w-9 h-9 rounded-xl bg-[#0F172A] hover:bg-[#1E293B] disabled:opacity-40 text-white flex items-center justify-center transition-all shadow-sm"
             >
               <Send className="w-4 h-4" />
             </button>

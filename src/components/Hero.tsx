@@ -119,7 +119,7 @@ export default function Hero() {
           {/* Titular Principal: Vidriería Orellana */}
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
             Vidriería Orellana<br />
-            <span className="text-[#3880FF]">Ventanas de Alta Gama</span> en Aluminio & PVC.
+            <span className="text-blue-400">Ventanas de Alta Gama</span> en Aluminio & PVC.
           </h1>
 
           {/* Bajada Comercial con 30 años de calidad y tradición */}
@@ -132,7 +132,7 @@ export default function Hero() {
             <a
               href="#cotizar"
               data-track="Cotizar Hero CTA"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#0052CC] hover:bg-[#0040A8] text-white font-bold text-sm sm:text-base shadow-lg transition-all flex items-center justify-center gap-2 group"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm sm:text-base shadow-lg transition-all flex items-center justify-center gap-2 group border border-blue-400/20"
             >
               <span>Cotizar Presupuesto sin Costo</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
