@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  --font-montserrat: 'Montserrat', system-ui, sans-serif;
+  --font-montserrat: 'Montserrat', system-ui, -apple-system, sans-serif;
 }
 
 html {
@@ -17,23 +17,50 @@ body {
   color: #0B1A2B;
   background-color: #FFFFFF;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Glassmorphism y efectos corporativos */
+/* Patrón sutil arquitectónico de precisión */
+.bg-blueprint {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 123, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 123, 255, 0.04) 1px, transparent 1px);
+}
+
+.bg-blueprint-dark {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+/* Glassmorphism de alta gama */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.glass-panel-luxury {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.88) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px -5px rgba(11, 26, 43, 0.06), 0 0 0 1px rgba(0, 123, 255, 0.05);
 }
 
 .glass-panel-dark {
   background: rgba(11, 26, 43, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+/* Reflejo cristalino sutil en tarjetas destacadas */
 .glass-reflection {
   position: relative;
   overflow: hidden;
@@ -42,24 +69,24 @@ body {
 .glass-reflection::after {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
   background: linear-gradient(
-    60deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.25) 50%,
-    transparent 60%
+    65deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 58%
   );
   transform: rotate(25deg);
   pointer-events: none;
-  animation: shine 8s infinite;
+  animation: glassGlint 9s infinite;
 }
 
-@keyframes shine {
+@keyframes glassGlint {
   0% { transform: translateX(-100%) rotate(25deg); }
-  20% { transform: translateX(100%) rotate(25deg); }
+  18% { transform: translateX(100%) rotate(25deg); }
   100% { transform: translateX(100%) rotate(25deg); }
 }
 
@@ -69,7 +96,7 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F4F6FA;
+  background: #F1F5F9;
 }
 ::-webkit-scrollbar-thumb {
   background: #CBD5E1;
@@ -77,4 +104,10 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
+}
+
+/* Selection */
+::selection {
+  background-color: #007BFF;
+  color: #FFFFFF;
 }

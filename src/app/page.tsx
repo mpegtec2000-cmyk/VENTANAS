@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Features from '@/components/Features';
 import Services from '@/components/Services';
+import ProjectsGallery from '@/components/ProjectsGallery';
 import Process from '@/components/Process';
 import QuotationCalculator from '@/components/QuotationCalculator';
 import ContactLocation from '@/components/ContactLocation';
@@ -16,6 +17,7 @@ export default function HomePage() {
         <Hero />
         <Features />
         <Services />
+        <ProjectsGallery />
         <Process />
         <QuotationCalculator />
         <ContactLocation />
