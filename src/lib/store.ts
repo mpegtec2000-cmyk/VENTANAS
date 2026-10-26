@@ -116,49 +116,7 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
 ];
 
-export const INITIAL_LEADS: Lead[] = [
-  {
-    id: 'lead-101',
-    created_at: new Date(Date.now() - 3600000 * 4).toISOString(),
-    name: 'Carlos Henríquez',
-    phone: '+56 9 8765 4321',
-    email: 'carlos.h@gmail.com',
-    service: 'Ventanas',
-    dimensions: '3 ventanas de 1.50 x 1.20 m',
-    message: 'Necesito cotizar cambio a termopanel en PVC blanco para departamento en Viña del Mar.',
-    commune: 'Viña del Mar (Reñaca)',
-    estimated_value: 390000,
-    status: 'nuevo',
-  },
-  {
-    id: 'lead-102',
-    created_at: new Date(Date.now() - 3600000 * 26).toISOString(),
-    name: 'Marcela Valenzuela',
-    phone: '+56 9 9123 9876',
-    email: 'marcela.v@hotmail.com',
-    service: 'Shower Door',
-    dimensions: '1.20 x 1.90 m corredera',
-    message: 'Busco shower door en cristal templado con perfiles negros o satinados para baño principal.',
-    commune: 'Concón',
-    estimated_value: 210000,
-    status: 'contactado',
-    notes: 'Se le envió catálogo de herrajes por WhatsApp.',
-  },
-  {
-    id: 'lead-103',
-    created_at: new Date(Date.now() - 3600000 * 48).toISOString(),
-    name: 'Inmobiliaria Costa Sol',
-    phone: '+56 9 7455 1200',
-    email: 'proyectos@costasol.cl',
-    service: 'Cierre de Balcón',
-    dimensions: 'Balcón curvo 6 metros lineales',
-    message: 'Cotización para cierre de terraza en piso 12.',
-    commune: 'Viña del Mar',
-    estimated_value: 1250000,
-    status: 'cotizado',
-    notes: 'Visita técnica agendada para rectificar medidas.',
-  },
-];
+export const INITIAL_LEADS: Lead[] = [];
 
 // Almacenamiento local en archivo JSON para desarrollo
 const DATA_FILE = path.join(process.cwd(), '.local-data.json');
@@ -181,14 +139,8 @@ function getStoredData(): LocalStorageData {
 
   const defaultData: LocalStorageData = {
     products: INITIAL_PRODUCTS,
-    leads: INITIAL_LEADS,
-    events: [
-      { event: 'page_view', path: '/', label: 'Inicio', device: 'mobile', created_at: new Date(Date.now() - 3600000 * 3).toISOString() },
-      { event: 'cta_click', path: '/', label: 'Boton Cotizar Hero', device: 'mobile', created_at: new Date(Date.now() - 3600000 * 3).toISOString() },
-      { event: 'whatsapp_click', path: '/', label: 'WhatsApp Flotante', device: 'mobile', created_at: new Date(Date.now() - 3600000 * 2).toISOString() },
-      { event: 'page_view', path: '/', label: 'Inicio', device: 'desktop', created_at: new Date(Date.now() - 3600000 * 1).toISOString() },
-      { event: 'lead_submit', path: '/', label: 'Formulario Cotizador', device: 'desktop', created_at: new Date(Date.now() - 3600000 * 1).toISOString() },
-    ],
+    leads: [],
+    events: [],
   };
 
   try {

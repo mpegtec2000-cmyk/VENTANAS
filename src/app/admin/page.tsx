@@ -1027,8 +1027,19 @@ export default function AdminPage() {
             </div>
 
             {/* Listado de Leads / Cotizaciones */}
-            <div className="space-y-4">
-              {filteredLeads.map((lead) => {
+            {filteredLeads.length === 0 ? (
+              <div className="bg-white rounded-3xl p-12 border border-slate-200 text-center space-y-3 shadow-card">
+                <div className="w-14 h-14 rounded-2xl bg-blue-50 text-brand-blue mx-auto flex items-center justify-center">
+                  <Users className="w-7 h-7" />
+                </div>
+                <h3 className="font-bold text-slate-800 text-base">Esperando Nuevas Cotizaciones Reales</h3>
+                <p className="text-xs text-slate-500 max-w-md mx-auto">
+                  El sistema está conectado y activo. Cada vez que un usuario cotice desde el sitio web o interactúe con el asesor de WhatsApp, aparecerá aquí en tiempo real con su número de teléfono y datos para contacto directo.
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {filteredLeads.map((lead) => {
                 const cleanPhone = lead.phone.replace(/[^0-9]/g, '');
                 const waChatUrl = `https://wa.me/${cleanPhone.startsWith('56') ? cleanPhone : `56${cleanPhone}`}?text=${encodeURIComponent(
                   `Hola ${lead.name}, te escribimos de Vidriería Orellana con respecto a tu solicitud de cotización para ${lead.service}. Nos gustaría coordinar tu presupuesto y detalles de instalación.`
@@ -1120,7 +1131,8 @@ export default function AdminPage() {
                   </div>
                 );
               })}
-            </div>
+              </div>
+            )}
           </div>
         )}
 
