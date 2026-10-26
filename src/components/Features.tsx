@@ -1,33 +1,37 @@
 'use client';
 
 import Image from 'next/image';
-import { ShieldCheck, Clock, Hammer, MapPin, CheckCircle2, Sparkles } from 'lucide-react';
+import { ShieldCheck, Award, Building2, MapPin, CheckCircle2, Sparkles } from 'lucide-react';
 
 export default function Features() {
   const features = [
     {
-      icon: Clock,
-      tag: 'Tradición',
-      title: 'Más de 30 Años de Oficio',
-      description: 'Tres décadas de maestría artesanal y rigor técnico en corte, armado e instalación en Viña del Mar y la V Región. Conocemos a fondo el comportamiento de los materiales ante el clima costero.',
+      icon: Award,
+      tag: 'Trayectoria',
+      title: 'Más de 30 Años de Experiencia',
+      description: 'Tres décadas de sólida presencia técnica en el diseño, armado e instalación de cerramientos y estructuras en cristal, aluminio y PVC para la V Región, dominando las exigencias del clima costero.',
+      commitment: 'Respaldo y Confianza',
     },
     {
       icon: ShieldCheck,
-      tag: 'Seguridad',
-      title: 'Materiales 100% Certificados',
-      description: 'Trabajamos exclusivamente con perfiles de aluminio y PVC de alta gama y cristales templados con norma de impacto, garantizando máxima durabilidad, aislación y hermeticidad.',
+      tag: 'Estándar',
+      title: 'Materiales de Alta Gama Certificados',
+      description: 'Utilizamos perfiles de aluminio y PVC de estándar europeo junto a cristales templados y termopaneles (DVH) homologados, garantizando máxima aislación termoacústica, hermeticidad y seguridad estructural.',
+      commitment: 'Certificación Garantizada',
     },
     {
-      icon: Hammer,
-      tag: 'Fabricación',
-      title: 'Taller Propio en Achupallas',
-      description: 'Sin intermediarios ni demoras externas. Fabricamos y ensamblamos cada ventana y estructura en nuestro propio taller, asegurando tolerancias milimétricas y precios justos.',
+      icon: Building2,
+      tag: 'Producción',
+      title: 'Taller Profesional de la Empresa',
+      description: 'Infraestructura técnica propia equipada con maquinaria de corte y ensamblaje de alta precisión. La manufactura directa sin intermediarios asegura un riguroso control de calidad y plazos de entrega confiables.',
+      commitment: 'Manufactura Directa',
     },
     {
       icon: MapPin,
-      tag: 'Cercanía',
-      title: 'Atención Directa en Terreno',
-      description: 'Asesoría técnica cercana y personalizada. Acudimos a rectificar medidas y evaluar tu espacio en Viña del Mar, Reñaca, Concón, Quilpué y alrededores sin costo.',
+      tag: 'Servicio Técnico',
+      title: 'Asesoría y Evaluación Técnica en Terreno',
+      description: 'Especialistas de la empresa realizan el levantamiento milimétrico de medidas, análisis de factibilidad y asesoramiento arquitectónico in situ en Viña del Mar, Reñaca, Concón y toda la región sin costo.',
+      commitment: 'Evaluación Técnica Gratuita',
     },
   ];
 
@@ -50,13 +54,13 @@ export default function Features() {
         <div className="text-center max-w-2xl mx-auto space-y-3 mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-wider shadow-lg">
             <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-            30 Años de Calidad & Oficio
+            30 Años de Trayectoria & Excelencia
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             ¿Por qué Elegir Vidriería Orellana?
           </h2>
           <p className="text-sm sm:text-base text-white font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-            Nuestro prestigio en la V Región se fundamenta en tres décadas de palabra empeñada, excelencia en el servicio y la máxima calidad en cada terminación.
+            Liderazgo técnico y respaldo profesional en la Región de Valparaíso, combinando manufactura de precisión, materiales de alta gama y atención directa en cada proyecto.
           </p>
         </div>
 
@@ -91,7 +95,7 @@ export default function Features() {
 
                 <div className="pt-4 mt-5 border-t border-slate-100 flex items-center gap-1.5 text-xs text-[#0052CC] font-bold">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#0052CC]" />
-                  <span>Compromiso de Calidad</span>
+                  <span>{f.commitment}</span>
                 </div>
               </div>
             );
