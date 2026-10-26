@@ -1,5 +1,7 @@
 'use client';
 
+import { TrackingEventType } from './types';
+
 export function getSessionId(): string {
   if (typeof window === 'undefined') return '';
   let id = sessionStorage.getItem('orellana_session_id');
@@ -15,7 +17,7 @@ export function isMobileDevice(): boolean {
   return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
 }
 
-export function trackEvent(event: 'page_view' | 'cta_click' | 'whatsapp_click' | 'lead_submit' | 'section_view', label: string = '') {
+export function trackEvent(event: TrackingEventType, label: string = '') {
   if (typeof window === 'undefined') return;
 
   const payload = {

@@ -27,10 +27,21 @@ export interface Product {
   image?: string;
 }
 
+export type TrackingEventType =
+  | 'page_view'
+  | 'cta_click'
+  | 'whatsapp_click'
+  | 'lead_submit'
+  | 'section_view'
+  | 'ai_chat_open'
+  | 'ai_chat_lead_captured'
+  | 'filter_click'
+  | (string & {});
+
 export interface TrackingEvent {
   id?: string;
   created_at?: string;
-  event: 'page_view' | 'cta_click' | 'whatsapp_click' | 'lead_submit' | 'section_view';
+  event: TrackingEventType;
   path?: string;
   label?: string;
   device?: string;
