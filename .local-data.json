@@ -324,6 +324,24 @@
       "session_id": "sess-1792976841681-usy15p",
       "id": "ev-1792976841698-a4rkf",
       "created_at": "2026-10-26T01:07:21.698Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792976841681-usy15p",
+      "id": "ev-1792977707610-m8fi2",
+      "created_at": "2026-10-26T01:21:47.610Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792976841681-usy15p",
+      "id": "ev-1792977707612-9t4io",
+      "created_at": "2026-10-26T01:21:47.612Z"
     }
   ]
 }

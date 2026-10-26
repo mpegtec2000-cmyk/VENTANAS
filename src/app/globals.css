@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-montserrat: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
-  font-family: var(--font-montserrat);
+  font-family: var(--font-sans);
 }
 
 body {
@@ -22,57 +22,32 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Glassmorphism limpio y elegante */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.025em;
+}
+
+/* Glassmorphism limpio corporativo */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(226, 232, 240, 0.9);
 }
 
 .glass-panel-luxury {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 10px 30px -5px rgba(11, 26, 43, 0.08), 0 0 0 1px rgba(0, 123, 255, 0.05);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 30px -5px rgba(11, 26, 43, 0.06);
 }
 
 .glass-panel-dark {
-  background: rgba(11, 26, 43, 0.85);
+  background: rgba(11, 26, 43, 0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-/* Reflejo cristalino sutil en tarjetas destacadas */
-.glass-reflection {
-  position: relative;
-  overflow: hidden;
-}
-
-.glass-reflection::after {
-  content: '';
-  position: absolute;
-  top: -60%;
-  left: -60%;
-  width: 220%;
-  height: 220%;
-  background: linear-gradient(
-    65deg,
-    transparent 42%,
-    rgba(255, 255, 255, 0.25) 50%,
-    transparent 58%
-  );
-  transform: rotate(25deg);
-  pointer-events: none;
-  animation: glassGlint 9s infinite;
-}
-
-@keyframes glassGlint {
-  0% { transform: translateX(-100%) rotate(25deg); }
-  18% { transform: translateX(100%) rotate(25deg); }
-  100% { transform: translateX(100%) rotate(25deg); }
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 /* Custom scrollbars */
@@ -91,8 +66,7 @@ body {
   background: #94A3B8;
 }
 
-/* Selection */
 ::selection {
-  background-color: #007BFF;
+  background-color: #0052CC;
   color: #FFFFFF;
 }

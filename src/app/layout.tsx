@@ -31,8 +31,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className="scroll-smooth">
-      <body className="antialiased bg-white text-brand-navy min-h-screen flex flex-col">
+    <html lang="es" className="scroll-smooth font-sans antialiased">
+      <body className="antialiased bg-white text-slate-900 min-h-screen flex flex-col font-sans">
         <Tracker />
         {children}
       </body>

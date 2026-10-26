@@ -5,7 +5,6 @@ import {
   ShieldCheck, 
   ArrowRight, 
   MessageCircle, 
-  Sparkles, 
   VolumeX, 
   ThermometerSnowflake, 
   Ruler
@@ -14,9 +13,9 @@ import { trackEvent } from '@/lib/tracker';
 
 export default function Hero() {
   return (
-    <section id="inicio" className="relative min-h-[80vh] lg:min-h-[85vh] flex items-center overflow-hidden bg-slate-900 border-b border-slate-200">
+    <section id="inicio" className="relative min-h-[75vh] lg:min-h-[82vh] flex items-center overflow-hidden bg-slate-900 border-b border-slate-200">
       
-      {/* Fondo Fotográfico Limpio sin filtros de cuadros */}
+      {/* Fondo Fotográfico Real y Limpio */}
       <div className="absolute inset-0 z-0">
         <picture>
           <source media="(max-width: 768px)" srcSet="/images/hero-mobile.jpg" />
@@ -30,57 +29,57 @@ export default function Hero() {
           />
         </picture>
 
-        {/* Sombra de contraste suave y limpia */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/75 to-transparent lg:w-3/5" />
+        {/* Sombra de contraste arquitectónica limpia */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/92 via-slate-950/75 to-transparent lg:w-3/5" />
         <div className="absolute inset-0 bg-black/15" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          {/* Columna Izquierda: Mensaje Claro y Directo */}
+          {/* Columna Izquierda: Tipografía Corporativa y Limpia */}
           <div className="lg:col-span-7 space-y-5 text-center lg:text-left">
             
             {/* Pill Badge Oficial */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-xs font-bold text-white shadow-md">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/85 backdrop-blur-md border border-white/20 text-xs font-semibold text-slate-200 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#0052CC]" />
-              <span>Calidad & Tradición</span>
+              <span className="font-bold text-white">Calidad & Tradición</span>
               <span className="text-white/30">•</span>
-              <span className="text-slate-300 font-normal">Achupallas, Viña del Mar</span>
+              <span>Achupallas, Viña del Mar</span>
             </div>
 
-            {/* Titular Principal Claro */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
-              Fabricación de Ventanas en <span className="text-[#3399FF]">Aluminio & PVC</span> a tu Medida
+            {/* Titular Principal: Tipografía Sobria y Profesional (No IA) */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.18]">
+              Fabricación de Ventanas en <span className="text-[#3880FF] font-extrabold">Aluminio & PVC</span> a tu Medida
             </h1>
 
-            {/* Redacción Corta y Efectiva (Sin saturación de texto) */}
-            <p className="text-base sm:text-lg text-slate-200 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
-              Aislación térmica, reducción de ruidos y estructuras herméticas para tu hogar o proyecto. Especialistas en termopaneles, shower doors y cierres de balcón en Viña del Mar.
+            {/* Redacción Clara y Concisa */}
+            <p className="text-sm sm:text-base text-slate-200 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+              Aislación térmica, reducción de ruidos y estructuras herméticas de precisión para tu hogar o empresa. Especialistas en termopaneles, shower doors y cierres de balcón en Viña del Mar.
             </p>
 
-            {/* 3 Beneficios Concretos en Línea */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-1 text-xs text-white">
+            {/* Beneficios en Línea con Tipografía Limpia */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-1 text-xs text-slate-200 font-medium">
               <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15">
-                <ThermometerSnowflake className="w-4 h-4 text-[#3399FF]" />
-                <span className="font-semibold">Termopanel Aislante</span>
+                <ThermometerSnowflake className="w-4 h-4 text-[#3880FF]" />
+                <span>Termopanel Aislante</span>
               </div>
               <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15">
-                <VolumeX className="w-4 h-4 text-[#3399FF]" />
-                <span className="font-semibold">Control de Ruido</span>
+                <VolumeX className="w-4 h-4 text-[#3880FF]" />
+                <span>Control de Ruido</span>
               </div>
               <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15">
-                <Ruler className="w-4 h-4 text-[#3399FF]" />
-                <span className="font-semibold">Medición en Terreno</span>
+                <Ruler className="w-4 h-4 text-[#3880FF]" />
+                <span>Medición en Terreno</span>
               </div>
             </div>
 
-            {/* Botones de Acción Principales (Azul Corporativo, no celeste) */}
+            {/* Botones de Acción Principales */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-3">
               <a
                 href="#cotizar"
                 data-track="Cotizar Hero CTA"
-                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#0052CC] hover:bg-[#0040A8] text-white font-bold text-sm sm:text-base shadow-lg shadow-blue-900/30 transition-all flex items-center justify-center gap-2 group"
+                className="w-full sm:w-auto px-7 py-3 rounded-xl bg-[#0052CC] hover:bg-[#0040A8] text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 group"
               >
                 <span>Cotizar Presupuesto</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -91,7 +90,7 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-track="WhatsApp Hero Direct"
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-md transition-all flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm transition-all flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-4 h-4 fill-white" />
                 <span>Hablar por WhatsApp</span>
@@ -108,7 +107,7 @@ export default function Hero() {
 
           {/* Columna Derecha: Tarjeta Fotográfica de Ficha Técnica */}
           <div className="lg:col-span-5 hidden lg:block">
-            <div className="bg-slate-950/80 backdrop-blur-xl rounded-3xl p-4 border border-white/20 shadow-2xl text-white space-y-3">
+            <div className="bg-slate-950/85 backdrop-blur-xl rounded-3xl p-4 border border-white/20 shadow-2xl text-white space-y-3">
               <div className="relative h-64 w-full rounded-2xl overflow-hidden shadow-inner">
                 <Image
                   src="/images/ventanas-pvc.jpg"
@@ -127,7 +126,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between text-xs text-slate-300 px-1">
+              <div className="flex items-center justify-between text-xs text-slate-300 px-1 font-medium">
                 <span className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400" />
                   Fabricación propia
