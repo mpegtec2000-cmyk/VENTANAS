@@ -25,7 +25,6 @@ export const PROJECTS_LIST: ProjectCard[] = [
     description: 'Fabricación e instalación de ventanales en aluminio anodizado y electropintado.',
     image: '/images/user-6.jpg',
     serviceCategory: 'Ventanas en Aluminio y PVC',
-    badge: 'Alta Demanda',
   },
   {
     id: 'trabajos-pvc',
@@ -35,47 +34,6 @@ export const PROJECTS_LIST: ProjectCard[] = [
     description: 'Aislación térmica y acústica superior con perfilería de alta eficiencia.',
     image: '/images/user-2.jpg',
     serviceCategory: 'Ventanas en Aluminio y PVC',
-    badge: 'Ahorro Térmico',
-  },
-  {
-    id: 'cierres-comerciales',
-    title: 'Cierres Comerciales',
-    category: 'comercial',
-    categoryLabel: 'Comercial & Retail',
-    description: 'Vidrios de seguridad y perfilería de aluminio para vitrinas y locales.',
-    image: '/images/user-7.jpg',
-    serviceCategory: 'Vitrinas Comerciales',
-    badge: 'Seguridad',
-  },
-  {
-    id: 'shower-door',
-    title: 'Shower Door a Medida',
-    category: 'cristal',
-    categoryLabel: 'Cristal Templado',
-    description: 'Cristales templados de 8mm y 10mm con herrajes de acero inoxidable.',
-    image: '/images/user-3.jpg',
-    serviceCategory: 'Shower Door a Medida',
-    badge: 'Elegancia',
-  },
-  {
-    id: 'barandas-cristal',
-    title: 'Barandas de Cristal & Inox',
-    category: 'cristal',
-    categoryLabel: 'Seguridad & Vista',
-    description: 'Barandas de cristal templado y laminado con balaustres en acero inoxidable.',
-    image: '/images/user-5.jpg',
-    serviceCategory: 'Reparación en General y Otros',
-    badge: 'Vanguardia',
-  },
-  {
-    id: 'divisiones-oficina',
-    title: 'Divisiones de Oficina',
-    category: 'comercial',
-    categoryLabel: 'Espacios Corporativos',
-    description: 'Muros vidriados panorámicos para salas de reuniones y oficinas modernas.',
-    image: '/images/user-4.jpg',
-    serviceCategory: 'Vitrinas Comerciales',
-    badge: 'Corporativo',
   },
   {
     id: 'cierres-terraza',
@@ -85,26 +43,6 @@ export const PROJECTS_LIST: ProjectCard[] = [
     description: 'Aprovecha tu balcón todo el año, protegiendo del viento costero y la lluvia.',
     image: '/images/user-6.jpg',
     serviceCategory: 'Cierre de Balcón y Terrazas',
-    badge: 'Costero',
-  },
-  {
-    id: 'fachadas-arquitectonicas',
-    title: 'Fachadas & Ventanales',
-    category: 'cristal',
-    categoryLabel: 'Arquitectura Mayor',
-    description: 'Soluciones estructurales en vidrio para casas de alto estándar y edificios.',
-    image: '/images/user-1.jpg',
-    serviceCategory: 'Bow Window Panorámico',
-    badge: 'Gran Escala',
-  },
-  {
-    id: 'espejos-medida',
-    title: 'Espejos a Medida & Biselados',
-    category: 'residencial',
-    categoryLabel: 'Decoración & Baños',
-    description: 'Espejos de cristal flotado de alta pureza, bordes pulidos y biselados.',
-    image: '/images/espejos-medida.jpg',
-    serviceCategory: 'Espejos Biselados y LED',
   },
   {
     id: 'cierres-logias',
@@ -116,6 +54,33 @@ export const PROJECTS_LIST: ProjectCard[] = [
     serviceCategory: 'Celosías de Ventilación',
   },
   {
+    id: 'shower-door',
+    title: 'Shower Door a Medida',
+    category: 'cristal',
+    categoryLabel: 'Cristal Templado',
+    description: 'Cristales templados de 8mm y 10mm con herrajes de acero inoxidable.',
+    image: '/images/user-3.jpg',
+    serviceCategory: 'Shower Door a Medida',
+  },
+  {
+    id: 'barandas-cristal',
+    title: 'Barandas de Cristal & Inox',
+    category: 'cristal',
+    categoryLabel: 'Seguridad & Vista',
+    description: 'Barandas de cristal templado y laminado con balaustres en acero inoxidable.',
+    image: '/images/user-5.jpg',
+    serviceCategory: 'Reparación en General y Otros',
+  },
+  {
+    id: 'fachadas-arquitectonicas',
+    title: 'Fachadas & Ventanales',
+    category: 'cristal',
+    categoryLabel: 'Arquitectura Mayor',
+    description: 'Soluciones estructurales en vidrio para casas de alto estándar y edificios.',
+    image: '/images/user-1.jpg',
+    serviceCategory: 'Bow Window Panorámico',
+  },
+  {
     id: 'puertas-acceso',
     title: 'Puertas de Vidrio Templado',
     category: 'cristal',
@@ -123,6 +88,24 @@ export const PROJECTS_LIST: ProjectCard[] = [
     description: 'Puertas batientes con quicio hidráulico para accesos principales de alto flujo.',
     image: '/images/user-4.jpg',
     serviceCategory: 'Puertas de Vidrio & Aluminio',
+  },
+  {
+    id: 'cierres-comerciales',
+    title: 'Cierres Comerciales',
+    category: 'comercial',
+    categoryLabel: 'Comercial & Retail',
+    description: 'Vidrios de seguridad y perfilería de aluminio para vitrinas y locales.',
+    image: '/images/user-7.jpg',
+    serviceCategory: 'Vitrinas Comerciales',
+  },
+  {
+    id: 'divisiones-oficina',
+    title: 'Divisiones de Oficina',
+    category: 'comercial',
+    categoryLabel: 'Espacios Corporativos',
+    description: 'Muros vidriados panorámicos para salas de reuniones y oficinas modernas.',
+    image: '/images/user-4.jpg',
+    serviceCategory: 'Vitrinas Comerciales',
   },
   {
     id: 'vitrinas-locales',
@@ -133,17 +116,36 @@ export const PROJECTS_LIST: ProjectCard[] = [
     image: '/images/user-7.jpg',
     serviceCategory: 'Vitrinas Comerciales',
   },
+  {
+    id: 'muros-comerciales',
+    title: 'Muros Vidriados y Vitrinas',
+    category: 'comercial',
+    categoryLabel: 'Comercial & Corporativo',
+    description: 'Instalación de frentes vidriados completos para centros de atención y oficinas.',
+    image: '/images/user-1.jpg',
+    serviceCategory: 'Vitrinas Comerciales',
+  },
 ];
 
 const FILTER_TABS = [
   { key: 'todos', label: 'Todos los Proyectos (12)' },
-  { key: 'residencial', label: 'Hogar & Balcones (5)' },
+  { key: 'residencial', label: 'Hogar & Balcones (4)' },
   { key: 'cristal', label: 'Cristal Templado (4)' },
-  { key: 'comercial', label: 'Comercial & Oficinas (3)' },
+  { key: 'comercial', label: 'Comercial & Oficinas (4)' },
 ] as const;
 
 export default function ProjectsGallery() {
   const [activeTab, setActiveTab] = useState<'todos' | 'residencial' | 'cristal' | 'comercial'>('todos');
+  const [isFading, setIsFading] = useState(false);
+
+  const handleTabChange = (key: typeof activeTab) => {
+    if (key === activeTab) return;
+    setIsFading(true);
+    setTimeout(() => {
+      setActiveTab(key);
+      setIsFading(false);
+    }, 150);
+  };
 
   const filteredProjects = activeTab === 'todos' 
     ? PROJECTS_LIST 
@@ -160,30 +162,31 @@ export default function ProjectsGallery() {
 
   return (
     <section id="galeria" className="py-16 sm:py-24 relative overflow-hidden">
-      {/* Fondo Fotográfico 1aa.jpg */}
+      {/* Fondo Fotográfico aaa.jpg con anclaje superior para estabilidad visual */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/1aa.jpg"
-          alt="Galería de Proyectos Vidriería Orellana"
+          src="/images/aaa.jpg"
+          alt="Maestros en faena Vidriería Orellana"
           fill
-          className="object-cover object-center"
+          className="object-cover object-top"
           quality={95}
+          priority
         />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Encabezado Principal */}
+        {/* Encabezado Principal que referencia la imagen de faena */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-md border border-blue-100 text-[#0052CC] text-xs font-extrabold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5 text-[#0052CC]" />
-            Catálogo Fotográfico de Obras Reales
+            Personal Propio & Montaje en Faena
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
-            Nuestros Proyectos & Especialidades
+            Nuestros Maestros en Faena e Instalaciones Reales
           </h2>
-          <p className="text-sm sm:text-base text-white font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-            Fotografías directas de nuestras soluciones en aluminio, PVC y cristales de seguridad instaladas en Viña del Mar y la V Región.
+          <p className="text-sm sm:text-base text-white font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] max-w-2xl mx-auto">
+            Personal técnico de la empresa en terreno: fabricación, transporte y montaje milimétrico de ventanales en aluminio, PVC y cristales de seguridad en toda la V Región.
           </p>
         </div>
 
@@ -195,7 +198,7 @@ export default function ProjectsGallery() {
               <button
                 key={tab.key}
                 onClick={() => {
-                  setActiveTab(tab.key);
+                  handleTabChange(tab.key);
                   trackEvent('filter_click', `Galeria Tab: ${tab.label}`);
                 }}
                 className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 shadow-sm ${
@@ -210,8 +213,8 @@ export default function ProjectsGallery() {
           })}
         </div>
 
-        {/* Grilla de 12 Tarjetas Fotográficas (4 Columnas x 3 Filas) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+        {/* Grilla de Tarjetas Fotográficas */}
+        <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 min-h-[440px] transition-opacity duration-200 ${isFading ? 'opacity-0' : 'opacity-100'}`}>
           {filteredProjects.map((item) => (
             <div
               key={item.id}
@@ -228,23 +231,7 @@ export default function ProjectsGallery() {
               {/* Sombra Degradada Arquitectónica */}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent pointer-events-none" />
 
-              {/* Badge superior si existe */}
-              {item.badge && (
-                <div className="absolute top-4 right-4 z-10">
-                  <span className="text-[10px] font-bold tracking-wider uppercase bg-white/20 backdrop-blur-md border border-white/30 text-white px-2.5 py-1 rounded-full shadow-sm">
-                    {item.badge}
-                  </span>
-                </div>
-              )}
-
-              {/* Categoría superior */}
-              <div className="absolute top-4 left-4 z-10">
-                <span className="text-[10px] font-bold tracking-wider text-blue-200 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
-                  {item.categoryLabel}
-                </span>
-              </div>
-
-              {/* Contenido de la Tarjeta */}
+              {/* Contenido de la Tarjeta (Sin recuadros pequeños superiores) */}
               <div className="relative z-10 p-5 sm:p-6 space-y-2">
                 <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
                   {item.title}
@@ -254,14 +241,14 @@ export default function ProjectsGallery() {
                   {item.description}
                 </p>
 
-                {/* Botón Ver Servicio con Flecha */}
+                {/* Botón Estilo Navbar: Fondo Blanco, Letra Azul Oscura, Flecha Azul */}
                 <div className="pt-2">
                   <button
                     onClick={() => handleSelectService(item.serviceCategory, item.title)}
-                    className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white/20 hover:bg-[#0052CC] backdrop-blur-md border border-white/30 hover:border-[#0052CC] text-white text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1.5 shadow-sm group/btn"
+                    className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-[#0F172A] text-xs sm:text-sm font-bold transition-all shadow-md flex items-center justify-center gap-2 group/btn"
                   >
-                    <span>Cotizar este servicio</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                    <span>Cotizar en Línea</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#0052CC] group-hover/btn:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </div>
