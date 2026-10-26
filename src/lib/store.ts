@@ -118,23 +118,45 @@ export const INITIAL_PRODUCTS: Product[] = [
 
 export const INITIAL_LEADS: Lead[] = [];
 
-// Almacenamiento local en archivo JSON para desarrollo
-const DATA_FILE = path.join(process.cwd(), '.local-data.json');
-
 interface LocalStorageData {
   products: Product[];
   leads: Lead[];
   events: TrackingEvent[];
 }
 
+// Memoria caché para entornos serverless (Vercel)
+let memoryCache: LocalStorageData | null = null;
+
+function getDataFilePath(): string {
+  const localFile = path.join(process.cwd(), '.local-data.json');
+  if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    const tmpFile = path.join('/tmp', '.local-data.json');
+    if (!fs.existsSync(tmpFile) && fs.existsSync(localFile)) {
+      try {
+        fs.copyFileSync(localFile, tmpFile);
+      } catch {}
+    }
+    return tmpFile;
+  }
+  return localFile;
+}
+
 function getStoredData(): LocalStorageData {
+  if (memoryCache) {
+    return memoryCache;
+  }
+
+  const filePath = getDataFilePath();
+
   try {
-    if (fs.existsSync(DATA_FILE)) {
-      const raw = fs.readFileSync(DATA_FILE, 'utf-8');
-      return JSON.parse(raw);
+    if (fs.existsSync(filePath)) {
+      const raw = fs.readFileSync(filePath, 'utf-8');
+      const parsed = JSON.parse(raw);
+      memoryCache = parsed;
+      return parsed;
     }
   } catch (err) {
-    console.error('Error reading local data file:', err);
+    console.error('Error reading data file:', err);
   }
 
   const defaultData: LocalStorageData = {
@@ -144,17 +166,20 @@ function getStoredData(): LocalStorageData {
   };
 
   try {
-    fs.writeFileSync(DATA_FILE, JSON.stringify(defaultData, null, 2), 'utf-8');
+    fs.writeFileSync(filePath, JSON.stringify(defaultData, null, 2), 'utf-8');
   } catch {}
 
+  memoryCache = defaultData;
   return defaultData;
 }
 
 function saveStoredData(data: LocalStorageData) {
+  memoryCache = data;
+  const filePath = getDataFilePath();
   try {
-    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf-8');
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
   } catch (err) {
-    console.error('Error saving local data file:', err);
+    console.error('Error saving data file:', err);
   }
 }
 
@@ -231,7 +256,6 @@ export function getLocalKPIs(): DashboardKPIs & {
   const totalWhatsappClicks = events.filter((e) => e.event === 'whatsapp_click').length;
   const totalLeads = data.leads.length;
 
-  // Visitantes únicos aproximados por session_id o fallback
   const uniqueVisitors = new Set(events.map((e) => e.session_id || e.id)).size || Math.max(1, totalPageViews);
 
   const conversionRate = totalPageViews > 0 ? Number(((totalLeads + totalWhatsappClicks) / totalPageViews * 100).toFixed(1)) : 0;

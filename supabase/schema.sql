@@ -1,6 +1,7 @@
 -- =====================================================================
 -- ORELLANA - VIDRIOS & ALUMINIOS · DATABASE SCHEMA PARA SUPABASE
 -- Ejecutar en Supabase -> SQL Editor para inicializar la base de datos
+-- Enlace directo: https://supabase.com/dashboard/project/pzxghlzlruggbughxdlo/sql
 -- =====================================================================
 
 -- 1. TABLA DE LEADS / COTIZACIONES
@@ -9,18 +10,18 @@ CREATE TABLE IF NOT EXISTS leads (
   created_at TIMESTAMPTZ DEFAULT NOW(),
   name TEXT NOT NULL,
   phone TEXT NOT NULL,
-  email TEXT,
+  email TEXT DEFAULT '',
   service TEXT NOT NULL,
-  dimensions TEXT,
-  message TEXT,
-  address TEXT,
-  commune TEXT,
+  dimensions TEXT DEFAULT '',
+  message TEXT DEFAULT '',
+  address TEXT DEFAULT '',
+  commune TEXT DEFAULT 'Viña del Mar',
   estimated_value NUMERIC DEFAULT 0,
   status TEXT DEFAULT 'nuevo', -- nuevo | contactado | cotizado | ganado | perdido
-  notes TEXT
+  notes TEXT DEFAULT ''
 );
 
--- RLS y Políticas para leads
+-- Habilitar RLS y Políticas de Acceso
 ALTER TABLE leads ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public can insert leads" ON leads;
 CREATE POLICY "Public can insert leads" ON leads FOR INSERT WITH CHECK (true);
@@ -28,6 +29,8 @@ DROP POLICY IF EXISTS "Allow select for all" ON leads;
 CREATE POLICY "Allow select for all" ON leads FOR SELECT USING (true);
 DROP POLICY IF EXISTS "Allow update for all" ON leads;
 CREATE POLICY "Allow update for all" ON leads FOR UPDATE USING (true);
+DROP POLICY IF EXISTS "Allow delete for all" ON leads;
+CREATE POLICY "Allow delete for all" ON leads FOR DELETE USING (true);
 
 -- 2. TABLA DE PRODUCTOS Y SERVICIOS
 CREATE TABLE IF NOT EXISTS products (
@@ -67,7 +70,7 @@ CREATE POLICY "Public can insert tracking" ON tracking_events FOR INSERT WITH CH
 DROP POLICY IF EXISTS "Public can read tracking" ON tracking_events;
 CREATE POLICY "Public can read tracking" ON tracking_events FOR SELECT USING (true);
 
--- Índices de rendimiento
+-- Índices de alto rendimiento
 CREATE INDEX IF NOT EXISTS idx_leads_created ON leads (created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_leads_status ON leads (status);
 CREATE INDEX IF NOT EXISTS idx_tracking_event ON tracking_events (event, created_at DESC);

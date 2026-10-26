@@ -55,6 +55,8 @@ export default function AdminPage() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [supabaseStatus, setSupabaseStatus] = useState<any>(null);
+  const [leadsSource, setLeadsSource] = useState<'supabase' | 'local'>('local');
 
   // Estados de filtro y modal de producto
   const [productSearch, setProductSearch] = useState('');
@@ -88,19 +90,27 @@ export default function AdminPage() {
     }
   }, []);
 
-  // Cargar datos
+  // Cargar datos con prevención de caché y sondeo automático
   const loadData = async () => {
     setRefreshing(true);
     try {
-      const [resMetrics, resProducts, resLeads] = await Promise.all([
-        fetch('/api/metrics').then((r) => r.json()),
-        fetch('/api/products').then((r) => r.json()),
-        fetch('/api/leads').then((r) => r.json()),
+      const timestamp = Date.now();
+      const [resMetrics, resProducts, resLeads, resSb] = await Promise.all([
+        fetch(`/api/metrics?t=${timestamp}`, { cache: 'no-store' }).then((r) => r.json()).catch(() => ({ ok: false })),
+        fetch(`/api/products?t=${timestamp}`, { cache: 'no-store' }).then((r) => r.json()).catch(() => ({ ok: false })),
+        fetch(`/api/leads?t=${timestamp}`, { cache: 'no-store' }).then((r) => r.json()).catch(() => ({ ok: false })),
+        fetch(`/api/supabase/status?t=${timestamp}`, { cache: 'no-store' }).then((r) => r.json()).catch(() => ({ ok: false })),
       ]);
 
       if (resMetrics.ok) setMetrics(resMetrics.data);
       if (resProducts.ok) setProducts(resProducts.products);
-      if (resLeads.ok) setLeads(resLeads.leads);
+      if (resLeads.ok) {
+        setLeads(resLeads.leads || []);
+        if (resLeads.source) setLeadsSource(resLeads.source);
+      }
+      if (resSb.ok) {
+        setSupabaseStatus(resSb);
+      }
     } catch (err) {
       console.error('Error cargando datos de administración:', err);
     } finally {
@@ -109,9 +119,14 @@ export default function AdminPage() {
     }
   };
 
+  // Sondeo en vivo cada 8 segundos para reflejar nuevas cotizaciones automáticamente
   useEffect(() => {
     if (isAuthenticated) {
       loadData();
+      const interval = setInterval(() => {
+        loadData();
+      }, 8000);
+      return () => clearInterval(interval);
     }
   }, [isAuthenticated]);
 
@@ -139,6 +154,105 @@ export default function AdminPage() {
   const handleLogout = () => {
     localStorage.removeItem('orellana_admin_auth');
     setIsAuthenticated(false);
+  };
+
+  // Esquema SQL completo para inicializar Supabase con 1 clic
+  const SCHEMA_SQL = `-- =====================================================================
+-- ORELLANA - TABLAS Y PERMISOS PARA SUPABASE
+-- =====================================================================
+CREATE TABLE IF NOT EXISTS leads (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  name TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  email TEXT DEFAULT '',
+  service TEXT NOT NULL,
+  dimensions TEXT DEFAULT '',
+  message TEXT DEFAULT '',
+  address TEXT DEFAULT '',
+  commune TEXT DEFAULT 'Viña del Mar',
+  estimated_value NUMERIC DEFAULT 0,
+  status TEXT DEFAULT 'nuevo',
+  notes TEXT DEFAULT ''
+);
+
+ALTER TABLE leads ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Public can insert leads" ON leads;
+CREATE POLICY "Public can insert leads" ON leads FOR INSERT WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow select for all" ON leads;
+CREATE POLICY "Allow select for all" ON leads FOR SELECT USING (true);
+DROP POLICY IF EXISTS "Allow update for all" ON leads;
+CREATE POLICY "Allow update for all" ON leads FOR UPDATE USING (true);
+DROP POLICY IF EXISTS "Allow delete for all" ON leads;
+CREATE POLICY "Allow delete for all" ON leads FOR DELETE USING (true);
+
+CREATE TABLE IF NOT EXISTS tracking_events (
+  id BIGSERIAL PRIMARY KEY,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  event TEXT NOT NULL,
+  path TEXT,
+  label TEXT,
+  device TEXT,
+  session_id TEXT
+);
+
+ALTER TABLE tracking_events ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Public can insert tracking" ON tracking_events;
+CREATE POLICY "Public can insert tracking" ON tracking_events FOR INSERT WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow select for tracking" ON tracking_events;
+CREATE POLICY "Allow select for tracking" ON tracking_events FOR SELECT USING (true);
+
+CREATE TABLE IF NOT EXISTS products (
+  id TEXT PRIMARY KEY,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  name TEXT NOT NULL,
+  category TEXT NOT NULL,
+  description TEXT,
+  material TEXT NOT NULL,
+  price_type TEXT NOT NULL,
+  price_clp NUMERIC DEFAULT 0,
+  is_active BOOLEAN DEFAULT true,
+  featured BOOLEAN DEFAULT false,
+  image TEXT
+);
+
+ALTER TABLE products ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Allow all for products" ON products;
+CREATE POLICY "Allow all for products" ON products FOR ALL USING (true) WITH CHECK (true);
+`;
+
+  const handleCopySQL = () => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(SCHEMA_SQL);
+      showToast('✅ Código SQL copiado al portapapeles. Pégalo en Supabase y presiona RUN.');
+    }
+  };
+
+  const handleCreateTestLead = async () => {
+    try {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Cliente de Prueba (Taller)',
+          phone: '+56 9 9240 9397',
+          email: 'contacto@vidreria.orellana.cl',
+          service: 'Ventanas Aluminio Línea Europea',
+          dimensions: '2 ventanas 1.50 x 1.20 m',
+          message: 'Cotización de prueba para verificar que el almacenamiento CRM funciona al 100%.',
+          commune: 'Viña del Mar',
+        }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        showToast('✅ Cotización de prueba registrada correctamente en el sistema.');
+        loadData();
+      } else {
+        showToast('Error registrando cotización: ' + (data.error || ''));
+      }
+    } catch (e) {
+      showToast('Error de conexión al enviar cotización');
+    }
   };
 
   // Guardar o Editar Producto
@@ -327,10 +441,15 @@ export default function AdminPage() {
     return matchesSearch && matchesCat;
   });
 
-  // Filtrado de leads
-  const filteredLeads = leads.filter((l) => {
+  // Filtrado de leads seguro contra nulos
+  const filteredLeads = (leads || []).filter((l) => {
+    if (!l) return false;
     const matchesStatus = leadStatusFilter === 'all' || l.status === leadStatusFilter;
-    const matchesSearch = l.name.toLowerCase().includes(leadSearch.toLowerCase()) || (l.phone && l.phone.includes(leadSearch)) || l.service.toLowerCase().includes(leadSearch.toLowerCase());
+    const nameStr = (l.name || '').toLowerCase();
+    const phoneStr = l.phone || '';
+    const serviceStr = (l.service || '').toLowerCase();
+    const searchStr = (leadSearch || '').toLowerCase();
+    const matchesSearch = nameStr.includes(searchStr) || phoneStr.includes(searchStr) || serviceStr.includes(searchStr);
     return matchesStatus && matchesSearch;
   });
 
@@ -987,13 +1106,79 @@ export default function AdminPage() {
                 </p>
               </div>
 
-              <button
-                onClick={handleExportCSV}
-                className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition-all flex items-center gap-2"
-              >
-                <FileSpreadsheet className="w-4 h-4" />
-                <span>Exportar Leads (Excel / CSV)</span>
-              </button>
+              <div className="flex items-center gap-2.5 flex-wrap">
+                <button
+                  onClick={handleCreateTestLead}
+                  disabled={loading}
+                  className="px-3.5 py-2.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-brand-blue border border-blue-200 text-xs font-bold shadow-sm transition-all flex items-center gap-1.5"
+                  title="Genera una cotización de prueba para verificar que el sistema almacena correctamente"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>+ Cotización de Prueba</span>
+                </button>
+                <button
+                  onClick={handleExportCSV}
+                  className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition-all flex items-center gap-2"
+                >
+                  <FileSpreadsheet className="w-4 h-4" />
+                  <span>Exportar Leads (Excel / CSV)</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Banner de Estado de Base de Datos Supabase */}
+            <div className={`p-4 rounded-2xl border flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs ${
+              supabaseStatus?.tables?.leads?.tableReady
+                ? 'bg-emerald-50/90 border-emerald-200 text-emerald-900 shadow-sm'
+                : 'bg-amber-50/90 border-amber-300 text-amber-900 shadow-sm'
+            }`}>
+              <div className="flex items-start gap-3">
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                  supabaseStatus?.tables?.leads?.tableReady ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'
+                }`}>
+                  <Database className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="font-bold flex items-center gap-2 flex-wrap">
+                    <span>
+                      {supabaseStatus?.tables?.leads?.tableReady
+                        ? 'Base de Datos Supabase: 100% Vinculada y Guardando en la Nube'
+                        : 'Vinculación con Supabase: Tablas pendientes de inicialización'}
+                    </span>
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold tracking-wide uppercase ${
+                      supabaseStatus?.tables?.leads?.tableReady ? 'bg-emerald-200 text-emerald-800' : 'bg-amber-200 text-amber-900 animate-pulse'
+                    }`}>
+                      {supabaseStatus?.tables?.leads?.tableReady ? 'Nube Activa' : 'Acción Requerida'}
+                    </span>
+                  </div>
+                  <p className="text-slate-600 text-[11px] mt-1 leading-relaxed">
+                    {supabaseStatus?.tables?.leads?.tableReady
+                      ? 'Cada cotización nueva se registra de forma permanente en tu base de datos Supabase en la nube con respaldo local garantizado.'
+                      : 'Tu proyecto de Supabase está conectado, pero falta ejecutar el script SQL para crear la tabla de cotizaciones en tu panel.'}
+                  </p>
+                </div>
+              </div>
+
+              {!supabaseStatus?.tables?.leads?.tableReady && (
+                <div className="flex items-center gap-2 flex-shrink-0 w-full md:w-auto justify-end pt-2 md:pt-0">
+                  <button
+                    onClick={handleCopySQL}
+                    className="px-3.5 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-sm flex items-center gap-1.5 transition-all"
+                  >
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>Copiar SQL (1 Clic)</span>
+                  </button>
+                  <a
+                    href="https://supabase.com/dashboard/project/pzxghlzlruggbughxdlo/sql"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-sm flex items-center gap-1.5 transition-all"
+                  >
+                    <span>Abrir SQL Editor</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              )}
             </div>
 
             {/* Filtros de Leads */}
