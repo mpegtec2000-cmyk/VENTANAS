@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { 
   ArrowRight, 
-  MessageCircle
+  MessageCircle,
+  MapPin
 } from 'lucide-react';
 
 export interface HeroSlide {
@@ -73,7 +74,7 @@ export default function Hero() {
   return (
     <section id="inicio" className="relative min-h-[75vh] lg:min-h-[82vh] flex items-center overflow-hidden bg-black border-b border-slate-200">
       
-      {/* Carrusel de Fondos Limpios (Bucle infinito cada 2s sin filtros azules) */}
+      {/* Carrusel de Fondos Limpios (Bucle infinito cada 2s) */}
       <div className="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none">
         {HERO_SLIDES.map((slide, index) => {
           const isActive = index === currentSlide;
@@ -100,46 +101,69 @@ export default function Hero() {
           );
         })}
 
-        {/* Sombra neutra suave solo para legibilidad del texto - Cero tinte azul */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent lg:w-7/12 z-20 pointer-events-none" />
-        <div className="absolute inset-0 bg-black/15 lg:bg-transparent z-20 pointer-events-none" />
+        {/* Degradado oscuro para alto contraste y legibilidad impecable (más intenso a la izquierda, desvanecido a la derecha) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent lg:w-3/5 z-20 pointer-events-none" />
+        <div className="absolute inset-0 bg-black/40 lg:bg-transparent z-20 pointer-events-none" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 relative z-30 w-full">
-        <div className="max-w-3xl space-y-6 text-center lg:text-left">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-24 relative z-30 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
-          {/* Titular Principal: Vidriería Orellana */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
-            Vidriería Orellana<br />
-            <span className="text-blue-400">Ventanas de Alta Gama</span> en Aluminio & PVC.
-          </h1>
+          {/* Columna Izquierda: Titular y Botones */}
+          <div className="lg:col-span-7 space-y-6 sm:space-y-7 text-center lg:text-left">
+            {/* Titular Principal: Máximo 2 líneas en desktop, 3 en móvil, con "a medida" destacado en azul */}
+            <h1 className="text-2xl sm:text-4xl lg:text-[44px] xl:text-5xl font-extrabold text-white tracking-tight leading-[1.18] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+              Soluciones en vidrio, aluminio y PVC <span className="text-blue-400">a medida</span>
+            </h1>
 
-          {/* Bajada Comercial con 30 años de calidad y tradición */}
-          <p className="text-base sm:text-lg text-slate-100 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal drop-shadow-[0_1px_6px_rgba(0,0,0,0.85)]">
-            Más de 30 años de calidad, experiencia y tradición en Viña del Mar y la V Región. Fabricamos e instalamos ventanas de alta gama en aluminio y PVC, termopaneles y cierres a medida con garantía directa de nuestro taller.
-          </p>
+            {/* Subtítulo: Máximo 2 líneas, peso medium, buen interlineado */}
+            <p className="text-base sm:text-lg text-slate-100 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
+              Más de 30 años en fabricación e instalación para hogares, terrazas y proyectos comerciales.
+            </p>
 
-          {/* Botones de Acción */}
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
-            <a
-              href="#cotizar"
-              data-track="Cotizar Hero CTA"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm sm:text-base shadow-lg transition-all flex items-center justify-center gap-2 group border border-blue-400/20"
-            >
-              <span>Cotizar Presupuesto sin Costo</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
+            {/* Botones de Acción (apilados en celular, alineados en desktop) */}
+            <div className="space-y-3 pt-1">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
+                <a
+                  href="#cotizar"
+                  data-track="Cotizar Hero CTA"
+                  className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm sm:text-base shadow-lg transition-all flex items-center justify-center gap-2 group border border-blue-400/20"
+                >
+                  <span>Solicitar cotización gratuita</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
 
-            <a
-              href="https://wa.me/56992409397?text=Hola%20Vidrier%C3%ADa%20Orellana,%20necesito%20cotizar%20un%20proyecto."
-              target="_blank"
-              rel="noopener noreferrer"
-              data-track="WhatsApp Hero Direct"
-              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-md transition-all flex items-center justify-center gap-2"
-            >
-              <MessageCircle className="w-4 h-4 fill-white" />
-              <span>Hablar con un Maestro</span>
-            </a>
+                <a
+                  href="https://wa.me/56992409397?text=Hola%20Vidrier%C3%ADa%20Orellana,%20necesito%20solicitar%20una%20cotizaci%C3%B3n."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-track="WhatsApp Hero Direct"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-md transition-all flex items-center justify-center gap-2 group"
+                >
+                  <MessageCircle className="w-4 h-4 fill-white" />
+                  <span>Cotizar por WhatsApp</span>
+                </a>
+              </div>
+
+              {/* Línea pequeña y discreta debajo de los botones */}
+              <div className="text-xs text-slate-300 font-medium flex items-center justify-center lg:justify-start gap-1.5 drop-shadow-sm pt-1">
+                <MapPin className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                <span>Cobertura en la V Región y otras regiones del país</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Columna Derecha: Logotipo Oficial Orellana Flotante Ampliado y Pegado a la Derecha */}
+          <div className="lg:col-span-5 hidden lg:flex items-center justify-end pr-2 lg:pr-6">
+            <div className="relative w-80 sm:w-96 lg:w-[460px] xl:w-[500px] h-32 sm:h-36 lg:h-44 transition-transform duration-500 hover:scale-105">
+              <Image
+                src="/images/logo-orellana-white-hd.png"
+                alt="Vidriería Orellana - Vidrios & Aluminios"
+                fill
+                className="object-contain object-right drop-shadow-[0_6px_28px_rgba(0,0,0,0.95)]"
+                priority
+              />
+            </div>
           </div>
 
         </div>

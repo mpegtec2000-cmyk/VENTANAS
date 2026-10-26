@@ -1134,6 +1134,753 @@
       "session_id": "sess-1792985445063-ppsoep",
       "id": "ev-1792995487506-ij05a",
       "created_at": "2026-10-26T06:18:07.506Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792995797636-tc7jk",
+      "created_at": "2026-10-26T06:23:17.636Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792995797637-cxc3e",
+      "created_at": "2026-10-26T06:23:17.637Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792995804577-m0mjo",
+      "created_at": "2026-10-26T06:23:24.577Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792995804583-vzdsk",
+      "created_at": "2026-10-26T06:23:24.583Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996061346-8ugy9",
+      "created_at": "2026-10-26T06:27:41.346Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996061348-44c73",
+      "created_at": "2026-10-26T06:27:41.348Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996121126-d343b",
+      "created_at": "2026-10-26T06:28:41.126Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996121128-sxqqv",
+      "created_at": "2026-10-26T06:28:41.128Z"
+    },
+    {
+      "event": "ai_chat_open",
+      "path": "/",
+      "label": "Abrir Asistente IA",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996127061-ar0xw",
+      "created_at": "2026-10-26T06:28:47.061Z"
+    },
+    {
+      "event": "ai_chat_option",
+      "path": "/",
+      "label": "Ventanas de Aluminio & PVC",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996132799-j8m5t",
+      "created_at": "2026-10-26T06:28:52.799Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996234940-xps11",
+      "created_at": "2026-10-26T06:30:34.940Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996234942-9yt43",
+      "created_at": "2026-10-26T06:30:34.942Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996235885-1pgtd",
+      "created_at": "2026-10-26T06:30:35.885Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996235886-ee8ky",
+      "created_at": "2026-10-26T06:30:35.886Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996236436-tjtdj",
+      "created_at": "2026-10-26T06:30:36.436Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996236442-vn7th",
+      "created_at": "2026-10-26T06:30:36.442Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996236808-c2tua",
+      "created_at": "2026-10-26T06:30:36.808Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996236809-hiquj",
+      "created_at": "2026-10-26T06:30:36.809Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996238164-w1ugr",
+      "created_at": "2026-10-26T06:30:38.164Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996238166-l9sbs",
+      "created_at": "2026-10-26T06:30:38.166Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996238909-cx8sh",
+      "created_at": "2026-10-26T06:30:38.909Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996238911-6u90j",
+      "created_at": "2026-10-26T06:30:38.911Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996239564-x6oee",
+      "created_at": "2026-10-26T06:30:39.564Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996239565-glkhf",
+      "created_at": "2026-10-26T06:30:39.565Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996240150-8z502",
+      "created_at": "2026-10-26T06:30:40.150Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996240151-hz17t",
+      "created_at": "2026-10-26T06:30:40.151Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996240696-f68iv",
+      "created_at": "2026-10-26T06:30:40.696Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996240697-ickja",
+      "created_at": "2026-10-26T06:30:40.697Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996241186-6jvv5",
+      "created_at": "2026-10-26T06:30:41.186Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996241188-5777q",
+      "created_at": "2026-10-26T06:30:41.188Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996241658-niget",
+      "created_at": "2026-10-26T06:30:41.658Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996241659-tmmye",
+      "created_at": "2026-10-26T06:30:41.659Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996242052-n2cqp",
+      "created_at": "2026-10-26T06:30:42.052Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996242053-rbtwm",
+      "created_at": "2026-10-26T06:30:42.053Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996242462-8atc2",
+      "created_at": "2026-10-26T06:30:42.462Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996242463-r0zfo",
+      "created_at": "2026-10-26T06:30:42.463Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996243124-f0gvx",
+      "created_at": "2026-10-26T06:30:43.124Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996243125-fj77c",
+      "created_at": "2026-10-26T06:30:43.125Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996243491-w57ki",
+      "created_at": "2026-10-26T06:30:43.491Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996243492-c2c31",
+      "created_at": "2026-10-26T06:30:43.492Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996243833-j0vex",
+      "created_at": "2026-10-26T06:30:43.833Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996243835-x60rs",
+      "created_at": "2026-10-26T06:30:43.835Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996244204-d1cgo",
+      "created_at": "2026-10-26T06:30:44.204Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996244206-zr3o1",
+      "created_at": "2026-10-26T06:30:44.206Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996244590-av81g",
+      "created_at": "2026-10-26T06:30:44.590Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996244591-ciyer",
+      "created_at": "2026-10-26T06:30:44.591Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996244983-eqbe9",
+      "created_at": "2026-10-26T06:30:44.983Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996244984-0nu2a",
+      "created_at": "2026-10-26T06:30:44.984Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996506600-8kas2",
+      "created_at": "2026-10-26T06:35:06.600Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996506602-5bmrn",
+      "created_at": "2026-10-26T06:35:06.602Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996506941-uimnn",
+      "created_at": "2026-10-26T06:35:06.941Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996506943-sme3z",
+      "created_at": "2026-10-26T06:35:06.943Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996551220-uacxh",
+      "created_at": "2026-10-26T06:35:51.220Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996551222-b69r8",
+      "created_at": "2026-10-26T06:35:51.222Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996658801-szay3",
+      "created_at": "2026-10-26T06:37:38.801Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792996658802-ly98k",
+      "created_at": "2026-10-26T06:37:38.802Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792996779099-7aqdgs",
+      "id": "ev-1792996779927-rdw8x",
+      "created_at": "2026-10-26T06:39:39.927Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792996779099-7aqdgs",
+      "id": "ev-1792996779929-2u6cp",
+      "created_at": "2026-10-26T06:39:39.929Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997010559-jg4zg",
+      "created_at": "2026-10-26T06:43:30.559Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997010562-y15kj",
+      "created_at": "2026-10-26T06:43:30.562Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997128939-id7u1",
+      "created_at": "2026-10-26T06:45:28.939Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997128941-7ix8z",
+      "created_at": "2026-10-26T06:45:28.941Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997280992-775a6",
+      "created_at": "2026-10-26T06:48:00.992Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997280994-9xso8",
+      "created_at": "2026-10-26T06:48:00.994Z"
+    },
+    {
+      "event": "cta_click",
+      "path": "/",
+      "label": "Cotizar Header",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997288816-x7ayx",
+      "created_at": "2026-10-26T06:48:08.816Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997323252-w4cy6",
+      "created_at": "2026-10-26T06:48:43.252Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997323254-h1r74",
+      "created_at": "2026-10-26T06:48:43.254Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997418966-lz0hu",
+      "created_at": "2026-10-26T06:50:18.966Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997418968-ofjip",
+      "created_at": "2026-10-26T06:50:18.968Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997420148-qsk3f",
+      "created_at": "2026-10-26T06:50:20.148Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997420150-3ggty",
+      "created_at": "2026-10-26T06:50:20.150Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997496587-y1ls6",
+      "created_at": "2026-10-26T06:51:36.587Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997496588-qd7f5",
+      "created_at": "2026-10-26T06:51:36.588Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997526251-z7uve",
+      "created_at": "2026-10-26T06:52:06.251Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997526253-fxjte",
+      "created_at": "2026-10-26T06:52:06.253Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997527596-qxkja",
+      "created_at": "2026-10-26T06:52:07.596Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997527604-yeefg",
+      "created_at": "2026-10-26T06:52:07.604Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997855380-f8pv6",
+      "created_at": "2026-10-26T06:57:35.380Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997855382-0zpo3",
+      "created_at": "2026-10-26T06:57:35.382Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997855763-bqdgc",
+      "created_at": "2026-10-26T06:57:35.763Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997855765-obf82",
+      "created_at": "2026-10-26T06:57:35.765Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997879736-2g89w",
+      "created_at": "2026-10-26T06:57:59.736Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792997879741-vxwr9",
+      "created_at": "2026-10-26T06:57:59.741Z"
     }
   ]
 }

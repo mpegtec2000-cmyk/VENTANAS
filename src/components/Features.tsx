@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { ShieldCheck, Clock, Hammer, MapPin, CheckCircle2, Sparkles } from 'lucide-react';
 
 export default function Features() {
@@ -31,44 +32,56 @@ export default function Features() {
   ];
 
   return (
-    <section id="nosotros" className="py-16 sm:py-24 bg-white border-y border-slate-200/80 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="nosotros" className="py-20 sm:py-28 relative overflow-hidden border-y border-slate-200">
+      {/* Fondo Fotográfico 1a.jpg solicitado con sutil overlay corporativo */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/features-bg.jpg"
+          alt="Fachada arquitectónica en cristal Vidriería Orellana"
+          fill
+          className="object-cover object-center"
+          quality={95}
+        />
+        <div className="absolute inset-0 bg-[#0F172A]/80 backdrop-blur-[1px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Encabezado */}
         <div className="text-center max-w-2xl mx-auto space-y-3 mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-[#0052CC] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-blue-300 text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
             30 Años de Calidad & Oficio
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-brand-navy tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight drop-shadow-md">
             ¿Por qué Elegir Vidriería Orellana?
           </h2>
-          <p className="text-sm sm:text-base text-slate-600">
+          <p className="text-sm sm:text-base text-slate-200 leading-relaxed drop-shadow-sm">
             Nuestro prestigio en la V Región se fundamenta en tres décadas de palabra empeñada, excelencia en el servicio y la máxima calidad en cada terminación.
           </p>
         </div>
 
-        {/* Grilla de 4 Beneficios de Alto Nivel */}
+        {/* Grilla de 4 Beneficios de Alto Nivel con Tarjetas Blancas de Alto Contraste */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
           {features.map((f, i) => {
             const Icon = f.icon;
             return (
               <div
                 key={i}
-                className="bg-slate-50/50 hover:bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 hover:border-[#0052CC]/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                className="bg-white/95 backdrop-blur-md hover:bg-white rounded-3xl p-6 sm:p-7 border border-white/40 shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 rounded-2xl bg-blue-50 group-hover:bg-[#0052CC] text-[#0052CC] group-hover:text-white border border-blue-100 group-hover:border-[#0052CC] flex items-center justify-center transition-all duration-300 shadow-sm">
+                    <div className="w-12 h-12 rounded-2xl bg-blue-50 group-hover:bg-[#0F172A] text-[#0052CC] group-hover:text-white border border-blue-100 group-hover:border-[#0F172A] flex items-center justify-center transition-all duration-300 shadow-sm">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-mono">
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono">
                       {f.tag}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-bold text-brand-navy group-hover:text-[#0052CC] transition-colors">
+                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#0052CC] transition-colors">
                       {f.title}
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-2.5 font-normal">

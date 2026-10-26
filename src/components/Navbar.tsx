@@ -76,40 +76,40 @@ export default function Navbar() {
             
             {/* Logo Oficial Orellana */}
             <Link href="#inicio" className="flex items-center gap-3 group">
-              <div className="relative h-11 w-48 sm:h-12 sm:w-56 transition-transform duration-200 group-hover:scale-[1.01]">
+              <div className="relative h-10 w-44 sm:h-11 sm:w-52 transition-transform duration-200 group-hover:scale-[1.01]">
                 <Image
-                  src="/logo.png"
-                  alt="Vidriería Orellana - Vidrios y Aluminios"
+                  src="/images/logo-orellana-white-hd.png"
+                  alt="Vidriería Orellana - Vidrios & Aluminios"
                   fill
-                  className="brightness-0 invert object-contain object-left"
+                  className="object-contain object-left"
                   priority
                 />
               </div>
             </Link>
 
-            {/* Enlaces de Navegación con Redacción Profesional */}
+            {/* Enlaces de Navegación con Blanco Puro Brillante */}
             <nav className="hidden lg:flex items-center gap-8">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-[13.5px] font-bold text-slate-200 hover:text-white transition-colors relative py-1 group"
+                  className="text-[14px] font-extrabold text-white hover:text-blue-200 transition-colors relative py-1 group drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]"
                 >
                   <span>{link.label}</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 rounded-full group-hover:w-full transition-all duration-300" />
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white rounded-full group-hover:w-full transition-all duration-300" />
                 </a>
               ))}
             </nav>
 
-            {/* Botón de Acción Principal */}
+            {/* Botón de Acción Principal: Fondo Blanco y Letra Azul según solicitud */}
             <div className="hidden sm:flex items-center gap-4">
               <a
                 href="#cotizar"
                 data-track="Cotizar Header"
-                className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-[13.5px] font-bold shadow-md shadow-blue-900/40 hover:shadow-lg transition-all duration-200 group border border-blue-400/20"
+                className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-[#0F172A] hover:text-[#0052CC] text-[13.5px] font-extrabold shadow-md hover:shadow-lg transition-all duration-200 group border border-white"
               >
                 <span>Cotizar en Línea</span>
-                <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                <ChevronRight className="w-4 h-4 text-[#0052CC] group-hover:translate-x-0.5 transition-transform" />
               </a>
             </div>
 
@@ -117,7 +117,7 @@ export default function Navbar() {
             <div className="flex items-center gap-2 lg:hidden">
               <a
                 href="#cotizar"
-                className="px-3.5 py-1.5 rounded-lg bg-blue-600 text-white text-xs font-bold sm:hidden shadow-sm"
+                className="px-3.5 py-1.5 rounded-lg bg-white text-[#0F172A] text-xs font-extrabold sm:hidden shadow-sm"
               >
                 Cotizar
               </a>
@@ -142,7 +142,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3.5 py-2.5 rounded-xl text-sm font-bold text-slate-200 hover:bg-white/10 hover:text-white transition-colors flex items-center justify-between"
+                  className="px-3.5 py-2.5 rounded-xl text-sm font-extrabold text-white hover:bg-white/10 transition-colors flex items-center justify-between"
                 >
                   <span>{link.label}</span>
                   <ChevronRight className="w-4 h-4 text-slate-400" />
@@ -155,10 +155,10 @@ export default function Navbar() {
                 href="#cotizar"
                 onClick={() => setMobileMenuOpen(false)}
                 data-track="Cotizar Mobile Menu"
-                className="w-full text-center py-3 rounded-xl bg-blue-600 text-white font-bold shadow-md text-sm flex items-center justify-center gap-2"
+                className="w-full text-center py-3 rounded-xl bg-white text-[#0F172A] font-extrabold shadow-md text-sm flex items-center justify-center gap-2"
               >
                 <span>Solicitar Cotización Gratuita</span>
-                <ChevronRight className="w-4 h-4" />
+                <ChevronRight className="w-4 h-4 text-[#0052CC]" />
               </a>
 
               <div className="pt-2 flex justify-between items-center text-xs text-slate-400">
