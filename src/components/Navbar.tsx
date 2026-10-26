@@ -39,7 +39,7 @@ export default function Navbar() {
             <span className="text-white/20">|</span>
             <span className="flex items-center gap-1.5 text-slate-300 font-normal">
               <MapPin className="w-3.5 h-3.5 text-blue-400" />
-              <span>Achupallas, Viña del Mar</span>
+              <span>Av. Alessandri 1055, Viña del Mar</span>
             </span>
           </div>
           

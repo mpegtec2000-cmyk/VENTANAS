@@ -9,10 +9,12 @@ import ContactLocation from '@/components/ContactLocation';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import MobileBottomBar from '@/components/MobileBottomBar';
+import ScrollReveal from '@/components/ScrollReveal';
 
 export default function HomePage() {
   return (
     <>
+      <ScrollReveal />
       <Navbar />
       <main className="flex-grow">
         <Hero />

@@ -51,7 +51,7 @@ export default function Features() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Encabezado */}
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-14">
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-14 reveal-init">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-md border border-blue-100 text-[#0052CC] text-xs font-extrabold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5 text-[#0052CC]" />
             30 Años de Trayectoria & Excelencia
@@ -68,10 +68,11 @@ export default function Features() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
           {features.map((f, i) => {
             const Icon = f.icon;
+            const delays = ['', 'reveal-delay-100', 'reveal-delay-200', 'reveal-delay-300'];
             return (
               <div
                 key={i}
-                className="bg-white/95 backdrop-blur-md hover:bg-white rounded-3xl p-6 sm:p-7 border border-white/40 shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+                className={`bg-white/95 backdrop-blur-md hover:bg-white rounded-3xl p-6 sm:p-7 border border-white/40 shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group reveal-init ${delays[i]}`}
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">

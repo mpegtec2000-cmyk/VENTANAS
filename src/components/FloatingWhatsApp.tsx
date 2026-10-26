@@ -1,18 +1,21 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { 
-  Bot, 
   X, 
   Send, 
   MessageCircle, 
   Sparkles, 
   CheckCircle2, 
-  User, 
-  Paperclip, 
-  Smile, 
-  PhoneCall, 
-  Clock 
+  MapPin, 
+  Hammer, 
+  Wrench, 
+  ShieldCheck, 
+  ArrowRight,
+  RotateCcw,
+  Building2,
+  FileText
 } from 'lucide-react';
 import { trackEvent } from '@/lib/tracker';
 
@@ -23,25 +26,80 @@ interface ChatMessage {
   timestamp: string;
   actionUrl?: string;
   actionText?: string;
+  options?: string[];
+  summaryCard?: {
+    serviceType: string;
+    product: string;
+    commune: string;
+    details: string;
+    contactName?: string;
+    contactPhone?: string;
+  };
 }
 
-const QUICK_OPTIONS = [
-  'Ventanas de Aluminio & PVC',
-  'Cierre de Balcón o Terraza',
-  'Shower Door a Medida',
-  'Vitrinas Comerciales',
-  'Cotización Personalizada',
-  'Hablar con Maestro por WhatsApp',
-];
+interface LeadData {
+  serviceType: string;
+  product: string;
+  commune: string;
+  details: string;
+  name: string;
+  phone: string;
+}
+
+const STEP_OPTIONS = {
+  serviceTypes: [
+    '🔨 Fabricación a Medida (Taller Propio)',
+    '🔧 Instalación en Obra / Terreno',
+    '🛠️ Reparación o Mantención',
+    '💬 Hablar directo con un Maestro por WhatsApp',
+  ],
+  productsFab: [
+    'Ventanas Aluminio / PVC / Termopanel',
+    'Shower Door en Cristal Templado',
+    'Cierre de Balcón o Terraza',
+    'Barandas de Cristal & Acero Inox',
+    'Vitrinas o Fachadas Comerciales',
+    'Otro proyecto arquitectónico a medida',
+  ],
+  productsRep: [
+    'Cambio de Cristal Roto / Quebrado',
+    'Filtración o Desajuste en Ventana',
+    'Mantención de Correderas / Rodamientos',
+    'Sellado Hermético y Siliconado',
+  ],
+  communes: [
+    'Viña del Mar (Achupallas / Reñaca / Centro)',
+    'Concón',
+    'Valparaíso',
+    'Quilpué / Villa Alemana',
+    'Otra comuna de la V Región',
+  ],
+  measurements: [
+    'Requiero Visita Técnica en Terreno (Gratis)',
+    'Tengo medidas estimadas (las escribiré)',
+    'Aún no tengo medidas exactas',
+  ],
+};
 
 export default function FloatingWhatsApp() {
   const [isOpen, setIsOpen] = useState(false);
+  const [step, setStep] = useState<number>(1);
+  const [lead, setLead] = useState<LeadData>({
+    serviceType: '',
+    product: '',
+    commune: '',
+    details: '',
+    name: '',
+    phone: '',
+  });
+
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'welcome',
       sender: 'bot',
-      text: 'Hola, bienvenido a Vidriería Orellana, estoy en línea para asesorarte. ¿En qué proyecto te puedo ayudar hoy?',
+      text: '¡Hola! Bienvenido a Vidriería Orellana. Soy tu Asesor Técnico Virtual.\n\nPara asesorarte con precisión y calcular tu presupuesto, ¿qué tipo de requerimiento tienes hoy?',
       timestamp: 'Ahora',
+      options: STEP_OPTIONS.serviceTypes,
     },
   ]);
   const [inputValue, setInputValue] = useState('');
@@ -56,71 +114,141 @@ export default function FloatingWhatsApp() {
     if (isOpen) {
       scrollToBottom();
     }
-  }, [messages, isOpen]);
+  }, [messages, isOpen, isTyping]);
 
   const handleOpen = () => {
     setIsOpen(true);
-    trackEvent('ai_chat_open', 'Abrir Asistente IA');
+    trackEvent('ai_chat_open', 'Abrir Asesor Virtual');
   };
 
   const handleClose = () => {
     setIsOpen(false);
   };
 
-  const handleSelectOption = (option: string) => {
-    trackEvent('ai_chat_option', option);
+  const handleRestart = () => {
+    setStep(1);
+    setLead({
+      serviceType: '',
+      product: '',
+      commune: '',
+      details: '',
+      name: '',
+      phone: '',
+    });
+    setMessages([
+      {
+        id: Date.now().toString(),
+        sender: 'bot',
+        text: '¡Conversación reiniciada! ¿Qué tipo de requerimiento necesitas cotizar?',
+        timestamp: 'Ahora',
+        options: STEP_OPTIONS.serviceTypes,
+      },
+    ]);
+  };
 
-    // Si es hablar directo por WhatsApp
-    if (option === 'Hablar con Maestro por WhatsApp') {
-      const url = 'https://wa.me/56992409397?text=Hola%20Vidrier%C3%ADa%20Orellana,%20necesito%20asesor%C3%ADa%20t%C3%A9cnica%20inmediata.';
-      window.open(url, '_blank');
+  const saveLeadToCRM = async (finalLead: LeadData) => {
+    try {
+      const payload = {
+        name: finalLead.name || 'Cliente Asistente Virtual',
+        phone: finalLead.phone || 'Por coordinar en WhatsApp',
+        service: `${finalLead.serviceType} - ${finalLead.product}`,
+        commune: finalLead.commune,
+        dimensions: finalLead.details,
+        message: `Cotización Asesor Virtual: Requerimiento de ${finalLead.serviceType} para ${finalLead.product} en ${finalLead.commune}. Detalles/Medidas: ${finalLead.details}.`,
+      };
+
+      await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      trackEvent('ai_chat_lead_captured', finalLead.product);
+    } catch (err) {
+      console.error('Error guardando lead en CRM:', err);
+    }
+  };
+
+  const handleUserSelection = (selectedOption: string) => {
+    // Si el usuario elige hablar directo por WhatsApp
+    if (selectedOption.includes('Hablar directo con un Maestro')) {
+      const waUrl = 'https://wa.me/56992409397?text=Hola%20Vidrier%C3%ADa%20Orellana,%20necesito%20contactar%20directamente%20con%20un%20maestro%20para%20una%20consulta.';
+      window.open(waUrl, '_blank');
       return;
     }
 
-    // Agregar mensaje del usuario
+    // Registrar mensaje del usuario
     const userMsg: ChatMessage = {
       id: Date.now().toString(),
       sender: 'user',
-      text: option,
+      text: selectedOption,
       timestamp: 'Ahora',
     };
-
     setMessages((prev) => [...prev, userMsg]);
     setIsTyping(true);
 
     setTimeout(() => {
-      let botResponse = '';
-      let waText = '';
+      if (step === 1) {
+        // Guardar Tipo de Servicio (Fabricación, Instalación, Reparación)
+        const updatedLead = { ...lead, serviceType: selectedOption };
+        setLead(updatedLead);
+        setStep(2);
 
-      if (option.includes('Ventanas')) {
-        botResponse = 'Excelente. Fabricamos ventanas en Termopanel DVH y perfiles de aluminio o PVC de alta aislación térmica y acústica. ¿Deseas cotizar medidas aproximadas o solicitar rectificación en terreno?';
-        waText = `Hola Vidriería Orellana, solicito cotización para ${option}.`;
-      } else if (option.includes('Balcón')) {
-        botResponse = 'Nuestros cierres de balcón en aluminio y cristal protegen contra el viento y la lluvia costera manteniendo la vista panorámica. ¿En qué comuna se encuentra tu departamento o casa?';
-        waText = `Hola Vidriería Orellana, me interesa cotizar un cierre de balcón o terraza.`;
-      } else if (option.includes('Shower')) {
-        botResponse = 'Fabricamos Shower Doors a medida en cristal templado de seguridad (8mm y 10mm) con herrajes inoxidables resistentes a la humedad. ¿Es puerta corredera o abatible?';
-        waText = `Hola Vidriería Orellana, busco cotizar un Shower Door a medida.`;
-      } else if (option.includes('Vitrinas')) {
-        botResponse = 'Diseñamos e instalamos vitrinas y frentes comerciales de alto tráfico con perfilería reforzada de aluminio y vidrios de seguridad. ¿Tienes plano o medidas de la vitrina?';
-        waText = `Hola Vidriería Orellana, requiero cotización para vitrina comercial o frente de local.`;
-      } else {
-        botResponse = 'Perfecto. Cuéntame los detalles de tu proyecto o déjame tus medidas para transferir tu solicitud directamente al maestro en taller.';
-        waText = `Hola Vidriería Orellana, deseo una cotización personalizada para mi proyecto.`;
+        const isReparacion = selectedOption.includes('Reparación');
+        const nextOptions = isReparacion ? STEP_OPTIONS.productsRep : STEP_OPTIONS.productsFab;
+
+        const botReply: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          sender: 'bot',
+          text: `Excelente. Registrado: ${selectedOption}.\n\n¿Para qué tipo de estructura o trabajo específico lo requieres?`,
+          timestamp: 'Ahora',
+          options: nextOptions,
+        };
+        setMessages((prev) => [...prev, botReply]);
+      } else if (step === 2) {
+        // Guardar Producto
+        const updatedLead = { ...lead, product: selectedOption };
+        setLead(updatedLead);
+        setStep(3);
+
+        const botReply: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          sender: 'bot',
+          text: `Perfecto, somos especialistas en ${selectedOption}.\n\n¿En qué comuna o sector se encuentra el proyecto o domicilio?`,
+          timestamp: 'Ahora',
+          options: STEP_OPTIONS.communes,
+        };
+        setMessages((prev) => [...prev, botReply]);
+      } else if (step === 3) {
+        // Guardar Comuna
+        const updatedLead = { ...lead, commune: selectedOption };
+        setLead(updatedLead);
+        setStep(4);
+
+        const botReply: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          sender: 'bot',
+          text: `Tenemos cobertura activa en ${selectedOption}.\n\n¿Tienes las medidas aproximadas de la estructura o prefieres agendar una visita técnica para rectificar medidas en terreno?`,
+          timestamp: 'Ahora',
+          options: STEP_OPTIONS.measurements,
+        };
+        setMessages((prev) => [...prev, botReply]);
+      } else if (step === 4) {
+        // Guardar Medidas o Solicitud de Visita
+        const updatedLead = { ...lead, details: selectedOption };
+        setLead(updatedLead);
+        setStep(5);
+
+        const botReply: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          sender: 'bot',
+          text: `¡Casi listo! Para formalizar tu cotización y transferirte con el maestro en taller, por favor escribe tu Nombre y Teléfono o WhatsApp de contacto a continuación.`,
+          timestamp: 'Ahora',
+        };
+        setMessages((prev) => [...prev, botReply]);
       }
 
-      const botMsg: ChatMessage = {
-        id: (Date.now() + 1).toString(),
-        sender: 'bot',
-        text: botResponse,
-        timestamp: 'Ahora',
-        actionUrl: `https://wa.me/56992409397?text=${encodeURIComponent(waText)}`,
-        actionText: 'Continuar por WhatsApp con un Maestro',
-      };
-
-      setMessages((prev) => [...prev, botMsg]);
       setIsTyping(false);
-    }, 700);
+    }, 600);
   };
 
   const handleSendMessage = (e: React.FormEvent) => {
@@ -136,173 +264,300 @@ export default function FloatingWhatsApp() {
       text: userText,
       timestamp: 'Ahora',
     };
-
     setMessages((prev) => [...prev, userMsg]);
     setIsTyping(true);
 
-    setTimeout(() => {
-      const botMsg: ChatMessage = {
-        id: (Date.now() + 1).toString(),
-        sender: 'bot',
-        text: `Entendido: "${userText}". Podemos fabricarlo a la medida exacta en nuestro taller de Achupallas. Te transferiré con el maestro para validar disponibilidad y presupuesto exacto.`,
-        timestamp: 'Ahora',
-        actionUrl: `https://wa.me/56992409397?text=${encodeURIComponent(`Hola Vidriería Orellana, mi consulta es: ${userText}`)}`,
-        actionText: 'Enviar consulta al Maestro por WhatsApp',
-      };
+    setTimeout(async () => {
+      if (step === 5) {
+        // El usuario está ingresando su nombre y teléfono para finalizar la cotización
+        const updatedLead = {
+          ...lead,
+          name: lead.name || userText,
+          phone: lead.phone || userText,
+        };
+        setLead(updatedLead);
+        setStep(6);
 
-      setMessages((prev) => [...prev, botMsg]);
+        // Guardar lead automáticamente en base de datos CRM
+        await saveLeadToCRM(updatedLead);
+
+        const waMessage = `Hola Vidriería Orellana, coticé con su Asesor Virtual:\n• Requerimiento: ${updatedLead.serviceType}\n• Producto: ${updatedLead.product}\n• Ubicación: ${updatedLead.commune}\n• Medidas/Detalles: ${updatedLead.details}\n• Contacto: ${userText}`;
+        const waUrl = `https://wa.me/56992409397?text=${encodeURIComponent(waMessage)}`;
+
+        const botReply: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          sender: 'bot',
+          text: `✅ ¡Ficha técnica completada con éxito!\n\nHemos registrado tu solicitud en nuestro sistema. Puedes continuar directamente con el maestro asignado por WhatsApp para confirmar presupuesto y fecha de fabricación/visita:`,
+          timestamp: 'Ahora',
+          summaryCard: {
+            serviceType: updatedLead.serviceType,
+            product: updatedLead.product,
+            commune: updatedLead.commune,
+            details: updatedLead.details,
+            contactName: userText,
+          },
+          actionUrl: waUrl,
+          actionText: 'Abrir WhatsApp con Ficha Técnica Completa',
+        };
+
+        setMessages((prev) => [...prev, botReply]);
+      } else if (step === 4 && userText.length > 2) {
+        // El usuario escribió sus medidas manualmente
+        const updatedLead = { ...lead, details: `Medidas: ${userText}` };
+        setLead(updatedLead);
+        setStep(5);
+
+        const botReply: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          sender: 'bot',
+          text: `Medidas registradas: "${userText}".\n\nPor último, déjanos tu Nombre y Teléfono / WhatsApp para asignarte la cotización formal.`,
+          timestamp: 'Ahora',
+        };
+        setMessages((prev) => [...prev, botReply]);
+      } else {
+        // Respuesta inteligente ante texto libre: Detección contextual
+        const lower = userText.toLowerCase();
+        let detectedService = lead.serviceType;
+        let detectedProduct = lead.product;
+
+        if (lower.includes('repar') || lower.includes('rot') || lower.includes('cambi')) {
+          detectedService = 'Reparación o Mantención';
+        } else if (lower.includes('instal') || lower.includes('montaj') || lower.includes('faena')) {
+          detectedService = 'Instalación en Terreno';
+        } else if (lower.includes('fabric') || lower.includes('nuev') || lower.includes('medida')) {
+          detectedService = 'Fabricación a Medida';
+        }
+
+        if (lower.includes('ventana') || lower.includes('pvc') || lower.includes('termopanel')) {
+          detectedProduct = 'Ventanas en Aluminio & PVC';
+        } else if (lower.includes('shower') || lower.includes('ducha') || lower.includes('baño')) {
+          detectedProduct = 'Shower Door en Cristal Templado';
+        } else if (lower.includes('balcon') || lower.includes('terraza')) {
+          detectedProduct = 'Cierre de Balcón o Terraza';
+        } else if (lower.includes('baranda')) {
+          detectedProduct = 'Barandas de Cristal & Inox';
+        }
+
+        const updatedLead = {
+          ...lead,
+          serviceType: detectedService || 'Fabricación a Medida',
+          product: detectedProduct || userText,
+          details: lead.details ? `${lead.details} | Nota: ${userText}` : `Consulta: ${userText}`,
+        };
+        setLead(updatedLead);
+
+        const waMessage = `Hola Vidriería Orellana, consulta desde Asesor Virtual: ${userText}`;
+        const waUrl = `https://wa.me/56992409397?text=${encodeURIComponent(waMessage)}`;
+
+        const botReply: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          sender: 'bot',
+          text: `Entendido: "${userText}". Nuestro taller cuenta con maestros calificados para este trabajo.\n\nPuedes continuar con las opciones guiadas o hablar de inmediato por WhatsApp:`,
+          timestamp: 'Ahora',
+          options: STEP_OPTIONS.serviceTypes,
+          actionUrl: waUrl,
+          actionText: 'Consultar por WhatsApp con el Maestro',
+        };
+        setMessages((prev) => [...prev, botReply]);
+      }
+
       setIsTyping(false);
-    }, 800);
+    }, 700);
   };
 
   return (
     <aside aria-label="Asistente Virtual" className="fixed bottom-6 right-6 z-50">
       
-      {/* Botón Lanzador Flotante (Icono de Agente IA) */}
+      {/* Botón Lanzador Flotante con Logo HD */}
       {!isOpen && (
         <button
           onClick={handleOpen}
-          aria-label="Abrir Asistente Virtual Vidriería Orellana"
-          className="flex items-center gap-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white p-3.5 sm:px-5 sm:py-3.5 rounded-full shadow-2xl hover:shadow-slate-900/40 transition-all duration-300 transform hover:scale-105 group border border-white/20"
+          aria-label="Abrir Asesor Virtual Vidriería Orellana"
+          className="flex items-center gap-3 bg-[#0F172A] hover:bg-[#1E293B] text-white p-3 sm:px-4 sm:py-3 rounded-full shadow-2xl hover:shadow-slate-900/50 transition-all duration-300 transform hover:scale-105 group border border-white/20"
         >
-          <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-white/10">
-            <Bot className="w-5 h-5 text-white animate-bounce" />
-            <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3">
+          <div className="relative flex items-center justify-center w-7 h-7 rounded-full bg-blue-600/30 border border-blue-400/40">
+            <Sparkles className="w-4 h-4 text-blue-300 animate-pulse" />
+            <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-400 border border-white"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 border border-[#0F172A]"></span>
             </span>
           </div>
+
           <div className="hidden sm:flex flex-col text-left">
-            <span className="font-extrabold text-xs tracking-wide">Vidriería Orellana</span>
-            <span className="text-[10px] text-blue-300 font-medium">Asesor Virtual en línea</span>
+            <span className="font-extrabold text-xs tracking-wide text-white">Vidriería Orellana</span>
+            <span className="text-[10.5px] text-emerald-400 font-semibold flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              Cotizador Inteligente en Línea
+            </span>
           </div>
         </button>
       )}
 
-      {/* Ventana Modal del Chat IA (Estilo Cliengo según captura) */}
+      {/* Ventana Modal del Chat Inteligente */}
       {isOpen && (
-        <div className="w-[92vw] sm:w-[380px] h-[520px] max-h-[85vh] bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+        <div className="w-[94vw] sm:w-[410px] h-[560px] max-h-[88vh] bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
           
-          {/* Header Superior Corporativo en Azul #0F172A */}
+          {/* Header Superior Corporativo con Logo HD Oficial del Navbar */}
           <div className="bg-[#0F172A] text-white p-4 flex items-center justify-between shadow-md border-b border-white/10">
             <div className="flex items-center gap-3">
-              <div className="relative w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-                <Bot className="w-6 h-6 text-white" />
-                <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#0F172A]" />
+              <div className="relative h-9 w-36 sm:h-10 sm:w-44">
+                <Image
+                  src="/images/logo-orellana-white-hd.png"
+                  alt="Vidriería Orellana - Vidrios & Aluminios"
+                  fill
+                  className="object-contain object-left"
+                  priority
+                />
               </div>
-              <div>
-                <h3 className="font-bold text-sm tracking-tight leading-none text-white">
-                  Vidriería Orellana
-                </h3>
-                <div className="flex items-center gap-1.5 mt-1">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-[11px] text-blue-200 font-medium">Disponible ahora</span>
-                </div>
+
+              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[10px] font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>En Línea</span>
               </div>
             </div>
 
-            <button
-              onClick={handleClose}
-              aria-label="Cerrar chat"
-              className="w-8 h-8 rounded-full hover:bg-white/20 flex items-center justify-center transition-colors text-white"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={handleRestart}
+                title="Reiniciar cotización"
+                aria-label="Reiniciar cotización"
+                className="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center transition-colors text-slate-300 hover:text-white"
+              >
+                <RotateCcw className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={handleClose}
+                aria-label="Cerrar chat"
+                className="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center transition-colors text-white"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
           {/* Área de Mensajes */}
-          <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50/50">
+          <div className="flex-1 p-4 overflow-y-auto space-y-3.5 bg-slate-50/70">
             {messages.map((msg) => (
               <div
                 key={msg.id}
                 className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}
               >
                 {msg.sender === 'bot' && (
-                  <span className="text-[11px] text-slate-500 font-semibold mb-1 ml-1">
-                    Vidriería Orellana
+                  <span className="text-[10px] font-bold tracking-wider text-slate-500 uppercase mb-1 ml-1 flex items-center gap-1">
+                    <ShieldCheck className="w-3 h-3 text-blue-600" />
+                    Asesor Técnico Orellana
                   </span>
                 )}
+                
                 <div
-                  className={`max-w-[85%] p-3.5 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-sm ${
+                  className={`max-w-[88%] p-3.5 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-sm whitespace-pre-line ${
                     msg.sender === 'bot'
                       ? 'bg-[#0F172A] text-white rounded-tl-sm'
-                      : 'bg-white text-slate-800 border border-slate-200 rounded-tr-sm'
+                      : 'bg-blue-600 text-white rounded-tr-sm font-medium'
                   }`}
                 >
                   {msg.text}
                 </div>
 
-                {/* Botón de acción directo si el bot lo sugiere */}
+                {/* Tarjeta de Resumen Técnico si la cotización finalizó */}
+                {msg.summaryCard && (
+                  <div className="mt-2.5 w-full bg-white border border-blue-200 rounded-2xl p-3.5 shadow-md space-y-2 text-xs text-slate-800">
+                    <div className="font-bold text-sm text-[#0F172A] border-b border-slate-100 pb-1.5 flex items-center gap-1.5">
+                      <FileText className="w-4 h-4 text-blue-600" />
+                      <span>Ficha de Cotización Generada</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-1.5 pt-1">
+                      <div>
+                        <span className="text-[10px] uppercase font-bold text-slate-500 block">Tipo:</span>
+                        <span className="font-semibold text-slate-900">{msg.summaryCard.serviceType}</span>
+                      </div>
+                      <div>
+                        <span className="text-[10px] uppercase font-bold text-slate-500 block">Producto:</span>
+                        <span className="font-semibold text-slate-900">{msg.summaryCard.product}</span>
+                      </div>
+                      <div>
+                        <span className="text-[10px] uppercase font-bold text-slate-500 block">Comuna:</span>
+                        <span className="font-semibold text-slate-900">{msg.summaryCard.commune}</span>
+                      </div>
+                      <div>
+                        <span className="text-[10px] uppercase font-bold text-slate-500 block">Medidas / Visita:</span>
+                        <span className="font-semibold text-slate-900">{msg.summaryCard.details}</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Botón de acción directo para WhatsApp */}
                 {msg.actionUrl && (
                   <a
                     href={msg.actionUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-2 inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition-all"
+                    className="mt-2.5 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-md transition-all duration-200 group/btn"
                   >
-                    <MessageCircle className="w-3.5 h-3.5 fill-white" />
+                    <MessageCircle className="w-4 h-4 fill-white" />
                     <span>{msg.actionText}</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                   </a>
+                )}
+
+                {/* Opciones Interactivas Guiadas */}
+                {msg.options && (
+                  <div className="mt-2.5 flex flex-col gap-1.5 w-full">
+                    <span className="text-[11px] font-bold text-slate-600 mb-0.5">
+                      Selecciona una opción:
+                    </span>
+                    {msg.options.map((opt) => (
+                      <button
+                        key={opt}
+                        onClick={() => handleUserSelection(opt)}
+                        className="w-full text-left px-3.5 py-2.5 rounded-xl border border-slate-200 hover:border-[#0052CC] bg-white hover:bg-blue-50/60 text-[#0F172A] text-xs font-semibold transition-all duration-150 shadow-xs flex items-center justify-between group"
+                      >
+                        <span>{opt}</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#0052CC] group-hover:translate-x-0.5 transition-all" />
+                      </button>
+                    ))}
+                  </div>
                 )}
               </div>
             ))}
 
             {isTyping && (
-              <div className="flex items-center gap-1.5 p-3 rounded-2xl bg-slate-200/80 text-slate-800 w-fit text-xs font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0F172A] animate-bounce" />
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0F172A] animate-bounce [animation-delay:0.2s]" />
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0F172A] animate-bounce [animation-delay:0.4s]" />
-                <span className="ml-1">Escribiendo respuesta...</span>
+              <div className="flex items-center gap-1.5 p-3 rounded-2xl bg-white border border-slate-200 text-slate-800 w-fit text-xs font-medium shadow-xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-bounce" />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-bounce [animation-delay:0.2s]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-bounce [animation-delay:0.4s]" />
+                <span className="ml-1 text-slate-600 font-semibold">Asesor analizando requerimiento...</span>
               </div>
             )}
-
-            {/* Chips de Opciones Rápidas (Estilo Cliengo de la captura) */}
-            <div className="pt-2">
-              <span className="text-[11px] text-slate-500 font-medium block mb-2">
-                Opciones frecuentes:
-              </span>
-              <div className="flex flex-wrap gap-1.5 justify-end">
-                {QUICK_OPTIONS.map((opt) => (
-                  <button
-                    key={opt}
-                    onClick={() => handleSelectOption(opt)}
-                    className="px-3 py-1.5 rounded-full border border-[#0F172A] text-[#0F172A] hover:bg-[#0F172A] hover:text-white text-xs font-semibold transition-all duration-200 bg-white shadow-xs text-left"
-                  >
-                    {opt}
-                  </button>
-                ))}
-              </div>
-            </div>
 
             <div ref={messagesEndRef} />
           </div>
 
           {/* Footer de Entrada de Texto */}
           <form onSubmit={handleSendMessage} className="p-3 bg-white border-t border-slate-200 flex items-center gap-2">
-            <div className="flex items-center gap-1 text-slate-400 pl-1">
-              <Smile className="w-5 h-5 hover:text-slate-600 cursor-pointer" />
-              <Paperclip className="w-5 h-5 hover:text-slate-600 cursor-pointer" />
-            </div>
             <input
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Escribe un mensaje..."
-              className="flex-1 bg-slate-100 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#0F172A]"
+              placeholder={step === 5 ? "Escribe tu Nombre y WhatsApp aquí..." : "Escribe tu consulta o medidas..."}
+              className="flex-1 bg-slate-100 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 font-medium"
             />
             <button
               type="submit"
               disabled={!inputValue.trim()}
               aria-label="Enviar mensaje"
-              className="w-9 h-9 rounded-xl bg-[#0F172A] hover:bg-[#1E293B] disabled:opacity-40 text-white flex items-center justify-center transition-all shadow-sm"
+              className="w-10 h-10 rounded-xl bg-[#0F172A] hover:bg-blue-600 disabled:opacity-40 text-white flex items-center justify-center transition-all shadow-sm"
             >
               <Send className="w-4 h-4" />
             </button>
           </form>
 
-          {/* Sello inferior sutil */}
-          <div className="py-1 text-center bg-slate-50 border-t border-slate-100 text-[10px] text-slate-400 font-medium">
-            Asesor Virtual en línea • Vidriería Orellana
+          {/* Sello de Confianza Inferior */}
+          <div className="py-1.5 px-3 text-center bg-slate-50 border-t border-slate-100 text-[10px] text-slate-500 font-semibold flex items-center justify-center gap-1">
+            <ShieldCheck className="w-3 h-3 text-blue-600" />
+            <span>Taller Propio en Achupallas • Atención Inmediata en la V Región</span>
           </div>
 
         </div>

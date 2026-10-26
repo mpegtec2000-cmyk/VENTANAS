@@ -4,17 +4,15 @@ import { MapPin, Phone, Mail, Instagram, Facebook, Clock, MessageCircle, Externa
 import { trackEvent } from '@/lib/tracker';
 
 export default function ContactLocation() {
-  const address = 'Guillermo García Huidobro Esq. Alessandri Local 1, Achupallas - Viña del Mar';
-  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    'Guillermo Garcia Huidobro Alessandri Achupallas Vina del Mar'
-  )}`;
+  const address = 'Av. Alessandri 1055, 2550737 Viña del Mar, Valparaíso';
+  const googleMapsUrl = 'https://share.google/p1rW58oiJ0iUPcRm1';
 
   return (
     <section id="contacto" className="py-16 sm:py-24 bg-white border-t border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado */}
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-14">
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-14 reveal-init">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-brand-blue text-xs font-bold uppercase tracking-wider">
             <MapPin className="w-3.5 h-3.5" />
             Ubicación & Canales de Atención
@@ -23,14 +21,14 @@ export default function ContactLocation() {
             Visítanos en Taller o Contáctanos
           </h2>
           <p className="text-sm sm:text-base text-slate-600">
-            Estamos ubicados en Achupallas, Viña del Mar, con atención telefónica permanente y coordinación para visitas en terreno.
+            Estamos ubicados en Av. Alessandri 1055, Viña del Mar, con atención telefónica permanente y coordinación para visitas en terreno.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Tarjeta de Contacto Directo */}
-          <div className="lg:col-span-5 bg-card-gradient rounded-3xl p-6 sm:p-8 shadow-card border border-slate-200/90 flex flex-col justify-between space-y-8">
+          <div className="lg:col-span-5 bg-card-gradient rounded-3xl p-6 sm:p-8 shadow-card border border-slate-200/90 flex flex-col justify-between space-y-8 reveal-init">
             <div className="space-y-6">
               
               <div>
@@ -130,14 +128,14 @@ export default function ContactLocation() {
               </span>
               <div className="flex flex-wrap items-center gap-3">
                 <a
-                  href="https://instagram.com/aluminios_orellana"
+                  href="https://www.instagram.com/vidrieriaorellanayventanas.cl/"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-track="Instagram Click"
                   className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-pink-50 to-purple-50 text-purple-900 border border-purple-200 text-xs font-bold hover:shadow-sm transition-all"
                 >
                   <Instagram className="w-4 h-4 text-pink-600" />
-                  <span>@aluminios_orellana</span>
+                  <span>@vidrieriaorellanayventanas.cl</span>
                 </a>
 
                 <a
@@ -156,7 +154,7 @@ export default function ContactLocation() {
           </div>
 
           {/* Tarjeta de Mapa / Visita en Terreno */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-slate-200/90 flex flex-col justify-between">
+          <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-slate-200/90 flex flex-col justify-between reveal-init reveal-delay-200">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
@@ -169,16 +167,17 @@ export default function ContactLocation() {
                 </span>
               </div>
 
-              {/* Contenedor del Mapa Embed */}
+              {/* Contenedor del Mapa Embed Oficial de Google Maps */}
               <div className="relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 h-72 sm:h-80 w-full shadow-inner">
                 <iframe
-                  title="Ubicación Vidriería Orellana"
+                  title="Vidriería Orellana y Ventanas - Av. Alessandri 1055"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d566.441785881002!2d-71.51083037945885!3d-32.99997829466662!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9689dde1596c4315%3A0xeb4ce71e8f4e31b6!2sVidrier%C3%ADa%20Orellana%20y%20Ventanas!5e0!3m2!1ses-419!2scl!4v1793008418094!5m2!1ses-419!2scl"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
-                  loading="lazy"
                   allowFullScreen
-                  src="https://maps.google.com/maps?q=Guillermo%20Garc%C3%ADa%20Huidobro%20Alessandri%20Achupallas%20Vina%20del%20Mar&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
                 />
               </div>
             </div>

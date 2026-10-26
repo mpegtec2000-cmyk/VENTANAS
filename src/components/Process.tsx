@@ -34,7 +34,7 @@ export default function Process() {
     <section id="proceso" className="py-16 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-16 reveal-init">
           <span className="text-xs font-bold text-brand-blue uppercase tracking-wider">
             Metodología Transparente
           </span>
@@ -49,8 +49,9 @@ export default function Process() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
           {steps.map((step, idx) => {
             const Icon = step.icon;
+            const delays = ['', 'reveal-delay-100', 'reveal-delay-200', 'reveal-delay-300'];
             return (
-              <div key={idx} className="relative space-y-4">
+              <div key={idx} className={`relative space-y-4 reveal-init ${delays[idx]}`}>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-2xl bg-brand-navy text-white flex items-center justify-center font-bold text-lg shadow-md">
                     {step.number}

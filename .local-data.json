@@ -1881,6 +1881,852 @@
       "session_id": "sess-1792985445063-ppsoep",
       "id": "ev-1792997879741-vxwr9",
       "created_at": "2026-10-26T06:57:59.741Z"
+    },
+    {
+      "event": "whatsapp_click",
+      "path": "/",
+      "label": "WhatsApp Especial Banner",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998155387-834ip",
+      "created_at": "2026-10-26T07:02:35.387Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Hogar & Balcones (5)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998161105-zw58s",
+      "created_at": "2026-10-26T07:02:41.105Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Cristal Templado (4)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998161563-2av2w",
+      "created_at": "2026-10-26T07:02:41.563Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Comercial & Oficinas (3)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998162048-z1fdo",
+      "created_at": "2026-10-26T07:02:42.048Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Cristal Templado (4)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998162417-rcbug",
+      "created_at": "2026-10-26T07:02:42.417Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Hogar & Balcones (5)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998162742-37lym",
+      "created_at": "2026-10-26T07:02:42.742Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Todos los Proyectos (12)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998163009-jrlf8",
+      "created_at": "2026-10-26T07:02:43.009Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Hogar & Balcones (5)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998166885-qrgqy",
+      "created_at": "2026-10-26T07:02:46.885Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Cristal Templado (4)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998168850-wuzqs",
+      "created_at": "2026-10-26T07:02:48.850Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Comercial & Oficinas (3)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998169329-mjzt3",
+      "created_at": "2026-10-26T07:02:49.329Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Cristal Templado (4)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998170193-kfjnc",
+      "created_at": "2026-10-26T07:02:50.193Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Comercial & Oficinas (3)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998170893-kwpqz",
+      "created_at": "2026-10-26T07:02:50.893Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Cristal Templado (4)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998177765-94qs6",
+      "created_at": "2026-10-26T07:02:57.765Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Hogar & Balcones (5)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998178717-sgl1h",
+      "created_at": "2026-10-26T07:02:58.717Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Todos los Proyectos (12)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998179280-xo5k4",
+      "created_at": "2026-10-26T07:02:59.280Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998598640-gfd9h",
+      "created_at": "2026-10-26T07:09:58.640Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998598641-8iu91",
+      "created_at": "2026-10-26T07:09:58.641Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998599124-dpi8e",
+      "created_at": "2026-10-26T07:09:59.124Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998599130-jkmgc",
+      "created_at": "2026-10-26T07:09:59.130Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998599497-vkpir",
+      "created_at": "2026-10-26T07:09:59.497Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998599498-nmfu9",
+      "created_at": "2026-10-26T07:09:59.498Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998668718-kacy6",
+      "created_at": "2026-10-26T07:11:08.718Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998668719-7dvku",
+      "created_at": "2026-10-26T07:11:08.719Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998886552-mjth4",
+      "created_at": "2026-10-26T07:14:46.552Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792998886554-3oq9r",
+      "created_at": "2026-10-26T07:14:46.554Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793000055412-u02ky",
+      "created_at": "2026-10-26T07:34:15.412Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793000055414-otryu",
+      "created_at": "2026-10-26T07:34:15.414Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Hogar & Balcones (5)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793001601681-l9img",
+      "created_at": "2026-10-26T08:00:01.681Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Cristal Templado (4)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793001601691-ktxe4",
+      "created_at": "2026-10-26T08:00:01.691Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Todos los Proyectos (12)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793001604088-w2tcg",
+      "created_at": "2026-10-26T08:00:04.088Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793001864816-qu1le",
+      "created_at": "2026-10-26T08:04:24.816Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793001864818-ndiii",
+      "created_at": "2026-10-26T08:04:24.818Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793001878698-n2aya",
+      "created_at": "2026-10-26T08:04:38.698Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793001878700-vx4zq",
+      "created_at": "2026-10-26T08:04:38.700Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793002325184-om5qo",
+      "created_at": "2026-10-26T08:12:05.184Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793002325186-kjek7",
+      "created_at": "2026-10-26T08:12:05.186Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793002450306-2pvrs",
+      "created_at": "2026-10-26T08:14:10.306Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793002450308-loqqx",
+      "created_at": "2026-10-26T08:14:10.308Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793002727647-gx5d7",
+      "created_at": "2026-10-26T08:18:47.647Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793002727648-1uxkm",
+      "created_at": "2026-10-26T08:18:47.649Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793002913390-a7vp3",
+      "created_at": "2026-10-26T08:21:53.390Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793002913391-3eq7w",
+      "created_at": "2026-10-26T08:21:53.391Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Hogar & Balcones (5)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003020281-u3x9p",
+      "created_at": "2026-10-26T08:23:40.281Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Cristal Templado (4)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003020862-172hu",
+      "created_at": "2026-10-26T08:23:40.862Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Comercial & Oficinas (3)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003021476-1zi9a",
+      "created_at": "2026-10-26T08:23:41.476Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Todos los Proyectos (12)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003022272-h58rx",
+      "created_at": "2026-10-26T08:23:42.272Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Hogar & Balcones (5)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003022798-mrkgy",
+      "created_at": "2026-10-26T08:23:42.798Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Todos los Proyectos (12)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003023326-ypwzh",
+      "created_at": "2026-10-26T08:23:43.326Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Hogar & Balcones (5)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003024262-ri1kw",
+      "created_at": "2026-10-26T08:23:44.262Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Cristal Templado (4)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003024730-558ms",
+      "created_at": "2026-10-26T08:23:44.730Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Hogar & Balcones (5)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003025141-y1dos",
+      "created_at": "2026-10-26T08:23:45.141Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Todos los Proyectos (12)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003025628-9efkt",
+      "created_at": "2026-10-26T08:23:45.628Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Hogar & Balcones (5)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003026007-700g2",
+      "created_at": "2026-10-26T08:23:46.007Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Cristal Templado (4)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003026441-d5tf8",
+      "created_at": "2026-10-26T08:23:46.441Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Comercial & Oficinas (3)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003027478-78cmm",
+      "created_at": "2026-10-26T08:23:47.478Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Cristal Templado (4)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003027977-n8v78",
+      "created_at": "2026-10-26T08:23:47.977Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Hogar & Balcones (5)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003028391-857kb",
+      "created_at": "2026-10-26T08:23:48.391Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Todos los Proyectos (12)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003028893-o27o0",
+      "created_at": "2026-10-26T08:23:48.893Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Hogar & Balcones (5)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003029449-105ud",
+      "created_at": "2026-10-26T08:23:49.449Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Cristal Templado (4)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003030224-xmvzf",
+      "created_at": "2026-10-26T08:23:50.224Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Comercial & Oficinas (3)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003030769-j3hzt",
+      "created_at": "2026-10-26T08:23:50.769Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Hogar & Balcones (5)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003031739-6ll9h",
+      "created_at": "2026-10-26T08:23:51.739Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Cristal Templado (4)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003031741-lso7r",
+      "created_at": "2026-10-26T08:23:51.741Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003032274-9vf1z",
+      "created_at": "2026-10-26T08:23:52.274Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003032275-989k0",
+      "created_at": "2026-10-26T08:23:52.275Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Hogar & Balcones (5)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003032744-jbavg",
+      "created_at": "2026-10-26T08:23:52.744Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Cristal Templado (4)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003033238-7tcr9",
+      "created_at": "2026-10-26T08:23:53.238Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Comercial & Oficinas (3)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003033642-egx2l",
+      "created_at": "2026-10-26T08:23:53.642Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Todos los Proyectos (12)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003034451-appru",
+      "created_at": "2026-10-26T08:23:54.451Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003659980-svlmz",
+      "created_at": "2026-10-26T08:34:19.980Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003659982-ni0f2",
+      "created_at": "2026-10-26T08:34:19.982Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003946738-pzyjv",
+      "created_at": "2026-10-26T08:39:06.738Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003946740-wa0tq",
+      "created_at": "2026-10-26T08:39:06.740Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003978389-1nguq",
+      "created_at": "2026-10-26T08:39:38.389Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793003978390-8pyi8",
+      "created_at": "2026-10-26T08:39:38.390Z"
+    },
+    {
+      "event": "ai_chat_open",
+      "path": "/",
+      "label": "Abrir Asistente IA",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793007078900-ly2is",
+      "created_at": "2026-10-26T09:31:18.901Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793007535330-7p7z1",
+      "created_at": "2026-10-26T09:38:55.330Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793007535332-jsds8",
+      "created_at": "2026-10-26T09:38:55.332Z"
+    },
+    {
+      "event": "ai_chat_open",
+      "path": "/",
+      "label": "Abrir Asesor Virtual",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793007940749-4lqyz",
+      "created_at": "2026-10-26T09:45:40.749Z"
+    },
+    {
+      "event": "ai_chat_open",
+      "path": "/",
+      "label": "Abrir Asesor Virtual",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793007947835-2vhot",
+      "created_at": "2026-10-26T09:45:47.835Z"
+    },
+    {
+      "event": "ai_chat_open",
+      "path": "/",
+      "label": "Abrir Asesor Virtual",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793007960437-4n00b",
+      "created_at": "2026-10-26T09:46:00.437Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793007968528-x9tv7",
+      "created_at": "2026-10-26T09:46:08.528Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793007968530-mvqgp",
+      "created_at": "2026-10-26T09:46:08.530Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793008061523-pwlmi",
+      "created_at": "2026-10-26T09:47:41.523Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793008061525-za2b0",
+      "created_at": "2026-10-26T09:47:41.525Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793008061880-4sovp",
+      "created_at": "2026-10-26T09:47:41.880Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793008061882-lda9q",
+      "created_at": "2026-10-26T09:47:41.882Z"
+    },
+    {
+      "event": "cta_click",
+      "path": "/",
+      "label": "Facebook Click",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793008128844-8ytj6",
+      "created_at": "2026-10-26T09:48:48.844Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793008216356-q7jfv",
+      "created_at": "2026-10-26T09:50:16.356Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793008216359-7q21j",
+      "created_at": "2026-10-26T09:50:16.359Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793008267806-zz7q8",
+      "created_at": "2026-10-26T09:51:07.806Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793008267809-9qzps",
+      "created_at": "2026-10-26T09:51:07.809Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793008557163-acdka",
+      "created_at": "2026-10-26T09:55:57.163Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1793008557165-5i954",
+      "created_at": "2026-10-26T09:55:57.165Z"
     }
   ]
 }
