@@ -729,6 +729,339 @@
       "session_id": "sess-1792985445063-ppsoep",
       "id": "ev-1792993313376-bu2w5",
       "created_at": "2026-10-26T05:41:53.376Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792993808433-tkk4y",
+      "created_at": "2026-10-26T05:50:08.433Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792993808434-hlbl8",
+      "created_at": "2026-10-26T05:50:08.434Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792993947323-mlh25",
+      "created_at": "2026-10-26T05:52:27.323Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792993947325-k91dy",
+      "created_at": "2026-10-26T05:52:27.325Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792993995566-il3wf",
+      "created_at": "2026-10-26T05:53:15.566Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792993995567-wxiit",
+      "created_at": "2026-10-26T05:53:15.567Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994129685-m879g",
+      "created_at": "2026-10-26T05:55:29.685Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994129686-d9h4r",
+      "created_at": "2026-10-26T05:55:29.686Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994130606-f1i4g",
+      "created_at": "2026-10-26T05:55:30.606Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994130607-qxlcs",
+      "created_at": "2026-10-26T05:55:30.607Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994131241-usgmo",
+      "created_at": "2026-10-26T05:55:31.241Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994131242-qnmka",
+      "created_at": "2026-10-26T05:55:31.242Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994131678-dkbaz",
+      "created_at": "2026-10-26T05:55:31.678Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994131679-hyrl4",
+      "created_at": "2026-10-26T05:55:31.679Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994132127-djr39",
+      "created_at": "2026-10-26T05:55:32.127Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994132128-3abcj",
+      "created_at": "2026-10-26T05:55:32.128Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994132827-k97eh",
+      "created_at": "2026-10-26T05:55:32.827Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994132829-mm3k8",
+      "created_at": "2026-10-26T05:55:32.829Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994133264-m7cmy",
+      "created_at": "2026-10-26T05:55:33.264Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994133266-bcxz9",
+      "created_at": "2026-10-26T05:55:33.266Z"
+    },
+    {
+      "event": "whatsapp_click",
+      "path": "/",
+      "label": "Boton Flotante WhatsApp",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994155275-sdak2",
+      "created_at": "2026-10-26T05:55:55.275Z"
+    },
+    {
+      "event": "whatsapp_click",
+      "path": "/",
+      "label": "Enlace directo a WhatsApp",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994155276-ne8i6",
+      "created_at": "2026-10-26T05:55:55.276Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994160873-8jgqp",
+      "created_at": "2026-10-26T05:56:00.873Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994160874-pgtzs",
+      "created_at": "2026-10-26T05:56:00.874Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994229845-5yml1",
+      "created_at": "2026-10-26T05:57:09.845Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994229846-5smqi",
+      "created_at": "2026-10-26T05:57:09.846Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994238026-fjj1k",
+      "created_at": "2026-10-26T05:57:18.026Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994238027-x5c82",
+      "created_at": "2026-10-26T05:57:18.027Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Hogar & Balcones (5)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994252779-8c4e1",
+      "created_at": "2026-10-26T05:57:32.779Z"
+    },
+    {
+      "event": "filter_click",
+      "path": "/",
+      "label": "Galeria Tab: Todos los Proyectos (12)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994253415-ku3ka",
+      "created_at": "2026-10-26T05:57:33.415Z"
+    },
+    {
+      "event": "cta_click",
+      "path": "/",
+      "label": "Galeria Card: Ventanas de Aluminio (Ventanas en Aluminio y PVC)",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994255455-4aijz",
+      "created_at": "2026-10-26T05:57:35.455Z"
+    },
+    {
+      "event": "cta_click",
+      "path": "/",
+      "label": "Instagram Click",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994299438-55ndp",
+      "created_at": "2026-10-26T05:58:19.438Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994416981-0nwdg",
+      "created_at": "2026-10-26T06:00:16.981Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994416983-bskz8",
+      "created_at": "2026-10-26T06:00:16.983Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994493609-8mwjr",
+      "created_at": "2026-10-26T06:01:33.609Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994493647-ssiga",
+      "created_at": "2026-10-26T06:01:33.647Z"
+    },
+    {
+      "event": "ai_chat_open",
+      "path": "/",
+      "label": "Abrir Asistente IA",
+      "device": "desktop",
+      "session_id": "sess-1792985445063-ppsoep",
+      "id": "ev-1792994535567-27905",
+      "created_at": "2026-10-26T06:02:15.567Z"
     }
   ]
 }
