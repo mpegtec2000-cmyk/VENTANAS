@@ -3,6 +3,9 @@ import { addLocalEvent } from '@/lib/store';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import { TrackingEvent } from '@/lib/types';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -14,12 +17,22 @@ export async function POST(req: NextRequest) {
       session_id: body.session_id,
     };
 
-    // Almacenar en local
+    // Almacenar en local / memoria
     addLocalEvent(event);
 
-    // Si Supabase está conectado, almacenar también en Supabase
+    // Almacenar también en Supabase en la nube
     if (isSupabaseConfigured && supabase) {
-      supabase.from('tracking_events').insert([event]).then();
+      try {
+        await supabase.from('tracking_events').insert([{
+          event: event.event,
+          path: event.path || '/',
+          label: event.label || '',
+          device: event.device || 'desktop',
+          session_id: event.session_id || null,
+        }]);
+      } catch (sbErr) {
+        // Silencioso
+      }
     }
 
     return NextResponse.json({ ok: true });

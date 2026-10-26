@@ -3,6 +3,9 @@ import { getLocalProducts, saveLocalProduct, deleteLocalProduct } from '@/lib/st
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import { Product } from '@/lib/types';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET() {
   try {
     if (isSupabaseConfigured && supabase) {
