@@ -4,10 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { 
   ArrowRight, 
-  MessageCircle, 
-  VolumeX, 
-  ThermometerSnowflake, 
-  Ruler
+  MessageCircle
 } from 'lucide-react';
 
 export interface HeroSlide {
@@ -129,22 +126,6 @@ export default function Hero() {
           <p className="text-base sm:text-lg text-slate-100 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal drop-shadow-[0_1px_6px_rgba(0,0,0,0.85)]">
             Más de 30 años de calidad, experiencia y tradición en Viña del Mar y la V Región. Fabricamos e instalamos ventanas de alta gama en aluminio y PVC, termopaneles y cierres a medida con garantía directa de nuestro taller.
           </p>
-
-          {/* 3 Beneficios Concretos */}
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-1 text-xs text-white font-medium">
-            <div className="flex items-center gap-2 bg-black/60 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-sm">
-              <ThermometerSnowflake className="w-4 h-4 text-[#3880FF]" />
-              <span className="font-semibold">Aislación Térmica Total</span>
-            </div>
-            <div className="flex items-center gap-2 bg-black/60 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-sm">
-              <VolumeX className="w-4 h-4 text-[#3880FF]" />
-              <span className="font-semibold">Bloqueo Acústico -32dB</span>
-            </div>
-            <div className="flex items-center gap-2 bg-black/60 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-sm">
-              <Ruler className="w-4 h-4 text-[#3880FF]" />
-              <span className="font-semibold">Medición y Asesoría Gratis</span>
-            </div>
-          </div>
 
           {/* Botones de Acción */}
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
