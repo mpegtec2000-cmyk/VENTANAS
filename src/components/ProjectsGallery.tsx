@@ -2,184 +2,283 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Camera, MapPin, CheckCircle, ArrowRight, Sparkles, ZoomIn } from 'lucide-react';
+import { ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
 import { trackEvent } from '@/lib/tracker';
 
-interface ProjectItem {
+export interface ProjectCard {
   id: string;
   title: string;
-  category: string;
-  location: string;
-  material: string;
-  highlight: string;
+  category: 'todos' | 'residencial' | 'cristal' | 'comercial';
+  categoryLabel: string;
+  description: string;
   image: string;
+  serviceCategory: string;
+  badge?: string;
 }
 
-export const PROJECTS: ProjectItem[] = [
+export const PROJECTS_LIST: ProjectCard[] = [
   {
-    id: 'proj-1',
-    title: 'Ventanas Termopanel PVC Aislante',
-    category: 'Ventanas',
-    location: 'Reñaca, Viña del Mar',
-    material: 'PVC Termofusionado + DVH 4-12-4 Hermético',
-    highlight: 'Aislación térmica total contra el viento y frío marino',
-    image: '/images/ventanas-pvc.jpg',
+    id: 'ventanas-aluminio',
+    title: 'Ventanas de Aluminio',
+    category: 'residencial',
+    categoryLabel: 'Línea Residencial',
+    description: 'Fabricación e instalación de ventanales en aluminio anodizado y electropintado.',
+    image: '/images/user-6.jpg',
+    serviceCategory: 'Ventanas en Aluminio y PVC',
+    badge: 'Alta Demanda',
   },
   {
-    id: 'proj-2',
-    title: 'Cierre de Balcón y Terraza Vista Libre',
-    category: 'Balcones',
-    location: 'Sector 5, Reñaca',
-    material: 'Cristal Templado 8mm + Rieles de Aluminio Anodizado',
-    highlight: 'Hojas correderas panorámicas sin perfiles que corten la vista',
-    image: '/images/cierre-balcon.jpg',
+    id: 'trabajos-pvc',
+    title: 'Trabajos en PVC & DVH',
+    category: 'residencial',
+    categoryLabel: 'Termopanel Alemán',
+    description: 'Aislación térmica y acústica superior con perfilería de alta eficiencia.',
+    image: '/images/user-2.jpg',
+    serviceCategory: 'Ventanas en Aluminio y PVC',
+    badge: 'Ahorro Térmico',
   },
   {
-    id: 'proj-3',
-    title: 'Shower Door en Cristal Templado',
-    category: 'Shower Door',
-    location: 'Concón',
-    material: 'Cristal Templado 8mm + Herrajes Acero Inoxidable 316',
-    highlight: 'Cierre magnético hermético con sellos de silicona neutra',
-    image: '/images/shower-door.jpg',
+    id: 'cierres-comerciales',
+    title: 'Cierres Comerciales',
+    category: 'comercial',
+    categoryLabel: 'Comercial & Retail',
+    description: 'Vidrios de seguridad y perfilería de aluminio para vitrinas y locales.',
+    image: '/images/user-7.jpg',
+    serviceCategory: 'Vitrinas Comerciales',
+    badge: 'Seguridad',
   },
   {
-    id: 'proj-4',
-    title: 'Fachadas Vidriadas y Bow Windows',
-    category: 'Ventanas',
-    location: 'Costa de Viña del Mar',
-    material: 'Línea Europea 42 + Cristales de Control Solar',
-    highlight: 'Máximo ingreso de luz natural con resistencia al salitre',
-    image: '/images/hero-web.jpg',
+    id: 'shower-door',
+    title: 'Shower Door a Medida',
+    category: 'cristal',
+    categoryLabel: 'Cristal Templado',
+    description: 'Cristales templados de 8mm y 10mm con herrajes de acero inoxidable.',
+    image: '/images/user-3.jpg',
+    serviceCategory: 'Shower Door a Medida',
+    badge: 'Elegancia',
   },
   {
-    id: 'proj-5',
-    title: 'Muros Cortina y Barandas de Cristal',
-    category: 'Balcones',
-    location: 'Miraflores, Viña del Mar',
-    material: 'Cristal Laminado de Seguridad 10mm + Botones de Acero',
-    highlight: 'Seguridad perimetral certificada para altura',
-    image: '/images/hero-mobile.jpg',
+    id: 'barandas-cristal',
+    title: 'Barandas de Cristal & Inox',
+    category: 'cristal',
+    categoryLabel: 'Seguridad & Vista',
+    description: 'Barandas de cristal templado y laminado con balaustres en acero inoxidable.',
+    image: '/images/user-5.jpg',
+    serviceCategory: 'Reparación en General y Otros',
+    badge: 'Vanguardia',
+  },
+  {
+    id: 'divisiones-oficina',
+    title: 'Divisiones de Oficina',
+    category: 'comercial',
+    categoryLabel: 'Espacios Corporativos',
+    description: 'Muros vidriados panorámicos para salas de reuniones y oficinas modernas.',
+    image: '/images/user-4.jpg',
+    serviceCategory: 'Vitrinas Comerciales',
+    badge: 'Corporativo',
+  },
+  {
+    id: 'cierres-terraza',
+    title: 'Cierres de Terraza & Balcón',
+    category: 'residencial',
+    categoryLabel: 'Espacios Habitables',
+    description: 'Aprovecha tu balcón todo el año, protegiendo del viento costero y la lluvia.',
+    image: '/images/user-6.jpg',
+    serviceCategory: 'Cierre de Balcón y Terrazas',
+    badge: 'Costero',
+  },
+  {
+    id: 'fachadas-arquitectonicas',
+    title: 'Fachadas & Ventanales',
+    category: 'cristal',
+    categoryLabel: 'Arquitectura Mayor',
+    description: 'Soluciones estructurales en vidrio para casas de alto estándar y edificios.',
+    image: '/images/user-1.jpg',
+    serviceCategory: 'Bow Window Panorámico',
+    badge: 'Gran Escala',
+  },
+  {
+    id: 'espejos-medida',
+    title: 'Espejos a Medida & Biselados',
+    category: 'residencial',
+    categoryLabel: 'Decoración & Baños',
+    description: 'Espejos de cristal flotado de alta pureza, bordes pulidos y biselados.',
+    image: '/images/espejos-medida.jpg',
+    serviceCategory: 'Espejos Biselados y LED',
+  },
+  {
+    id: 'cierres-logias',
+    title: 'Cierres de Logia & Celosías',
+    category: 'residencial',
+    categoryLabel: 'Ventilación & Protección',
+    description: 'Control de ventilación y protección climática para zonas de lavado.',
+    image: '/images/cierre-logia.jpg',
+    serviceCategory: 'Celosías de Ventilación',
+  },
+  {
+    id: 'puertas-acceso',
+    title: 'Puertas de Vidrio Templado',
+    category: 'cristal',
+    categoryLabel: 'Accesos & Portería',
+    description: 'Puertas batientes con quicio hidráulico para accesos principales de alto flujo.',
+    image: '/images/user-4.jpg',
+    serviceCategory: 'Puertas de Vidrio & Aluminio',
+  },
+  {
+    id: 'vitrinas-locales',
+    title: 'Vitrinas para Negocios',
+    category: 'comercial',
+    categoryLabel: 'Fachadas Retail',
+    description: 'Instalaciones rápidas para renovación y apertura de puntos comerciales.',
+    image: '/images/user-7.jpg',
+    serviceCategory: 'Vitrinas Comerciales',
   },
 ];
 
+const FILTER_TABS = [
+  { key: 'todos', label: 'Todos los Proyectos (12)' },
+  { key: 'residencial', label: 'Hogar & Balcones (5)' },
+  { key: 'cristal', label: 'Cristal Templado (4)' },
+  { key: 'comercial', label: 'Comercial & Oficinas (3)' },
+] as const;
+
 export default function ProjectsGallery() {
-  const [filter, setFilter] = useState('Todos');
+  const [activeTab, setActiveTab] = useState<'todos' | 'residencial' | 'cristal' | 'comercial'>('todos');
 
-  const categories = ['Todos', 'Ventanas', 'Balcones', 'Shower Door'];
+  const filteredProjects = activeTab === 'todos' 
+    ? PROJECTS_LIST 
+    : PROJECTS_LIST.filter(p => p.category === activeTab);
 
-  const filteredProjects = filter === 'Todos'
-    ? PROJECTS
-    : PROJECTS.filter((p) => p.category === filter);
-
-  const handleQuoteSimilar = (projectTitle: string) => {
-    trackEvent('cta_click', `Galeria Proyecto: ${projectTitle}`);
+  const handleSelectService = (serviceName: string, projectTitle: string) => {
+    trackEvent('cta_click', `Galeria Card: ${projectTitle} (${serviceName})`);
     const cotizarEl = document.getElementById('cotizar');
     if (cotizarEl) {
       cotizarEl.scrollIntoView({ behavior: 'smooth' });
-      window.dispatchEvent(new CustomEvent('orellana_select_service', { detail: projectTitle }));
+      window.dispatchEvent(new CustomEvent('orellana_select_service', { detail: serviceName }));
     }
   };
 
   return (
-    <section id="galeria" className="py-16 sm:py-24 bg-slate-50 border-t border-slate-200/80">
+    <section id="galeria" className="py-16 sm:py-24 bg-slate-50/70 border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Encabezado */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-brand-blue text-xs font-bold uppercase tracking-wider">
-            <Camera className="w-3.5 h-3.5" />
-            Galería Fotográfica de Trabajos Realizados
+        {/* Encabezado Principal */}
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sm:mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/60 text-[#0052CC] text-xs font-bold uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-[#0052CC]" />
+            Catálogo Fotográfico de Obras Reales
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-brand-navy tracking-tight">
-            Nuestros Trabajos en Viña del Mar y la V Región
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy tracking-tight">
+            Nuestros Proyectos & Especialidades
           </h2>
-          <p className="text-sm sm:text-base text-slate-600">
-            Fotografías reales de obras fabricadas e instaladas por nuestros maestros en departamentos, residencias y locales comerciales.
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            Fotografías directas de nuestras soluciones en aluminio, PVC y cristales de seguridad instaladas en Viña del Mar y la V Región.
           </p>
         </div>
 
-        {/* Filtros de la Galería */}
-        <div className="flex items-center justify-center gap-2 flex-wrap mb-10">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setFilter(cat)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-                filter === cat
-                  ? 'bg-brand-navy text-white shadow-md'
-                  : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* Filtros de Categorías */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
+          {FILTER_TABS.map((tab) => {
+            const isActive = activeTab === tab.key;
+            return (
+              <button
+                key={tab.key}
+                onClick={() => {
+                  setActiveTab(tab.key);
+                  trackEvent('filter_click', `Galeria Tab: ${tab.label}`);
+                }}
+                className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 shadow-sm ${
+                  isActive
+                    ? 'bg-[#0052CC] text-white shadow-blue-500/20'
+                    : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-brand-navy border border-slate-200'
+                }`}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Grilla de Proyectos Fotográficos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-          {filteredProjects.map((p) => (
+        {/* Grilla de 12 Tarjetas Fotográficas (4 Columnas x 3 Filas) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+          {filteredProjects.map((item) => (
             <div
-              key={p.id}
-              className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-card hover:shadow-glass-card-hover transition-all duration-300 flex flex-col justify-between group"
+              key={item.id}
+              className="relative h-[390px] sm:h-[410px] rounded-3xl overflow-hidden group shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-end bg-slate-900 border border-slate-200"
             >
-              {/* Contenedor Fotográfico */}
-              <div className="relative h-60 sm:h-64 w-full overflow-hidden bg-slate-900">
-                <Image
-                  src={p.image}
-                  alt={p.title}
-                  fill
-                  className="object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20" />
+              {/* Imagen Fotográfica Real */}
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+              />
 
-                <div className="absolute top-3 left-3 right-3 flex items-center justify-between text-white z-10">
-                  <span className="text-[10px] font-bold uppercase tracking-wider bg-slate-950/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/20 text-brand-cyan">
-                    {p.category}
-                  </span>
-                  <span className="flex items-center gap-1 text-[11px] bg-slate-950/70 backdrop-blur-md px-2.5 py-1 rounded-md text-white font-medium border border-white/10">
-                    <MapPin className="w-3 h-3 text-brand-cyan" />
-                    {p.location}
+              {/* Sombra Degradada Arquitectónica */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent pointer-events-none" />
+
+              {/* Badge superior si existe */}
+              {item.badge && (
+                <div className="absolute top-4 right-4 z-10">
+                  <span className="text-[10px] font-bold tracking-wider uppercase bg-white/20 backdrop-blur-md border border-white/30 text-white px-2.5 py-1 rounded-full shadow-sm">
+                    {item.badge}
                   </span>
                 </div>
+              )}
 
-                <div className="absolute bottom-3 left-3 right-3 z-10">
-                  <h3 className="text-base font-bold text-white group-hover:text-brand-cyan transition-colors">
-                    {p.title}
-                  </h3>
-                </div>
+              {/* Categoría superior */}
+              <div className="absolute top-4 left-4 z-10">
+                <span className="text-[10px] font-bold tracking-wider text-blue-200 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
+                  {item.categoryLabel}
+                </span>
               </div>
 
-              {/* Contenido Descriptivo */}
-              <div className="p-5 sm:p-6 space-y-4">
-                <div className="space-y-2 text-xs">
-                  <div>
-                    <span className="text-slate-400 font-bold block uppercase text-[10px] tracking-wider">
-                      Materiales Utilizados:
-                    </span>
-                    <span className="font-bold text-slate-800">{p.material}</span>
-                  </div>
-                  
-                  <div className="flex items-start gap-1.5 text-emerald-800 bg-emerald-50 p-2.5 rounded-2xl border border-emerald-100 font-medium">
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <span>{p.highlight}</span>
-                  </div>
-                </div>
+              {/* Contenido de la Tarjeta */}
+              <div className="relative z-10 p-5 sm:p-6 space-y-2">
+                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
+                  {item.title}
+                </h3>
+                
+                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                  {item.description}
+                </p>
 
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                {/* Botón Ver Servicio con Flecha */}
+                <div className="pt-2">
                   <button
-                    onClick={() => handleQuoteSimilar(p.title)}
-                    className="w-full py-2.5 px-4 rounded-xl bg-slate-50 hover:bg-brand-blue text-brand-navy hover:text-white font-bold text-xs border border-slate-200 hover:border-transparent transition-all flex items-center justify-center gap-2 group-hover:bg-brand-blue group-hover:text-white shadow-sm"
+                    onClick={() => handleSelectService(item.serviceCategory, item.title)}
+                    className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white/20 hover:bg-[#0052CC] backdrop-blur-md border border-white/30 hover:border-[#0052CC] text-white text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1.5 shadow-sm group/btn"
                   >
-                    <Sparkles className="w-3.5 h-3.5 text-brand-blue group-hover:text-white transition-colors" />
-                    <span>Cotizar un proyecto similar</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <span>Cotizar este servicio</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </div>
 
             </div>
           ))}
+        </div>
+
+        {/* Footer de la Galería con Llamado a Taller */}
+        <div className="mt-12 text-center p-6 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-left space-y-1">
+            <h4 className="text-base font-bold text-brand-navy flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-[#0052CC]" />
+              ¿Tienes un diseño o plano arquitectónico personalizado?
+            </h4>
+            <p className="text-xs sm:text-sm text-slate-600">
+              Fabricamos estructuras especiales en cristal laminado, templado, termopanel y perfilería de aluminio a medida.
+            </p>
+          </div>
+          <a
+            href="https://wa.me/56992409397?text=Hola,%20tengo%20un%20proyecto%20especial%20y%20deseo%20asesor%C3%ADa%20técnica."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 rounded-xl bg-[#0052CC] hover:bg-[#0040A8] text-white text-xs sm:text-sm font-bold shadow-md transition-all whitespace-nowrap flex items-center gap-2"
+          >
+            <span>Enviar Planos por WhatsApp</span>
+            <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
 
       </div>

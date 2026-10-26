@@ -7,7 +7,8 @@ import {
   MessageCircle, 
   VolumeX, 
   ThermometerSnowflake, 
-  Ruler
+  Ruler,
+  Sparkles
 } from 'lucide-react';
 import { trackEvent } from '@/lib/tracker';
 
@@ -15,29 +16,29 @@ export default function Hero() {
   return (
     <section id="inicio" className="relative min-h-[75vh] lg:min-h-[82vh] flex items-center overflow-hidden bg-slate-900 border-b border-slate-200">
       
-      {/* Fondo Fotográfico Real y Limpio */}
+      {/* Fondo Fotográfico Real y Limpio de Taller y Obras */}
       <div className="absolute inset-0 z-0">
         <picture>
           <source media="(max-width: 768px)" srcSet="/images/hero-mobile.jpg" />
           <Image
             src="/images/hero-web.jpg"
-            alt="Arquitectura en Vidrio y Aluminio Orellana en Viña del Mar"
+            alt="Fachadas en Vidrio y Ventanales Orellana en Viña del Mar"
             fill
-            className="object-cover object-center sm:object-right-top"
+            className="object-cover object-center lg:object-[65%_center]"
             priority
             quality={95}
           />
         </picture>
 
-        {/* Sombra de contraste arquitectónica limpia */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/92 via-slate-950/75 to-transparent lg:w-3/5" />
-        <div className="absolute inset-0 bg-black/15" />
+        {/* Gradiente de contraste para legibilidad perfecta */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-transparent lg:w-3/5" />
+        <div className="absolute inset-0 bg-slate-950/30 lg:bg-transparent" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          {/* Columna Izquierda: Tipografía Neo-Grotesque Estilo Raptor Text */}
+          {/* Columna Izquierda: Redacción Corporativa de Alto Impacto */}
           <div className="lg:col-span-7 space-y-5 text-center lg:text-left">
             
             {/* Pill Badge Oficial */}
@@ -45,32 +46,33 @@ export default function Hero() {
               <span className="w-2 h-2 rounded-full bg-[#0052CC]" />
               <span className="font-bold text-white tracking-wide">Calidad & Tradición</span>
               <span className="text-white/30">•</span>
-              <span>Achupallas, Viña del Mar</span>
+              <span>Viña del Mar & V Región</span>
             </div>
 
-            {/* Titular Principal: Tipografía Neo-Grotesque de Alto Impacto */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
-              Fabricación de Ventanas en <span className="text-[#3880FF]">Aluminio & PVC</span> a tu Medida
+            {/* Titular Principal: Gancho Potente y Comercial */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-white tracking-tight leading-[1.14]">
+              Confort, Silencio & Elegancia.<br />
+              <span className="text-[#3880FF]">Ventanas de Alta Gama</span> en Aluminio & PVC.
             </h1>
 
-            {/* Redacción Corporativa en Sans-Serif Limpia */}
+            {/* Bajada Comercial Persuasiva */}
             <p className="text-base sm:text-lg text-slate-200 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
-              Aislación térmica, reducción de ruidos y estructuras herméticas de precisión para tu hogar o empresa. Especialistas en termopaneles, shower doors y cierres de balcón en Viña del Mar.
+              Aísla el frío, bloquea el ruido exterior y aumenta la plusvalía de tus espacios. Fabricación a medida con la garantía y tradición de nuestro taller en Viña del Mar.
             </p>
 
-            {/* 3 Pastillas Técnicas con Tipografía Grotesque Limpia */}
+            {/* 3 Beneficios Concretos */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-1 text-xs text-white font-medium">
               <div className="flex items-center gap-2 bg-slate-900/85 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-sm">
                 <ThermometerSnowflake className="w-4 h-4 text-[#3880FF]" />
-                <span className="font-semibold">Termopanel Aislante</span>
+                <span className="font-semibold">Aislación Térmica Total</span>
               </div>
               <div className="flex items-center gap-2 bg-slate-900/85 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-sm">
                 <VolumeX className="w-4 h-4 text-[#3880FF]" />
-                <span className="font-semibold">Control de Ruido</span>
+                <span className="font-semibold">Bloqueo Acústico -32dB</span>
               </div>
               <div className="flex items-center gap-2 bg-slate-900/85 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-sm">
                 <Ruler className="w-4 h-4 text-[#3880FF]" />
-                <span className="font-semibold">Medición en Terreno</span>
+                <span className="font-semibold">Medición y Asesoría Gratis</span>
               </div>
             </div>
 
@@ -79,9 +81,9 @@ export default function Hero() {
               <a
                 href="#cotizar"
                 data-track="Cotizar Hero CTA"
-                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#0052CC] hover:bg-[#0040A8] text-white font-bold text-sm sm:text-base shadow-md transition-all flex items-center justify-center gap-2 group"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#0052CC] hover:bg-[#0040A8] text-white font-bold text-sm sm:text-base shadow-md transition-all flex items-center justify-center gap-2 group"
               >
-                <span>Cotizar Presupuesto</span>
+                <span>Cotizar Presupuesto sin Costo</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
 
@@ -93,14 +95,14 @@ export default function Hero() {
                 className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-sm transition-all flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-4 h-4 fill-white" />
-                <span>Hablar por WhatsApp</span>
+                <span>Hablar con un Maestro</span>
               </a>
             </div>
 
             {/* Garantía al pie */}
             <div className="pt-2 text-xs text-slate-300 flex items-center justify-center lg:justify-start gap-2">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Garantía de instalación y fabricación directa en taller</span>
+              <span>Garantía de hermeticidad y fabricación directa en taller</span>
             </div>
 
           </div>
