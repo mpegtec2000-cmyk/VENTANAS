@@ -159,19 +159,30 @@ export default function ProjectsGallery() {
   };
 
   return (
-    <section id="galeria" className="py-16 sm:py-24 bg-slate-50/70 border-t border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="galeria" className="py-16 sm:py-24 relative overflow-hidden">
+      {/* Fondo Fotográfico 1aa.jpg */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/1aa.jpg"
+          alt="Galería de Proyectos Vidriería Orellana"
+          fill
+          className="object-cover object-center"
+          quality={95}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Encabezado Principal */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/60 text-[#0052CC] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-md border border-blue-100 text-[#0052CC] text-xs font-extrabold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5 text-[#0052CC]" />
             Catálogo Fotográfico de Obras Reales
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             Nuestros Proyectos & Especialidades
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+          <p className="text-sm sm:text-base text-white font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
             Fotografías directas de nuestras soluciones en aluminio, PVC y cristales de seguridad instaladas en Viña del Mar y la V Región.
           </p>
         </div>
@@ -190,7 +201,7 @@ export default function ProjectsGallery() {
                 className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 shadow-sm ${
                   isActive
                     ? 'bg-[#0052CC] text-white shadow-blue-500/20'
-                    : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-brand-navy border border-slate-200'
+                    : 'bg-white/95 text-slate-800 hover:bg-white border border-white/60 shadow-sm'
                 }`}
               >
                 {tab.label}
@@ -204,7 +215,7 @@ export default function ProjectsGallery() {
           {filteredProjects.map((item) => (
             <div
               key={item.id}
-              className="relative h-[390px] sm:h-[410px] rounded-3xl overflow-hidden group shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-end bg-slate-900 border border-slate-200"
+              className="relative h-[390px] sm:h-[410px] rounded-3xl overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-end bg-slate-900 border border-white/30"
             >
               {/* Imagen Fotográfica Real */}
               <Image
