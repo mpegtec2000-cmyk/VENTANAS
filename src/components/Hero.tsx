@@ -108,14 +108,6 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 relative z-30 w-full">
         <div className="max-w-3xl space-y-6 text-center lg:text-left">
             
-          {/* Pill Badge Oficial */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-xs font-semibold text-white shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-[#0052CC]" />
-            <span className="font-bold text-white tracking-wide">Más de 30 Años de Calidad & Tradición</span>
-            <span className="text-white/40">•</span>
-            <span>Viña del Mar & V Región</span>
-          </div>
-
           {/* Titular Principal: Vidriería Orellana */}
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
             Vidriería Orellana<br />
