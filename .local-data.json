@@ -342,6 +342,60 @@
       "session_id": "sess-1792976841681-usy15p",
       "id": "ev-1792977707612-9t4io",
       "created_at": "2026-10-26T01:21:47.612Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792976841681-usy15p",
+      "id": "ev-1792980915870-bx5to",
+      "created_at": "2026-10-26T02:15:15.870Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792976841681-usy15p",
+      "id": "ev-1792980915873-2knxx",
+      "created_at": "2026-10-26T02:15:15.873Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792976841681-usy15p",
+      "id": "ev-1792981085224-n002c",
+      "created_at": "2026-10-26T02:18:05.224Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792976841681-usy15p",
+      "id": "ev-1792981085227-hus5w",
+      "created_at": "2026-10-26T02:18:05.227Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792976841681-usy15p",
+      "id": "ev-1792981131645-mhojq",
+      "created_at": "2026-10-26T02:18:51.645Z"
+    },
+    {
+      "event": "page_view",
+      "path": "/",
+      "label": "Carga inicial del sitio",
+      "device": "desktop",
+      "session_id": "sess-1792976841681-usy15p",
+      "id": "ev-1792981131648-8l06m",
+      "created_at": "2026-10-26T02:18:51.648Z"
     }
   ]
 }

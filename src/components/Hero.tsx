@@ -37,49 +37,49 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          {/* Columna Izquierda: Tipografía Corporativa y Limpia */}
+          {/* Columna Izquierda: Tipografía Neo-Grotesque Estilo Raptor Text */}
           <div className="lg:col-span-7 space-y-5 text-center lg:text-left">
             
             {/* Pill Badge Oficial */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/85 backdrop-blur-md border border-white/20 text-xs font-semibold text-slate-200 shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 backdrop-blur-md border border-white/20 text-xs font-semibold text-slate-200 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#0052CC]" />
-              <span className="font-bold text-white">Calidad & Tradición</span>
+              <span className="font-bold text-white tracking-wide">Calidad & Tradición</span>
               <span className="text-white/30">•</span>
               <span>Achupallas, Viña del Mar</span>
             </div>
 
-            {/* Titular Principal: Tipografía Sobria y Profesional (No IA) */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.18]">
-              Fabricación de Ventanas en <span className="text-[#3880FF] font-extrabold">Aluminio & PVC</span> a tu Medida
+            {/* Titular Principal: Tipografía Neo-Grotesque de Alto Impacto */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
+              Fabricación de Ventanas en <span className="text-[#3880FF]">Aluminio & PVC</span> a tu Medida
             </h1>
 
-            {/* Redacción Clara y Concisa */}
-            <p className="text-sm sm:text-base text-slate-200 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+            {/* Redacción Corporativa en Sans-Serif Limpia */}
+            <p className="text-base sm:text-lg text-slate-200 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
               Aislación térmica, reducción de ruidos y estructuras herméticas de precisión para tu hogar o empresa. Especialistas en termopaneles, shower doors y cierres de balcón en Viña del Mar.
             </p>
 
-            {/* Beneficios en Línea con Tipografía Limpia */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-1 text-xs text-slate-200 font-medium">
-              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15">
+            {/* 3 Pastillas Técnicas con Tipografía Grotesque Limpia */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-1 text-xs text-white font-medium">
+              <div className="flex items-center gap-2 bg-slate-900/85 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-sm">
                 <ThermometerSnowflake className="w-4 h-4 text-[#3880FF]" />
-                <span>Termopanel Aislante</span>
+                <span className="font-semibold">Termopanel Aislante</span>
               </div>
-              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15">
+              <div className="flex items-center gap-2 bg-slate-900/85 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-sm">
                 <VolumeX className="w-4 h-4 text-[#3880FF]" />
-                <span>Control de Ruido</span>
+                <span className="font-semibold">Control de Ruido</span>
               </div>
-              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15">
+              <div className="flex items-center gap-2 bg-slate-900/85 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-sm">
                 <Ruler className="w-4 h-4 text-[#3880FF]" />
-                <span>Medición en Terreno</span>
+                <span className="font-semibold">Medición en Terreno</span>
               </div>
             </div>
 
-            {/* Botones de Acción Principales */}
+            {/* Botones de Acción */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-3">
               <a
                 href="#cotizar"
                 data-track="Cotizar Hero CTA"
-                className="w-full sm:w-auto px-7 py-3 rounded-xl bg-[#0052CC] hover:bg-[#0040A8] text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 group"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#0052CC] hover:bg-[#0040A8] text-white font-bold text-sm sm:text-base shadow-md transition-all flex items-center justify-center gap-2 group"
               >
                 <span>Cotizar Presupuesto</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -90,7 +90,7 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-track="WhatsApp Hero Direct"
-                className="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm transition-all flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-sm transition-all flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-4 h-4 fill-white" />
                 <span>Hablar por WhatsApp</span>

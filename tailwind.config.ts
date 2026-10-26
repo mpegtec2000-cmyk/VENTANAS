@@ -10,7 +10,6 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          // Azul Corporativo Oficial
           blue: '#0052CC',
           'blue-hover': '#0040A8',
           'blue-dark': '#072A60',
@@ -26,8 +25,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
-        heading: ['Plus Jakarta Sans', 'sans-serif'],
+        sans: ['Schibsted Grotesk', 'Archivo', 'Space Grotesk', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        heading: ['Schibsted Grotesk', 'Archivo', 'sans-serif'],
       },
       boxShadow: {
         glass: '0 8px 32px 0 rgba(0, 82, 204, 0.08)',
