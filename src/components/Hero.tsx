@@ -72,7 +72,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="inicio" className="relative min-h-[75vh] lg:min-h-[82vh] flex items-center overflow-hidden bg-black">
+    <section id="inicio" className="relative min-h-[85vh] lg:h-[calc(100vh-106px)] lg:min-h-[calc(100vh-106px)] flex items-center overflow-hidden bg-black">
       
       {/* Carrusel de Fondos Limpios (Bucle infinito cada 2s) */}
       <div className="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none">
@@ -163,6 +163,21 @@ export default function Hero() {
             priority
           />
         </div>
+      </div>
+      {/* Indicador animado sutil de scroll hacia abajo */}
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-30 hidden lg:flex flex-col items-center gap-1.5 pointer-events-auto">
+        <a
+          href="#nosotros"
+          className="flex flex-col items-center gap-1.5 text-white/70 hover:text-white transition-colors group cursor-pointer"
+          title="Desliza para ver más"
+        >
+          <span className="text-[10px] uppercase font-bold tracking-widest text-slate-300/80 group-hover:text-white transition-colors">
+            Conoce Más
+          </span>
+          <div className="w-5 h-8 rounded-full border-2 border-white/40 group-hover:border-white/90 flex items-start justify-center p-1 transition-colors">
+            <span className="w-1 h-2 rounded-full bg-white animate-bounce" />
+          </div>
+        </a>
       </div>
     </section>
   );
