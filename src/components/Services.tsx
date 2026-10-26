@@ -151,10 +151,10 @@ export default function Services() {
 
   return (
     <section id="servicios" className="py-16 sm:py-24 relative overflow-hidden">
-      {/* Fondo Fotográfico 1b.jpg */}
+      {/* Fondo Fotográfico 1c.jpg */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/services-bg.jpg"
+          src="/images/1c.jpg"
           alt="Servicios Vidriería Orellana"
           fill
           className="object-cover object-center"
