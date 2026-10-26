@@ -109,14 +109,14 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-24 relative z-30 w-full">
         {/* Columna Izquierda: Titular y Botones */}
         <div className="max-w-xl lg:max-w-[560px] xl:max-w-[640px] space-y-6 sm:space-y-7 text-center lg:text-left">
-          {/* Titular Principal: Máximo 2 líneas en desktop, 3 en móvil, con "a medida" destacado en azul */}
+          {/* Titular Principal: Máximo 2 líneas en desktop, 3 en móvil */}
           <h1 className="text-2xl sm:text-4xl lg:text-[42px] xl:text-5xl font-extrabold text-white tracking-tight leading-[1.18] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-            Soluciones en vidrio, aluminio y PVC <span className="text-blue-400">a medida</span>
+            Fabricación e instalación en vidrio, aluminio y PVC
           </h1>
 
           {/* Subtítulo: Máximo 2 líneas, peso medium, buen interlineado */}
           <p className="text-base sm:text-lg text-slate-100 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
-            Más de 30 años en fabricación e instalación para hogares, terrazas y proyectos comerciales.
+            Más de 30 años desarrollando proyectos residenciales y comerciales con taller propio.
           </p>
 
           {/* Botones de Acción (apilados en celular, alineados en desktop) */}
