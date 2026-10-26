@@ -30,7 +30,14 @@ import {
   ShieldCheck, 
   AlertCircle,
   Database,
-  RefreshCw
+  RefreshCw,
+  Download,
+  FileSpreadsheet,
+  Calculator,
+  Copy,
+  ChevronDown,
+  Layers,
+  ArrowUpRight
 } from 'lucide-react';
 import { Product, Lead, TrackingEvent } from '@/lib/types';
 
@@ -40,7 +47,7 @@ export default function AdminPage() {
   const [authPassword, setAuthPassword] = useState('');
   const [authError, setAuthError] = useState('');
 
-  const [activeTab, setActiveTab] = useState<'metrics' | 'products' | 'clients' | 'settings'>('metrics');
+  const [activeTab, setActiveTab] = useState<'metrics' | 'products' | 'clients' | 'calculator' | 'settings'>('metrics');
 
   // Estados de datos
   const [metrics, setMetrics] = useState<any>(null);
@@ -58,6 +65,12 @@ export default function AdminPage() {
   // Estados de filtro de leads
   const [leadStatusFilter, setLeadStatusFilter] = useState('all');
   const [leadSearch, setLeadSearch] = useState('');
+
+  // Calculadora rápida de taller
+  const [calcWidth, setCalcWidth] = useState(1.5);
+  const [calcHeight, setCalcHeight] = useState(1.2);
+  const [calcPriceM2, setCalcPriceM2] = useState(85000);
+  const [calcQuantity, setCalcQuantity] = useState(1);
 
   // Notificación flotante
   const [toast, setToast] = useState<string | null>(null);
@@ -106,7 +119,6 @@ export default function AdminPage() {
     e.preventDefault();
     setAuthError('');
 
-    // Validación master rápida
     if (
       (authEmail.toLowerCase() === 'contacto@vidreria.orellana.cl' && authPassword === 'orellana2026') ||
       (authEmail === 'admin' && authPassword === 'admin')
@@ -139,7 +151,7 @@ export default function AdminPage() {
         setProducts(data.products);
         setIsProductModalOpen(false);
         setEditingProduct(null);
-        showToast('Producto guardado correctamente');
+        showToast('Producto guardado correctamente en catálogo');
       }
     } catch (err) {
       showToast('Error al guardar el producto');
@@ -162,39 +174,76 @@ export default function AdminPage() {
   };
 
   // Cambiar estado de Lead
-  const handleUpdateLeadStatus = async (id: string, status: Lead['status']) => {
+  const handleUpdateLeadStatus = async (id: string, status: Lead['status'], notes?: string) => {
     try {
+      const payload: any = { id, status };
+      if (notes !== undefined) payload.notes = notes;
+
       const res = await fetch('/api/leads', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, status }),
+        body: JSON.stringify(payload),
       });
       const data = await res.json();
       if (data.ok) {
         setLeads(data.leads);
-        showToast(`Estado actualizado a: ${status}`);
+        showToast(`Estado actualizado: ${status}`);
       }
     } catch (err) {
       showToast('Error al actualizar estado');
     }
   };
 
+  // Exportar Leads a CSV
+  const handleExportCSV = () => {
+    if (leads.length === 0) {
+      showToast('No hay leads para exportar');
+      return;
+    }
+
+    const headers = ['ID', 'Fecha', 'Nombre', 'Teléfono', 'Email', 'Servicio', 'Detalles/Medidas', 'Comuna', 'Estado', 'Notas'];
+    const rows = leads.map((l) => [
+      l.id,
+      new Date(l.created_at).toLocaleString('es-CL'),
+      `"${l.name.replace(/"/g, '""')}"`,
+      `"${l.phone}"`,
+      `"${l.email || ''}"`,
+      `"${l.service}"`,
+      `"${(l.dimensions || '').replace(/"/g, '""')}"`,
+      `"${l.commune || ''}"`,
+      l.status,
+      `"${(l.notes || '').replace(/"/g, '""')}"`,
+    ]);
+
+    const csvContent = 'data:text/csv;charset=utf-8,\uFEFF' + [headers.join(','), ...rows.map((e) => e.join(','))].join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `leads_vidrieria_orellana_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    showToast('Archivo CSV generado y descargado con éxito');
+  };
+
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
-        <div className="max-w-md w-full bg-white rounded-3xl shadow-xl border border-slate-200 p-8 space-y-6">
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-brand-navy to-slate-950 flex items-center justify-center p-4">
+        <div className="max-w-md w-full bg-white rounded-3xl shadow-2xl border border-slate-200/80 p-8 space-y-6 relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-blue to-emerald-500" />
+
           <div className="text-center space-y-2">
-            <div className="w-14 h-14 rounded-2xl bg-brand-navy text-white mx-auto flex items-center justify-center shadow-lg">
-              <Lock className="w-7 h-7 text-brand-blue" />
+            <div className="w-16 h-16 rounded-2xl bg-brand-navy text-white mx-auto flex items-center justify-center shadow-xl">
+              <Lock className="w-8 h-8 text-brand-blue" />
             </div>
-            <h1 className="text-2xl font-black text-brand-navy">Portal SaaS Orellana</h1>
-            <p className="text-xs text-slate-500">
-              Panel Administrativo de Métricas, Catálogo y Clientes
+            <h1 className="text-2xl font-black text-brand-navy tracking-tight">Portal SaaS Orellana</h1>
+            <p className="text-xs text-slate-500 font-medium">
+              Panel Corporativo de Tráfico, Cotizaciones y Precios
             </p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-700">Correo Electrónico</label>
               <input
                 type="text"
@@ -202,19 +251,19 @@ export default function AdminPage() {
                 defaultValue="contacto@vidreria.orellana.cl"
                 onChange={(e) => setAuthEmail(e.target.value)}
                 placeholder="contacto@vidreria.orellana.cl"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-blue"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-blue font-medium"
               />
             </div>
 
-            <div className="space-y-1">
-              <label className="text-xs font-bold text-slate-700">Contraseña Maestra</label>
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700">Contraseña de Administrador</label>
               <input
                 type="password"
                 required
                 defaultValue="orellana2026"
                 onChange={(e) => setAuthPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-blue"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-blue font-medium"
               />
             </div>
 
@@ -227,18 +276,18 @@ export default function AdminPage() {
 
             <button
               type="submit"
-              className="w-full py-3 rounded-xl bg-brand-navy hover:bg-slate-800 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
+              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-navy to-slate-900 hover:from-brand-blue hover:to-brand-blue-dark text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2"
             >
               <ShieldCheck className="w-4 h-4 text-brand-blue" />
-              <span>Ingresar al Panel</span>
+              <span>Ingresar al Sistema Administrativo</span>
             </button>
           </form>
 
           <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-            <Link href="/" className="hover:text-brand-blue">
+            <Link href="/" className="hover:text-brand-blue font-semibold">
               ← Volver al Sitio Web
             </Link>
-            <span className="text-[11px] bg-blue-50 text-brand-blue px-2 py-0.5 rounded font-mono">
+            <span className="text-[10px] bg-blue-50 text-brand-blue px-2 py-0.5 rounded-md font-mono font-bold">
               Localhost 3000
             </span>
           </div>
@@ -262,27 +311,27 @@ export default function AdminPage() {
   });
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col">
+    <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans">
       {/* Toast Notificación */}
       {toast && (
-        <div className="fixed top-5 right-5 z-50 bg-brand-navy text-white px-4 py-2.5 rounded-xl shadow-2xl border border-white/20 text-xs font-semibold flex items-center gap-2 animate-fadeIn">
+        <div className="fixed top-5 right-5 z-50 bg-brand-navy text-white px-4 py-3 rounded-2xl shadow-2xl border border-white/20 text-xs font-semibold flex items-center gap-2.5 animate-fadeIn">
           <CheckCircle2 className="w-4 h-4 text-emerald-400" />
           <span>{toast}</span>
         </div>
       )}
 
       {/* Header Superior del Dashboard */}
-      <header className="bg-brand-navy text-white border-b border-white/10 sticky top-0 z-30">
+      <header className="bg-brand-navy text-white border-b border-white/10 sticky top-0 z-30 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-brand-blue text-white flex items-center justify-center font-black text-sm shadow-md">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-blue to-blue-700 text-white flex items-center justify-center font-black text-sm shadow-md">
               VO
             </div>
             <div>
               <div className="text-sm font-bold flex items-center gap-2">
-                <span>Orellana SaaS</span>
-                <span className="text-[10px] bg-brand-blue/30 text-brand-blue-light px-2 py-0.5 rounded font-mono">
-                  v1.0 Local
+                <span>Orellana SaaS OS</span>
+                <span className="text-[10px] bg-brand-blue/30 text-brand-ice px-2 py-0.5 rounded font-mono font-bold">
+                  v2.0 Pro
                 </span>
               </div>
               <div className="text-[11px] text-slate-400">Vidrios & Aluminios · Achupallas, Viña del Mar</div>
@@ -293,7 +342,7 @@ export default function AdminPage() {
             <button
               onClick={loadData}
               disabled={refreshing}
-              className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+              className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors"
               title="Actualizar datos"
             >
               <RefreshCw className={`w-4 h-4 ${refreshing ? 'animate-spin text-brand-blue' : ''}`} />
@@ -302,15 +351,15 @@ export default function AdminPage() {
             <Link
               href="/"
               target="_blank"
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-medium text-white transition-colors"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-semibold text-white transition-colors"
             >
-              <span>Ver Web en Vivo</span>
+              <span>Ver Web Pública</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </Link>
 
             <button
               onClick={handleLogout}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-300 text-xs font-semibold transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-300 text-xs font-semibold transition-colors"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Cerrar Sesión</span>
@@ -353,7 +402,19 @@ export default function AdminPage() {
             }`}
           >
             <Users className="w-4 h-4 text-brand-blue" />
-            <span>Clientes & CRM ({leads.length})</span>
+            <span>CRM Cotizaciones ({leads.length})</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('calculator')}
+            className={`py-3 px-3 text-xs sm:text-sm font-bold border-b-2 flex items-center gap-2 transition-all whitespace-nowrap ${
+              activeTab === 'calculator'
+                ? 'border-brand-blue text-white'
+                : 'border-transparent text-slate-400 hover:text-white'
+            }`}
+          >
+            <Calculator className="w-4 h-4 text-brand-blue" />
+            <span>Calculadora de Taller</span>
           </button>
 
           <button
@@ -380,44 +441,47 @@ export default function AdminPage() {
           <div className="space-y-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <h2 className="text-xl sm:text-2xl font-black text-brand-navy">Métricas de Rendimiento Web</h2>
+                <h2 className="text-xl sm:text-2xl font-black text-brand-navy">Embudo Comercial & Métricas Web</h2>
                 <p className="text-xs text-slate-500">
-                  Estadísticas de visitantes, intención de compra y conversiones hacia WhatsApp y Cotizaciones.
+                  Monitoreo de tráfico, intención de cotización y conversión directa a ventas.
                 </p>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>Tracker Activo</span>
+                <span>Analítica Silenciosa en Vivo</span>
               </div>
             </div>
 
-            {/* Grid de KPIs principales */}
+            {/* Grid de KPIs Principales */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
               
-              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
-                <div className="flex items-center justify-between text-slate-500 text-xs font-semibold">
+              <div className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-card space-y-2">
+                <div className="flex items-center justify-between text-slate-500 text-xs font-bold">
                   <span>Visitantes Únicos</span>
                   <Eye className="w-4 h-4 text-brand-blue" />
                 </div>
                 <div className="text-2xl sm:text-3xl font-black text-brand-navy">
                   {metrics?.totalVisitors ?? 0}
                 </div>
-                <div className="text-[11px] text-slate-400">Total acumulado</div>
+                <div className="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
+                  <TrendingUp className="w-3 h-3" />
+                  <span>Tráfico Orgánico & Directo</span>
+                </div>
               </div>
 
-              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
-                <div className="flex items-center justify-between text-slate-500 text-xs font-semibold">
+              <div className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-card space-y-2">
+                <div className="flex items-center justify-between text-slate-500 text-xs font-bold">
                   <span>Páginas Vistas</span>
                   <BarChart3 className="w-4 h-4 text-brand-blue" />
                 </div>
                 <div className="text-2xl sm:text-3xl font-black text-brand-navy">
                   {metrics?.totalPageViews ?? 0}
                 </div>
-                <div className="text-[11px] text-slate-400">Interacciones en el sitio</div>
+                <div className="text-[11px] text-slate-400">Total interacciones</div>
               </div>
 
-              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
-                <div className="flex items-center justify-between text-slate-500 text-xs font-semibold">
+              <div className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-card space-y-2">
+                <div className="flex items-center justify-between text-slate-500 text-xs font-bold">
                   <span>Clics en "Cotizar"</span>
                   <MousePointerClick className="w-4 h-4 text-amber-500" />
                 </div>
@@ -427,52 +491,87 @@ export default function AdminPage() {
                 <div className="text-[11px] text-slate-400">Intención de compra</div>
               </div>
 
-              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
-                <div className="flex items-center justify-between text-slate-500 text-xs font-semibold">
-                  <span>Clics WhatsApp</span>
+              <div className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-card space-y-2">
+                <div className="flex items-center justify-between text-slate-500 text-xs font-bold">
+                  <span>Clics a WhatsApp</span>
                   <MessageCircle className="w-4 h-4 text-emerald-500" />
                 </div>
                 <div className="text-2xl sm:text-3xl font-black text-emerald-600">
                   {metrics?.totalWhatsappClicks ?? 0}
                 </div>
-                <div className="text-[11px] text-slate-400">Contactos directos al celular</div>
+                <div className="text-[11px] text-emerald-600 font-semibold">
+                  Contacto directo al taller
+                </div>
               </div>
 
-              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
-                <div className="flex items-center justify-between text-slate-500 text-xs font-semibold">
+              <div className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-card space-y-2">
+                <div className="flex items-center justify-between text-slate-500 text-xs font-bold">
                   <span>Tasa Conversión</span>
                   <TrendingUp className="w-4 h-4 text-brand-blue" />
                 </div>
                 <div className="text-2xl sm:text-3xl font-black text-brand-blue">
                   {metrics?.conversionRate ?? 0}%
                 </div>
-                <div className="text-[11px] text-slate-400">Leads + WA / Visitas</div>
+                <div className="text-[11px] text-slate-400">(Leads + WA) / Visitas</div>
               </div>
 
             </div>
 
-            {/* Fila intermedia: Dispositivos y Servicios más consultados */}
+            {/* Embudo Visual de Conversión */}
+            <div className="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-card space-y-4">
+              <h3 className="font-bold text-brand-navy text-sm">Embudo de Conversión Comercial</h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="p-4 rounded-2xl bg-blue-50/70 border border-blue-100">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-blue block">1. Visitas al Sitio</span>
+                  <div className="text-xl font-bold text-brand-navy mt-1">{metrics?.totalPageViews ?? 0}</div>
+                  <span className="text-[11px] text-slate-500">100% de audiencia</span>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-100">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 block">2. Clics en Cotizar</span>
+                  <div className="text-xl font-bold text-amber-800 mt-1">{metrics?.totalCtaClicks ?? 0}</div>
+                  <span className="text-[11px] text-slate-500">
+                    {metrics?.totalPageViews ? Math.round((metrics.totalCtaClicks / metrics.totalPageViews) * 100) : 0}% de interés
+                  </span>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-100">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 block">3. Clics WhatsApp</span>
+                  <div className="text-xl font-bold text-emerald-800 mt-1">{metrics?.totalWhatsappClicks ?? 0}</div>
+                  <span className="text-[11px] text-slate-500">Contacto instantáneo</span>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-purple-50/70 border border-purple-100">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-purple-700 block">4. Cotizaciones CRM</span>
+                  <div className="text-xl font-bold text-purple-900 mt-1">{metrics?.totalLeads ?? 0}</div>
+                  <span className="text-[11px] text-slate-500">Formularios completados</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Fila: Dispositivos y Eventos en Tiempo Real */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               
               {/* Desglose por Dispositivo */}
-              <div className="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
+              <div className="lg:col-span-5 bg-white p-6 rounded-3xl border border-slate-200/90 shadow-card space-y-5">
                 <h3 className="font-bold text-brand-navy text-sm flex items-center justify-between">
-                  <span>Distribución por Dispositivo</span>
+                  <span>Tráfico por Dispositivo</span>
                   <Smartphone className="w-4 h-4 text-slate-400" />
                 </h3>
 
                 <div className="space-y-4">
                   <div>
-                    <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1">
-                      <span className="flex items-center gap-1.5">
+                    <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1.5">
+                      <span className="flex items-center gap-1.5 font-bold">
                         <Smartphone className="w-3.5 h-3.5 text-brand-blue" />
-                        Dispositivos Móviles (Celulares)
+                        Celulares / Móviles
                       </span>
-                      <span>{metrics?.eventsByDevice?.mobile ?? 0}</span>
+                      <span className="font-bold">{metrics?.eventsByDevice?.mobile ?? 0} eventos</span>
                     </div>
-                    <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
                       <div
-                        className="bg-brand-blue h-2.5 rounded-full"
+                        className="bg-brand-blue h-3 rounded-full transition-all"
                         style={{
                           width: `${
                             ((metrics?.eventsByDevice?.mobile ?? 0) /
@@ -485,16 +584,16 @@ export default function AdminPage() {
                   </div>
 
                   <div>
-                    <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1">
-                      <span className="flex items-center gap-1.5">
+                    <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1.5">
+                      <span className="flex items-center gap-1.5 font-bold">
                         <Monitor className="w-3.5 h-3.5 text-slate-600" />
-                        Computadores de Escritorio
+                        Computadores Desktop
                       </span>
-                      <span>{metrics?.eventsByDevice?.desktop ?? 0}</span>
+                      <span className="font-bold">{metrics?.eventsByDevice?.desktop ?? 0} eventos</span>
                     </div>
-                    <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
                       <div
-                        className="bg-slate-600 h-2.5 rounded-full"
+                        className="bg-slate-700 h-3 rounded-full transition-all"
                         style={{
                           width: `${
                             ((metrics?.eventsByDevice?.desktop ?? 0) /
@@ -507,13 +606,13 @@ export default function AdminPage() {
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-blue-50 text-brand-blue text-xs font-medium border border-blue-100">
-                  💡 <strong>Tip de Conversión:</strong> La mayoría de clientes que cotizan ventanas en Viña del Mar ingresan desde celulares. La versión móvil está optimizada para cargar en menos de 1 segundo.
+                <div className="p-3.5 rounded-2xl bg-blue-50 text-brand-blue text-xs font-medium border border-blue-100">
+                  📱 <strong>Optimización Móvil Activa:</strong> La barra fija inferior en celulares permite que cualquier visitante llame o escriba a WhatsApp con 1 solo toque.
                 </div>
               </div>
 
               {/* Registro de Eventos Recientes en Vivo */}
-              <div className="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+              <div className="lg:col-span-7 bg-white p-6 rounded-3xl border border-slate-200/90 shadow-card space-y-4">
                 <h3 className="font-bold text-brand-navy text-sm flex items-center justify-between">
                   <span>Feed de Eventos en Tiempo Real</span>
                   <Clock className="w-4 h-4 text-slate-400" />
@@ -524,11 +623,11 @@ export default function AdminPage() {
                     metrics.recentEvents.map((ev: TrackingEvent, idx: number) => (
                       <div
                         key={idx}
-                        className="p-2.5 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs"
+                        className="p-3 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs"
                       >
                         <div className="flex items-center gap-2.5">
                           <span
-                            className={`w-2 h-2 rounded-full ${
+                            className={`w-2.5 h-2.5 rounded-full ${
                               ev.event === 'whatsapp_click'
                                 ? 'bg-emerald-500'
                                 : ev.event === 'cta_click'
@@ -539,16 +638,16 @@ export default function AdminPage() {
                             }`}
                           />
                           <div>
-                            <span className="font-bold text-slate-800 capitalize">
+                            <span className="font-bold text-slate-900 capitalize">
                               {ev.event.replace('_', ' ')}
                             </span>
-                            <span className="text-slate-500 ml-1.5">
+                            <span className="text-slate-500 ml-1.5 font-medium">
                               {ev.label || ev.path}
                             </span>
                           </div>
                         </div>
                         <div className="flex items-center gap-2 text-[11px] text-slate-400">
-                          <span className="capitalize">{ev.device || 'web'}</span>
+                          <span className="capitalize font-semibold">{ev.device || 'web'}</span>
                           <span>•</span>
                           <span>
                             {ev.created_at ? new Date(ev.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Reciente'}
@@ -558,7 +657,7 @@ export default function AdminPage() {
                     ))
                   ) : (
                     <div className="text-center py-8 text-xs text-slate-400">
-                      No hay eventos registrados aún. Abre la landing page para generar tráfico.
+                      No hay eventos registrados aún.
                     </div>
                   )}
                 </div>
@@ -577,7 +676,7 @@ export default function AdminPage() {
               <div>
                 <h2 className="text-xl sm:text-2xl font-black text-brand-navy">Catálogo & Lista de Precios</h2>
                 <p className="text-xs text-slate-500">
-                  Modifica productos, perfiles, valores referenciales y visibilidad en el sitio web.
+                  Modifica productos, perfiles, valores referenciales y visibilidad en el sitio web público.
                 </p>
               </div>
               <button
@@ -637,7 +736,7 @@ export default function AdminPage() {
             </div>
 
             {/* Tabla de Productos */}
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div className="bg-white rounded-3xl border border-slate-200/90 shadow-card overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
                   <thead className="bg-slate-50 text-slate-600 font-bold uppercase tracking-wider border-b border-slate-200">
@@ -658,7 +757,7 @@ export default function AdminPage() {
                           <div className="text-[11px] text-slate-500 line-clamp-1">{p.description}</div>
                         </td>
                         <td className="py-3 px-4">
-                          <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-medium">
+                          <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-bold">
                             {p.material}
                           </span>
                         </td>
@@ -809,7 +908,7 @@ export default function AdminPage() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-700">Descripción del Servicio</label>
+                  <label className="text-xs font-bold text-slate-700">Descripción</label>
                   <textarea
                     rows={2}
                     value={editingProduct.description}
@@ -860,9 +959,17 @@ export default function AdminPage() {
               <div>
                 <h2 className="text-xl sm:text-2xl font-black text-brand-navy">CRM · Clientes y Cotizaciones</h2>
                 <p className="text-xs text-slate-500">
-                  Prospectos generados desde el cotizador web para seguimiento comercial y respuesta inmediata.
+                  Prospectos generados desde el cotizador web para seguimiento comercial y respuesta inmediata por WhatsApp.
                 </p>
               </div>
+
+              <button
+                onClick={handleExportCSV}
+                className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition-all flex items-center gap-2"
+              >
+                <FileSpreadsheet className="w-4 h-4" />
+                <span>Exportar Leads (Excel / CSV)</span>
+              </button>
             </div>
 
             {/* Filtros de Leads */}
@@ -900,22 +1007,22 @@ export default function AdminPage() {
               {filteredLeads.map((lead) => {
                 const cleanPhone = lead.phone.replace(/[^0-9]/g, '');
                 const waChatUrl = `https://wa.me/${cleanPhone.startsWith('56') ? cleanPhone : `56${cleanPhone}`}?text=${encodeURIComponent(
-                  `Hola ${lead.name}, te escribimos de Vidriería Orellana con respecto a tu cotización de ${lead.service}. ¿Cómo te podemos ayudar?`
+                  `Hola ${lead.name}, te escribimos de Vidriería Orellana con respecto a tu solicitud de cotización para ${lead.service}. Nos gustaría coordinar tu presupuesto y detalles de instalación.`
                 )}`;
 
                 return (
                   <div
                     key={lead.id}
-                    className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col lg:flex-row lg:items-center justify-between gap-4"
+                    className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-card hover:shadow-glass-card-hover transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-5"
                   >
                     {/* Información del Cliente */}
-                    <div className="space-y-2">
+                    <div className="space-y-2.5 flex-1">
                       <div className="flex flex-wrap items-center gap-2.5">
-                        <span className="font-bold text-brand-navy text-base">{lead.name}</span>
-                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-brand-blue border border-blue-100">
+                        <span className="font-bold text-brand-navy text-base sm:text-lg">{lead.name}</span>
+                        <span className="px-3 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-brand-blue border border-blue-200">
                           {lead.service}
                         </span>
-                        <span className="text-[11px] text-slate-400">
+                        <span className="text-[11px] text-slate-400 font-medium">
                           {new Date(lead.created_at).toLocaleDateString('es-CL', {
                             day: 'numeric',
                             month: 'short',
@@ -926,10 +1033,13 @@ export default function AdminPage() {
                       </div>
 
                       <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600">
-                        <span className="flex items-center gap-1 font-semibold text-slate-800">
+                        <a
+                          href={`tel:${lead.phone}`}
+                          className="flex items-center gap-1.5 font-bold text-slate-800 hover:text-brand-blue"
+                        >
                           <Phone className="w-3.5 h-3.5 text-brand-blue" />
                           {lead.phone}
-                        </span>
+                        </a>
                         {lead.email && (
                           <span className="flex items-center gap-1 text-slate-500">
                             <Mail className="w-3.5 h-3.5 text-slate-400" />
@@ -937,15 +1047,15 @@ export default function AdminPage() {
                           </span>
                         )}
                         {lead.commune && (
-                          <span className="text-slate-500">
-                            Sector: <strong>{lead.commune}</strong>
+                          <span className="text-slate-600 font-medium">
+                            Comuna: <strong>{lead.commune}</strong>
                           </span>
                         )}
                       </div>
 
                       {lead.dimensions && (
-                        <div className="text-xs text-slate-700 bg-slate-50 p-2 rounded-lg border border-slate-100">
-                          <strong>Detalles / Medidas:</strong> {lead.dimensions}
+                        <div className="text-xs text-slate-700 bg-slate-50 p-2.5 rounded-xl border border-slate-100 font-medium">
+                          <strong>Especificación / Medidas:</strong> {lead.dimensions}
                         </div>
                       )}
 
@@ -958,12 +1068,12 @@ export default function AdminPage() {
 
                     {/* Acciones de Contacto y Estado */}
                     <div className="flex flex-col sm:flex-row lg:flex-col items-end gap-3 pt-3 lg:pt-0 border-t lg:border-t-0 border-slate-100">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-semibold text-slate-500">Estado:</span>
+                      <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+                        <span className="text-xs font-bold text-slate-500">Estado:</span>
                         <select
                           value={lead.status}
                           onChange={(e) => handleUpdateLeadStatus(lead.id, e.target.value as any)}
-                          className="px-2.5 py-1.5 rounded-xl border border-slate-200 text-xs font-bold bg-white text-brand-navy focus:outline-none focus:border-brand-blue"
+                          className="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-bold bg-white text-brand-navy focus:outline-none focus:border-brand-blue"
                         >
                           <option value="nuevo">Nuevo</option>
                           <option value="contactado">Contactado</option>
@@ -977,10 +1087,10 @@ export default function AdminPage() {
                         href={waChatUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5"
+                        className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-2"
                       >
                         <MessageCircle className="w-4 h-4 fill-white" />
-                        <span>Escribir por WhatsApp</span>
+                        <span>Contactar por WhatsApp</span>
                       </a>
                     </div>
                   </div>
@@ -991,19 +1101,113 @@ export default function AdminPage() {
         )}
 
         {/* ========================================================= */}
-        {/* TAB 4: AJUSTES Y CONFIGURACIÓN */}
+        {/* TAB 4: CALCULADORA RÁPIDA DE TALLER */}
+        {/* ========================================================= */}
+        {activeTab === 'calculator' && (
+          <div className="space-y-6 max-w-4xl">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-black text-brand-navy">Calculadora Rápida de Presupuestos</h2>
+              <p className="text-xs text-slate-500">
+                Herramienta interna para calcular valores m² y estimar costos en segundos para clientes que llamen por teléfono.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-card space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-slate-700">Ancho (metros)</label>
+                  <input
+                    type="number"
+                    step="0.05"
+                    value={calcWidth}
+                    onChange={(e) => setCalcWidth(Number(e.target.value))}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm font-bold text-brand-navy focus:outline-none focus:border-brand-blue"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-slate-700">Alto (metros)</label>
+                  <input
+                    type="number"
+                    step="0.05"
+                    value={calcHeight}
+                    onChange={(e) => setCalcHeight(Number(e.target.value))}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm font-bold text-brand-navy focus:outline-none focus:border-brand-blue"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-slate-700">Valor CLP / m²</label>
+                  <input
+                    type="number"
+                    step="5000"
+                    value={calcPriceM2}
+                    onChange={(e) => setCalcPriceM2(Number(e.target.value))}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm font-bold text-brand-navy focus:outline-none focus:border-brand-blue"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-slate-700">Cantidad de Hojas/Unidades</label>
+                  <input
+                    type="number"
+                    min="1"
+                    value={calcQuantity}
+                    onChange={(e) => setCalcQuantity(Number(e.target.value))}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm font-bold text-brand-navy focus:outline-none focus:border-brand-blue"
+                  />
+                </div>
+              </div>
+
+              {/* Resultado */}
+              {(() => {
+                const areaM2 = Number((calcWidth * calcHeight * calcQuantity).toFixed(2));
+                const subtotal = Math.round(areaM2 * calcPriceM2);
+                const iva = Math.round(subtotal * 0.19);
+                const total = subtotal + iva;
+
+                return (
+                  <div className="p-6 rounded-2xl bg-gradient-to-r from-brand-navy to-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+                    <div className="space-y-1 text-center sm:text-left">
+                      <span className="text-xs text-brand-cyan font-bold uppercase tracking-wider">
+                        Superficie Total: {areaM2} m² ({calcQuantity} unidad{calcQuantity > 1 ? 'es' : ''})
+                      </span>
+                      <div className="text-xs text-slate-300">
+                        Neto: ${subtotal.toLocaleString('es-CL')} CLP | IVA (19%): ${iva.toLocaleString('es-CL')} CLP
+                      </div>
+                    </div>
+
+                    <div className="text-center sm:text-right">
+                      <span className="text-[11px] text-slate-400 block uppercase font-bold">Total Estimado con IVA:</span>
+                      <span className="text-2xl sm:text-3xl font-black text-brand-ice">
+                        ${total.toLocaleString('es-CL')} CLP
+                      </span>
+                    </div>
+                  </div>
+                );
+              })()}
+
+              <div className="text-xs text-slate-500">
+                💡 <strong>Valores referenciales estándar en Viña del Mar:</strong> Ventana Aluminio Línea Europea: ~$85.000/m² | Ventana PVC Termopanel: ~$110.000/m² | Shower Door Templado 8mm: ~$195.000 unidad estándar.
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ========================================================= */}
+        {/* TAB 5: AJUSTES Y CONFIGURACIÓN */}
         {/* ========================================================= */}
         {activeTab === 'settings' && (
           <div className="space-y-6 max-w-4xl">
             <div>
               <h2 className="text-xl sm:text-2xl font-black text-brand-navy">Ajustes del Sistema & Integraciones</h2>
               <p className="text-xs text-slate-500">
-                Información del cliente, credenciales maestras y estado de vinculación a Supabase.
+                Información corporativa, credenciales maestras y estado de vinculación con Supabase.
               </p>
             </div>
 
-            {/* Tarjeta de Datos Corporativos de Vidriería Orellana */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            {/* Datos Corporativos de Vidriería Orellana */}
+            <div className="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200/90 shadow-card space-y-4">
               <h3 className="font-bold text-sm text-brand-navy flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-brand-blue" />
                 <span>Datos Corporativos Oficiales</span>
@@ -1011,7 +1215,7 @@ export default function AdminPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 <div>
-                  <span className="text-slate-400 font-semibold block">Razón / Nombre Fantasía:</span>
+                  <span className="text-slate-400 font-semibold block">Razón Social / Nombre:</span>
                   <span className="font-bold text-slate-800">Orellana - Vidrios & Aluminios</span>
                 </div>
                 <div>
@@ -1036,22 +1240,22 @@ export default function AdminPage() {
             </div>
 
             {/* Estado de Supabase */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <div className="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200/90 shadow-card space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="font-bold text-sm text-brand-navy flex items-center gap-2">
                   <Database className="w-4 h-4 text-brand-blue" />
                   <span>Base de Datos Supabase</span>
                 </h3>
-                <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+                <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
                   Modo Localhost Activo (Persistente)
                 </span>
               </div>
 
               <p className="text-xs text-slate-600 leading-relaxed">
-                El sistema actualmente almacena cotizaciones, productos y métricas de tráfico en modo local con persistencia. Cuando desees vincular tu cuenta oficial de Supabase, solo debes agregar las variables de entorno en el archivo <code>.env.local</code>:
+                El sistema actualmente almacena cotizaciones, productos y métricas de tráfico en modo local con persistencia en <code>.local-data.json</code>. Cuando desees vincular tu cuenta oficial de Supabase, solo debes agregar las variables de entorno en el archivo <code>.env.local</code>:
               </p>
 
-              <pre className="p-3 rounded-xl bg-slate-900 text-slate-100 text-[11px] font-mono overflow-x-auto">
+              <pre className="p-4 rounded-2xl bg-slate-900 text-slate-100 text-[11px] font-mono overflow-x-auto">
                 {`NEXT_PUBLIC_SUPABASE_URL=https://tu-proyecto.supabase.co\nNEXT_PUBLIC_SUPABASE_ANON_KEY=tu-anon-key`}
               </pre>
 

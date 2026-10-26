@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Camera, MapPin, CheckCircle, ArrowRight, Sparkles } from 'lucide-react';
+import Image from 'next/image';
+import { Camera, MapPin, CheckCircle, ArrowRight, Sparkles, ZoomIn } from 'lucide-react';
 import { trackEvent } from '@/lib/tracker';
 
 interface ProjectItem {
@@ -11,6 +12,7 @@ interface ProjectItem {
   location: string;
   material: string;
   highlight: string;
+  image: string;
 }
 
 export const PROJECTS: ProjectItem[] = [
@@ -19,55 +21,52 @@ export const PROJECTS: ProjectItem[] = [
     title: 'Ventanas Termopanel PVC Aislante',
     category: 'Ventanas',
     location: 'Reñaca, Viña del Mar',
-    material: 'PVC Blanco Termofusionado + DVH 4-12-4',
-    highlight: 'Aislación térmica total contra brisa marina',
+    material: 'PVC Termofusionado + DVH 4-12-4 Hermético',
+    highlight: 'Aislación térmica total contra el viento y frío marino',
+    image: '/images/ventanas-pvc.jpg',
   },
   {
     id: 'proj-2',
     title: 'Cierre de Balcón y Terraza Vista Libre',
     category: 'Balcones',
     location: 'Sector 5, Reñaca',
-    material: 'Cristal Templado 8mm + Rieles Aluminio',
-    highlight: 'Hojas correderas herméticas de fácil limpieza',
+    material: 'Cristal Templado 8mm + Rieles de Aluminio Anodizado',
+    highlight: 'Hojas correderas panorámicas sin perfiles que corten la vista',
+    image: '/images/cierre-balcon.jpg',
   },
   {
     id: 'proj-3',
-    title: 'Shower Door Esmerilado a Medida',
+    title: 'Shower Door en Cristal Templado',
     category: 'Shower Door',
     location: 'Concón',
-    material: 'Cristal Templado 8mm + Acero Inox 316',
-    highlight: 'Cierre magnético hermético sin filtraciones',
+    material: 'Cristal Templado 8mm + Herrajes Acero Inoxidable 316',
+    highlight: 'Cierre magnético hermético con sellos de silicona neutra',
+    image: '/images/shower-door.jpg',
   },
   {
     id: 'proj-4',
-    title: 'Espejo Mural de Gran Formato con LED',
-    category: 'Espejos',
-    location: 'Viña del Mar Centro',
-    material: 'Cristal 5mm Biselado + Tira LED 3000K',
-    highlight: 'Borde pulido con corte milimétrico en taller',
+    title: 'Fachadas Vidriadas y Bow Windows',
+    category: 'Ventanas',
+    location: 'Costa de Viña del Mar',
+    material: 'Línea Europea 42 + Cristales de Control Solar',
+    highlight: 'Máximo ingreso de luz natural con resistencia al salitre',
+    image: '/images/hero-web.jpg',
   },
   {
     id: 'proj-5',
-    title: 'Bow Window Panorámico Residencial',
-    category: 'Bow Window',
+    title: 'Muros Cortina y Barandas de Cristal',
+    category: 'Balcones',
     location: 'Miraflores, Viña del Mar',
-    material: 'Aluminio Línea Europea Titanio',
-    highlight: 'Estructura angular reforzada de alta resistencia',
-  },
-  {
-    id: 'proj-6',
-    title: 'Puertas y Ventanales de Acceso',
-    category: 'Puertas',
-    location: 'Achupallas, Viña del Mar',
-    material: 'Aluminio Negro Mate + Vidrio Laminado',
-    highlight: 'Cerraduras de seguridad y bisagras de alto tráfico',
+    material: 'Cristal Laminado de Seguridad 10mm + Botones de Acero',
+    highlight: 'Seguridad perimetral certificada para altura',
+    image: '/images/hero-mobile.jpg',
   },
 ];
 
 export default function ProjectsGallery() {
   const [filter, setFilter] = useState('Todos');
 
-  const categories = ['Todos', 'Ventanas', 'Balcones', 'Shower Door', 'Espejos'];
+  const categories = ['Todos', 'Ventanas', 'Balcones', 'Shower Door'];
 
   const filteredProjects = filter === 'Todos'
     ? PROJECTS
@@ -90,13 +89,13 @@ export default function ProjectsGallery() {
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-brand-blue text-xs font-bold uppercase tracking-wider">
             <Camera className="w-3.5 h-3.5" />
-            Galería de Trabajos Realizados
+            Galería Fotográfica de Trabajos Realizados
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-brand-navy tracking-tight">
             Nuestros Trabajos en Viña del Mar y la V Región
           </h2>
           <p className="text-sm sm:text-base text-slate-600">
-            Cada instalación refleja nuestro compromiso con las terminaciones limpias, la durabilidad y la satisfacción de cada familia y empresa.
+            Fotografías reales de obras fabricadas e instaladas por nuestros maestros en departamentos, residencias y locales comerciales.
           </p>
         </div>
 
@@ -106,9 +105,9 @@ export default function ProjectsGallery() {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                 filter === cat
-                  ? 'bg-brand-blue text-white shadow-sm'
+                  ? 'bg-brand-navy text-white shadow-md'
                   : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
               }`}
             >
@@ -117,30 +116,34 @@ export default function ProjectsGallery() {
           ))}
         </div>
 
-        {/* Grilla de Proyectos */}
+        {/* Grilla de Proyectos Fotográficos */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {filteredProjects.map((p) => (
             <div
               key={p.id}
-              className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-glass-card-hover transition-all duration-300 flex flex-col justify-between group"
+              className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-card hover:shadow-glass-card-hover transition-all duration-300 flex flex-col justify-between group"
             >
-              {/* Tarjeta Visual Decorativa de Simulación Arquitectónica */}
-              <div className="h-48 bg-gradient-to-br from-brand-navy via-brand-navy-card to-slate-900 p-6 flex flex-col justify-between relative overflow-hidden text-white">
-                <div className="absolute inset-0 bg-blueprint-dark opacity-40 pointer-events-none" />
-                <div className="absolute -right-6 -bottom-6 w-32 h-32 bg-brand-blue/20 rounded-full blur-2xl pointer-events-none" />
+              {/* Contenedor Fotográfico */}
+              <div className="relative h-60 sm:h-64 w-full overflow-hidden bg-slate-900">
+                <Image
+                  src={p.image}
+                  alt={p.title}
+                  fill
+                  className="object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20" />
 
-                <div className="flex items-center justify-between z-10">
-                  <span className="text-[10px] font-bold uppercase tracking-wider bg-white/10 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10 text-brand-cyan">
+                <div className="absolute top-3 left-3 right-3 flex items-center justify-between text-white z-10">
+                  <span className="text-[10px] font-bold uppercase tracking-wider bg-slate-950/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/20 text-brand-cyan">
                     {p.category}
                   </span>
-                  <span className="flex items-center gap-1 text-[11px] text-slate-300 font-medium">
-                    <MapPin className="w-3 h-3 text-brand-blue" />
+                  <span className="flex items-center gap-1 text-[11px] bg-slate-950/70 backdrop-blur-md px-2.5 py-1 rounded-md text-white font-medium border border-white/10">
+                    <MapPin className="w-3 h-3 text-brand-cyan" />
                     {p.location}
                   </span>
                 </div>
 
-                <div className="z-10 space-y-1">
-                  <div className="text-xs text-brand-ice font-semibold">Proyecto Entregado</div>
+                <div className="absolute bottom-3 left-3 right-3 z-10">
                   <h3 className="text-base font-bold text-white group-hover:text-brand-cyan transition-colors">
                     {p.title}
                   </h3>
@@ -151,19 +154,22 @@ export default function ProjectsGallery() {
               <div className="p-5 sm:p-6 space-y-4">
                 <div className="space-y-2 text-xs">
                   <div>
-                    <span className="text-slate-400 font-bold block uppercase text-[10px]">Materiales Utilizados:</span>
-                    <span className="font-semibold text-slate-800">{p.material}</span>
+                    <span className="text-slate-400 font-bold block uppercase text-[10px] tracking-wider">
+                      Materiales Utilizados:
+                    </span>
+                    <span className="font-bold text-slate-800">{p.material}</span>
                   </div>
-                  <div className="flex items-start gap-1.5 text-emerald-700 bg-emerald-50 p-2 rounded-xl border border-emerald-100 font-medium">
+                  
+                  <div className="flex items-start gap-1.5 text-emerald-800 bg-emerald-50 p-2.5 rounded-2xl border border-emerald-100 font-medium">
                     <CheckCircle className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
                     <span>{p.highlight}</span>
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
                   <button
                     onClick={() => handleQuoteSimilar(p.title)}
-                    className="w-full py-2.5 px-4 rounded-xl bg-slate-50 hover:bg-brand-blue text-slate-700 hover:text-white font-bold text-xs border border-slate-200 hover:border-transparent transition-all flex items-center justify-center gap-2 group-hover:bg-brand-blue group-hover:text-white"
+                    className="w-full py-2.5 px-4 rounded-xl bg-slate-50 hover:bg-brand-blue text-brand-navy hover:text-white font-bold text-xs border border-slate-200 hover:border-transparent transition-all flex items-center justify-center gap-2 group-hover:bg-brand-blue group-hover:text-white shadow-sm"
                   >
                     <Sparkles className="w-3.5 h-3.5 text-brand-blue group-hover:text-white transition-colors" />
                     <span>Cotizar un proyecto similar</span>

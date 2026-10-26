@@ -8,6 +8,7 @@ import QuotationCalculator from '@/components/QuotationCalculator';
 import ContactLocation from '@/components/ContactLocation';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import MobileBottomBar from '@/components/MobileBottomBar';
 
 export default function HomePage() {
   return (
@@ -24,6 +25,7 @@ export default function HomePage() {
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <MobileBottomBar />
     </>
   );
 }
